@@ -1,5 +1,5 @@
-# Web Project Template
-This template has everything needed to start an html-javascript web project right away
+# NW.JS Project Template
+This template has everything needed to start an html-javascript NW.jS project right away
 
 # Run the project
 Open terminal and run gulp
