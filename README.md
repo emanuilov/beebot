@@ -12,7 +12,7 @@ npm install -g nwbuild
 Open terminal and run gulp
 
 # Run auto refreshing copy of dist
-Use Live Server extension in VS Code, right click on index.html, Open with Live Server
+Just run gulp
 
 # Git - recommended SSH using the set key
 ###Set the new repo name
