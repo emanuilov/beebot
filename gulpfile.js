@@ -42,7 +42,7 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('scripts-dist', function () {
-	return gulp.src('./src/js/**/*.js')
+	return gulp.src(['./src/js/**/*.js', '!./src/js/dev-reload.js'])
 		.pipe(babel())
 		.pipe(sourcemaps.init())
 		.pipe(concat('script.js'))
