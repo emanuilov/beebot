@@ -1,6 +1,13 @@
 # NW.JS Project Template
 This template has everything needed to start an html-javascript NW.jS project right away
 
+#Needed global npm dependencies
+```
+npm view nw versions - get the latest version of NW.JS and replace it in the command below
+npm install -g nw@version-sdk
+npm install -g nwbuild
+```
+
 # Run the project
 Open terminal and run gulp
 
