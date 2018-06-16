@@ -14,6 +14,12 @@ Open terminal and run gulp
 # Run auto refreshing copy of dist
 Just run gulp
 
+# Build the project
+```
+gulp export
+nwbuild . -p win32,win64,osx32,osx64,linux32,linux64 --flavor normal
+```
+
 # Git - recommended SSH using the set key
 ###Set the new repo name
 ```

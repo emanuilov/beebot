@@ -1,17 +1,18 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var imagemin = require('gulp-imagemin');
-var pngquant = require('imagemin-pngquant');
-var eslint = require('gulp-eslint');
-var babel = require('gulp-babel');
-var concat = require('gulp-concat');
-var sourcemaps = require('gulp-sourcemaps');
-var uglify = require('gulp-uglify');
-var jasmine = require('gulp-jasmine-browser');
-var clean = require('gulp-clean');
-var child_process = require('child_process');
-var nwjs = false;
+/*eslint no-console: ["error", { allow: ["log","warn","error"] }] */
+const gulp = require('gulp'),
+	sass = require('gulp-sass'),
+	autoprefixer = require('gulp-autoprefixer'),
+	imagemin = require('gulp-imagemin'),
+	pngquant = require('imagemin-pngquant'),
+	eslint = require('gulp-eslint'),
+	babel = require('gulp-babel'),
+	concat = require('gulp-concat'),
+	sourcemaps = require('gulp-sourcemaps'),
+	uglify = require('gulp-uglify'),
+	jasmine = require('gulp-jasmine-browser'),
+	clean = require('gulp-clean'),
+	child_process = require('child_process');
+let nwjs = false;
 
 gulp.task('watch', function () {
 	gulp.watch('./src/sass/**/*.scss', gulp.parallel('styles'));
@@ -84,9 +85,8 @@ gulp.task('clean', function () {
 });
 
 gulp.task('restart-nwjs', function () {
-	/*eslint no-console: ["error", { allow: ["error"] }] */
 	if (nwjs) {
-		var kill_command;
+		let kill_command;
 		if (process.platform == 'win32') {
 			kill_command = 'taskkill /F /IM nw.exe';
 		} else {
@@ -104,5 +104,11 @@ gulp.task('restart-nwjs', function () {
 	return gulp.src('./');
 });
 
+gulp.task('build-info-message', function () {
+	console.log('Execute the following command to build the project nwbuild . -p win32,win64,osx32,osx64,linux32,linux64 --flavor normal');
+	console.log(`The project will be build in ${process.cwd()}/build`);
+	return gulp.src('./');
+});
+
 gulp.task('default', gulp.series('clean', gulp.parallel('copy-html', 'styles', 'lint', 'scripts', 'minify-images'), 'restart-nwjs', 'watch'));
-gulp.task('export', gulp.series('clean', gulp.parallel('copy-html', 'styles', 'lint', 'scripts-dist', 'minify-images')));
+gulp.task('export', gulp.series('clean', gulp.parallel('copy-html', 'styles', 'lint', 'scripts-dist', 'minify-images'), 'build-info-message'));
