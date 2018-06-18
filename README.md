@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # NW.JS Project Template
 This template has everything needed to start an html-javascript NW.jS project right away
 
@@ -37,7 +36,3 @@ git pull --allow-unrelated-histories
 
 # Edits
 The only place that needs edits is package.json
-=======
-# BlueBot
-
->>>>>>> e89b66ed852281ebd49096913fd6eac826d87377
