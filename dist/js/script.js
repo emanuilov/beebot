@@ -21,5 +21,5 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _reactDom2.default.render(_react2.default.createElement(
 	'h1',
 	null,
-	' Hello, world! '
+	' Hello, test! '
 ), document.getElementById('root'));

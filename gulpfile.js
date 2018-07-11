@@ -16,7 +16,7 @@ let nwjs = false;
 
 gulp.task('watch', function () {
 	gulp.watch('./src/sass/**/*.scss', gulp.parallel('styles'));
-	gulp.watch('./src/js/**/*.js', gulp.parallel('lint', 'scripts'));
+	gulp.watch('./src/js/**/*', gulp.parallel('lint', 'scripts'));
 	gulp.watch('./src/img/*', gulp.parallel('minify-images', 'restart-nwjs'));
 	gulp.watch('./src/**/*.html', gulp.series('copy-html', 'restart-nwjs'));
 });
@@ -36,14 +36,14 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', function () {
-	return gulp.src('./src/js/**/*.js')
+	return gulp.src('./src/js/**/*')
 		.pipe(babel())
 		.pipe(concat('script.js'))
 		.pipe(gulp.dest('./dist/js'));
 });
 
 gulp.task('scripts-dist', function () {
-	return gulp.src(['./src/js/**/*.js', '!./src/js/dev-reload.js'])
+	return gulp.src(['./src/js/**/*', '!./src/js/dev-reload.js'])
 		.pipe(babel())
 		.pipe(sourcemaps.init())
 		.pipe(concat('script.js'))
@@ -62,7 +62,7 @@ gulp.task('minify-images', function () {
 });
 
 gulp.task('lint', function () {
-	return gulp.src(['./src/js/**/*.js', '!node_modules/**'])
+	return gulp.src(['./src/js/**/*', '!node_modules/**'])
 		.pipe(eslint({
 			'configFile': './.eslintrc.json'
 		}))
