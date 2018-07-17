@@ -8,11 +8,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@bitbucket.org/emanuilov/web-project-template.git"
+		"url": "git+ssh://git@bitbucket.org/emanuilov/nw.js-project-template.git"
 	},
 	"author": "Radostin Emanuilov",
 	"license": "ISC",
-	"homepage": "https://bitbucket.org/emanuilov/web-project-template#readme",
+	"homepage": "https://bitbucket.org/emanuilov/nw.js-project-template#readme",
 	"devDependencies": {
 		"babel-core": "^6.26.3",
 		"gulp": "^4.0.0",
