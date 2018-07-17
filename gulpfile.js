@@ -110,5 +110,5 @@ gulp.task('build-info-message', function () {
 	return gulp.src('./');
 });
 
-gulp.task('default', gulp.series('clean', gulp.parallel('copy-html', 'styles', 'lint', 'scripts', 'minify-images'), 'restart-nwjs', 'watch'));
-gulp.task('export', gulp.series('clean', gulp.parallel('copy-html', 'styles', 'lint', 'scripts-dist', 'minify-images'), 'js-tests', 'build-info-message'));
+gulp.task('default', gulp.series('clean', gulp.parallel('copy-html', 'styles', 'js-lint', 'scripts', 'minify-images'), 'restart-nwjs', 'watch'));
+gulp.task('export', gulp.series('clean', gulp.parallel('copy-html', 'styles', 'js-lint', 'scripts-dist', 'minify-images'), 'js-tests', 'build-info-message'));
