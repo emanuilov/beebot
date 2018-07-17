@@ -16,7 +16,7 @@ let nwjs = false;
 
 gulp.task('watch', function () {
 	gulp.watch('./src/sass/**/*.scss', gulp.parallel('styles'));
-	gulp.watch('./src/js/**/*.js', gulp.parallel('lint', 'scripts'));
+	gulp.watch('./src/js/**/*.js', gulp.parallel('js-lint', 'scripts'));
 	gulp.watch('./src/img/*', gulp.parallel('minify-images', 'restart-nwjs'));
 	gulp.watch('./src/**/*.html', gulp.series('copy-html', 'restart-nwjs'));
 });
@@ -24,15 +24,6 @@ gulp.task('watch', function () {
 gulp.task('copy-html', function () {
 	return gulp.src('./src/**/*.html')
 		.pipe(gulp.dest('./dist'));
-});
-
-gulp.task('styles', function () {
-	return gulp.src('./src/sass/**/*.scss')
-		.pipe(sass().on('error', sass.logError))
-		.pipe(autoprefixer({
-			browsers: ['last 5 versions']
-		}))
-		.pipe(gulp.dest('./dist/css'));
 });
 
 gulp.task('scripts', function () {
@@ -52,6 +43,32 @@ gulp.task('scripts-dist', function () {
 		.pipe(gulp.dest('./dist/js'));
 });
 
+gulp.task('js-lint', function () {
+	return gulp.src(['./src/js/**/*.js', '!node_modules/**'])
+		.pipe(eslint())
+		.pipe(eslint.format())
+		.pipe(eslint.failAfterError());
+});
+
+gulp.task('js-tests', function () {
+	return gulp.src(['./tests/**/*.js'])
+		.pipe(jasmine.specRunner({
+			console: true
+		}))
+		.pipe(jasmine.headless({
+			driver: 'phantomjs'
+		}));
+});
+
+gulp.task('styles', function () {
+	return gulp.src('./src/sass/**/*.scss')
+		.pipe(sass().on('error', sass.logError))
+		.pipe(autoprefixer({
+			browsers: ['last 5 versions']
+		}))
+		.pipe(gulp.dest('./dist/css'));
+});
+
 gulp.task('minify-images', function () {
 	return gulp.src('./src/img/*')
 		.pipe(imagemin({
@@ -59,23 +76,6 @@ gulp.task('minify-images', function () {
 			use: [pngquant()]
 		}))
 		.pipe(gulp.dest('./dist/img'));
-});
-
-gulp.task('lint', function () {
-	return gulp.src(['./src/js/**/*.js', '!node_modules/**'])
-		.pipe(eslint())
-		.pipe(eslint.format())
-		.pipe(eslint.failAfterError());
-});
-
-gulp.task('tests', function () {
-	return gulp.src(['./src/**/*.js'])
-		.pipe(jasmine.specRunner({
-			console: true
-		}))
-		.pipe(jasmine.headless({
-			driver: 'chrome'
-		}));
 });
 
 gulp.task('clean', function () {
@@ -111,4 +111,4 @@ gulp.task('build-info-message', function () {
 });
 
 gulp.task('default', gulp.series('clean', gulp.parallel('copy-html', 'styles', 'lint', 'scripts', 'minify-images'), 'restart-nwjs', 'watch'));
-gulp.task('export', gulp.series('clean', gulp.parallel('copy-html', 'styles', 'lint', 'scripts-dist', 'minify-images'), 'build-info-message'));
+gulp.task('export', gulp.series('clean', gulp.parallel('copy-html', 'styles', 'lint', 'scripts-dist', 'minify-images'), 'js-tests', 'build-info-message'));
