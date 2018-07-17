@@ -1,5 +1,6 @@
 /*eslint no-console: ["error", { allow: ["log","warn","error"] }] */
 const gulp = require('gulp'),
+	watch = require('gulp-watch'),
 	sass = require('gulp-sass'),
 	autoprefixer = require('gulp-autoprefixer'),
 	imagemin = require('gulp-imagemin'),
@@ -15,10 +16,10 @@ const gulp = require('gulp'),
 let nwjs = false;
 
 gulp.task('watch', function () {
-	gulp.watch('./src/sass/**/*.scss', gulp.parallel('styles'));
-	gulp.watch('./src/js/**/*.js', gulp.parallel('js-lint', 'scripts'));
-	gulp.watch('./src/img/*', gulp.parallel('minify-images', 'restart-nwjs'));
-	gulp.watch('./src/**/*.html', gulp.series('copy-html', 'restart-nwjs'));
+	watch('./src/sass/**/*.scss', gulp.parallel('styles'));
+	watch('./src/js/**/*.js', gulp.series('js-lint', 'scripts'));
+	watch('./src/img/*', gulp.series('minify-images', 'restart-nwjs'));
+	watch('./src/**/*.html', gulp.series('copy-html', 'restart-nwjs'));
 });
 
 gulp.task('copy-html', function () {
