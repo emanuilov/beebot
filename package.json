@@ -13,7 +13,7 @@
 	"author": "Radostin Emanuilov",
 	"license": "ISC",
 	"homepage": "https://bitbucket.org/emanuilov/bluebot#readme",
-		"devDependencies": {
+	"devDependencies": {
 		"babel-core": "^6.26.3",
 		"babel-eslint": "^8.2.3",
 		"babel-preset-env": "^1.7.0",
