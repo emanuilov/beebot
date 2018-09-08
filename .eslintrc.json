@@ -17,11 +17,15 @@
 		],
 		"quotes": [
 			"warn",
-			"double"
+			"single"
 		],
 		"semi": [
 			"warn",
 			"always"
 		]
+	},
+	"globals": {
+		"DrawingBoard": true,
+		"SimpleUndo": true
 	}
 }

@@ -6,6 +6,1646 @@ gulp.task("nw-reload", function () {
 });
 
 gulp.watch("./dist/**/*", gulp.parallel("nw-reload"));
+'use strict';
+
+$(document).ready(function () {
+	var drawingBoard = new DrawingBoard.Board('drawing-board', {
+		background: false,
+		eraserColor: 'transparent',
+		controls: false,
+		webStorage: false,
+		size: 6,
+		color: '#1abc9c'
+	}),
+	    isTheMouseInTheCanvas = false,
+	    beeImg = $('.bee-container img'),
+	    canvas = $(drawingBoard.canvas),
+	    beePosition = null,
+	    beeSteps = [],
+	    beeRotation = 0,
+	    intervals = {
+		betweenActions: 500,
+		pause: 1
+	};
+
+	canvas.on('dragenter', function () {
+		isTheMouseInTheCanvas = true;
+	});
+	canvas.on('dragover', function (e) {
+		if (e.preventDefault) {
+			e.preventDefault(); // Necessary. Allows us to drop.
+		}
+		return false;
+	});
+	canvas.on('dragleave', function () {
+		isTheMouseInTheCanvas = false;
+	});
+	canvas.on('drop', function (e) {
+		// this / e.target is current target element.
+
+		if (e.stopPropagation) {
+			e.stopPropagation(); // stops the browser from redirecting.
+		}
+
+		if (isTheMouseInTheCanvas) {
+			insertImage('bee', getBoxAndRowID(getMouseCoordinates(drawingBoard.canvas, e)));
+			beeImg.remove();
+		}
+
+		return false;
+	});
+	beeImg.on('dragstart', function () {
+		this.style.opacity = '0.4'; // this / e.target is the source node.
+	});
+	beeImg.on('dragend', function () {
+		if (isTheMouseInTheCanvas) {
+			$(this).remove();
+			isTheMouseInTheCanvas = false;
+		} else {
+			$(this).css('opacity', 1);
+		}
+	});
+
+	function runTheSteps() {
+		beeSteps.forEach(function (beeStep) {
+			switch (beeStep) {
+				case 1:
+					if (!moveTheBee(beeRotation, null, 1)) {
+						makeTheBeeEyesRed();
+						return;
+					}
+					break;
+				case 2:
+					beeRotation = (90 + beeRotation) % 360;
+					moveTheBee(beeRotation, beePosition);
+					break;
+				case 3:
+					setTimeout(function () {}, intervals.pause);
+					break;
+				case 4:
+					if (!moveTheBee(beeRotation, null, 2)) {
+						makeTheBeeEyesRed();
+						return;
+					}
+					break;
+				case 5:
+					beeRotation = (-90 + beeRotation) % 360;
+					moveTheBee(beeRotation, beePosition);
+					break;
+				default:
+					break;
+			}
+		});
+	}
+
+	function makeTheBeeEyesRed() {}
+
+	function getTheWantedPosition(direction, beeOrientation) {
+		var movement = null,
+		    positionCopy = beePosition;
+		if (direction == 1) {
+			movement = 1;
+		} else {
+			movement = -1;
+		}
+		switch (beeOrientation) {
+			case 1:
+				positionCopy.rowID += movement;
+				return positionCopy;
+			case 2:
+				positionCopy.boxID += movement;
+				return positionCopy;
+			case 3:
+				positionCopy.rowID += movement;
+				return positionCopy;
+			case 4:
+				positionCopy.boxID += movement;
+				return positionCopy;
+		}
+	}
+
+	function checkIfTheMovementIsPossible(position) {
+		if (position.boxID > 0 && position.boxID < 6 && position.rowID > 0 && position.rowID < 6) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function getBeeOrientation() {
+		switch (beeRotation) {
+			case 0:
+				return 1;
+			case 90:
+				return 2;
+			case 180:
+				return 3;
+			case 270:
+				return 4;
+			default:
+				return 1;
+		}
+	}
+
+	function moveTheBee(rotation, newPosition) {
+		var direction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+		if (newPosition == null) {
+			newPosition = getTheWantedPosition(direction, getBeeOrientation());
+		}
+		if (checkIfTheMovementIsPossible(newPosition)) {
+			setTimeout(function () {
+				var beeContainer = $($('embed')[0].getSVGDocument()).find('#beeContainer');
+				beeContainer.empty();
+				insertImage('bee', newPosition, rotation);
+			}, intervals.betweenActions);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function getMouseCoordinates(canvas, event) {
+		var rect = canvas.getBoundingClientRect();
+		return {
+			x: event.clientX - rect.left,
+			y: event.clientY - rect.top
+		};
+	}
+
+	function getBoxAndRowID(mouseCoordinates) {
+		var coordinates = {
+			rowID: null,
+			boxID: null
+		};
+
+		if (mouseCoordinates.x <= 143) {
+			coordinates.boxID = 1;
+		} else if (mouseCoordinates.x <= 278) {
+			coordinates.boxID = 2;
+		} else if (mouseCoordinates.x <= 411) {
+			coordinates.boxID = 3;
+		} else if (mouseCoordinates.x <= 544) {
+			coordinates.boxID = 4;
+		} else {
+			coordinates.boxID = 5;
+		}
+
+		if (mouseCoordinates.y <= 143) {
+			coordinates.rowID = 1;
+		} else if (mouseCoordinates.y <= 278) {
+			coordinates.rowID = 2;
+		} else if (mouseCoordinates.y <= 411) {
+			coordinates.rowID = 3;
+		} else if (mouseCoordinates.y <= 544) {
+			coordinates.rowID = 4;
+		} else {
+			coordinates.rowID = 5;
+		}
+
+		return coordinates;
+	}
+	setTimeout(function () {
+		insertImage('bee', {
+			boxID: 1,
+			rowID: 1
+		}, 0);
+	}, 500);
+
+	function insertImage(imageName, imagePosition) {
+		var rotation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+		var imageCoordinates = getBoxCoordinates(imagePosition);
+
+		var image = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+		image.setAttribute('href', '/img/screen2/lessons/in-lesson-pictures/' + imageName + '.png');
+		image.setAttribute('x', imageCoordinates.x);
+		image.setAttribute('y', imageCoordinates.y);
+		if (imageName == 'bee') {
+			image.setAttribute('transform', 'rotate(' + rotation + ', ' + (62.5 + imageCoordinates.x) + ', ' + (62.5 + imageCoordinates.y) + ')');
+			$('embed')[0].getSVGDocument().getElementById('beeContainer').appendChild(image);
+			beePosition = imagePosition;
+		} else {
+			$('embed')[0].getSVGDocument().getElementById('lessonImages').appendChild(image);
+		}
+	}
+
+	function getBoxCoordinates(imagePosition) {
+		var defaultValues = {
+			startBox: 15,
+			nextBox: 134
+		};
+		return {
+			x: defaultValues.startBox + defaultValues.nextBox * (imagePosition.boxID - 1),
+			y: defaultValues.startBox + defaultValues.nextBox * (imagePosition.rowID - 1)
+		};
+	}
+
+	$('.board-manager .colors img').click(function () {
+		drawingBoard.setColor($(this).data('color'));
+	});
+
+	$('.board-manager .tools span:first-of-type img').click(function () {
+		drawingBoard.setMode($(this).data('mode'));
+	});
+
+	$('.bee-manager div *').click(function () {
+		var actionID = $(this).data('action');
+		if (actionID != 7 && actionID != 6) {
+			beeSteps.push(actionID);
+		} else if (actionID == 6) {
+			runTheSteps();
+		} else {
+			resetTheBoard();
+		}
+	});
+
+	function resetTheBoard() {
+		beeSteps = [];
+		drawingBoard.reset({
+			background: true
+		});
+		$($('embed')[0].getSVGDocument()).find('#beeContainer').empty();
+		var beeContainer = $('.bee-container');
+		beeContainer.empty();
+		beeContainer.append('<img src="./img/screen2/lessons/in-lesson-pictures/bee.png" alt="Bee">');
+	}
+
+	$('.board-manager .tools span:last-of-type img').click(function () {
+		var newSize = parseInt($(this).data('size'));
+		drawingBoard.opts.size = newSize;
+		drawingBoard.ctx.lineWidth = newSize;
+	});
+});
+'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/* drawingboard.js v0.4.6 - https://github.com/Leimi/drawingboard.js
+ * Copyright (c) 2015 Emmanuel Pelletier
+ * Licensed MIT */
+(function () {
+
+	'use strict';
+
+	/**
+  * SimpleUndo is a very basic javascript undo/redo stack for managing histories of basically anything.
+  * 
+  * options are: {
+  * 	* `provider` : required. a function to call on `save`, which should provide the current state of the historized object through the given "done" callback
+  * 	* `maxLength` : the maximum number of items in history
+  * 	* `opUpdate` : a function to call to notify of changes in history. Will be called on `save`, `undo`, `redo` and `clear`
+  * }
+  * 
+  */
+
+	var SimpleUndo = function SimpleUndo(options) {
+
+		var settings = options ? options : {};
+		var defaultOptions = {
+			provider: function provider() {
+				throw new Error("No provider!");
+			},
+			maxLength: 30,
+			onUpdate: function onUpdate() {}
+		};
+
+		this.provider = typeof settings.provider != 'undefined' ? settings.provider : defaultOptions.provider;
+		this.maxLength = typeof settings.maxLength != 'undefined' ? settings.maxLength : defaultOptions.maxLength;
+		this.onUpdate = typeof settings.onUpdate != 'undefined' ? settings.onUpdate : defaultOptions.onUpdate;
+
+		this.initialItem = null;
+		this.clear();
+	};
+
+	function truncate(stack, limit) {
+		while (stack.length > limit) {
+			stack.shift();
+		}
+	}
+
+	SimpleUndo.prototype.initialize = function (initialItem) {
+		this.stack[0] = initialItem;
+		this.initialItem = initialItem;
+	};
+
+	SimpleUndo.prototype.clear = function () {
+		this.stack = [this.initialItem];
+		this.position = 0;
+		this.onUpdate();
+	};
+
+	SimpleUndo.prototype.save = function () {
+		this.provider(function (current) {
+			truncate(this.stack, this.maxLength);
+			this.position = Math.min(this.position, this.stack.length - 1);
+
+			this.stack = this.stack.slice(0, this.position + 1);
+			this.stack.push(current);
+			this.position++;
+			this.onUpdate();
+		}.bind(this));
+	};
+
+	SimpleUndo.prototype.undo = function (callback) {
+		if (this.canUndo()) {
+			var item = this.stack[--this.position];
+			this.onUpdate();
+
+			if (callback) {
+				callback(item);
+			}
+		}
+	};
+
+	SimpleUndo.prototype.redo = function (callback) {
+		if (this.canRedo()) {
+			var item = this.stack[++this.position];
+			this.onUpdate();
+
+			if (callback) {
+				callback(item);
+			}
+		}
+	};
+
+	SimpleUndo.prototype.canUndo = function () {
+		return this.position > 0;
+	};
+
+	SimpleUndo.prototype.canRedo = function () {
+		return this.position < this.count();
+	};
+
+	SimpleUndo.prototype.count = function () {
+		return this.stack.length - 1; // -1 because of initial item
+	};
+
+	//exports
+	// node module
+	if (typeof module != 'undefined') {
+		module.exports = SimpleUndo;
+	}
+
+	// browser global
+	if (typeof window != 'undefined') {
+		window.SimpleUndo = SimpleUndo;
+	}
+})();
+window.DrawingBoard = typeof DrawingBoard !== "undefined" ? DrawingBoard : {};
+
+DrawingBoard.Utils = {};
+
+/*!
+ * Tim (lite)
+ *   github.com/premasagar/tim
+ */
+/*
+	A tiny, secure JavaScript micro-templating script.
+*/
+DrawingBoard.Utils.tpl = function () {
+	"use strict";
+
+	var start = "{{",
+	    end = "}}",
+	    path = "[a-z0-9_][\\.a-z0-9_]*",
+	    // e.g. config.person.name
+	pattern = new RegExp(start + "\\s*(" + path + ")\\s*" + end, "gi"),
+	    undef;
+
+	return function (template, data) {
+		// Merge data into the template string
+		return template.replace(pattern, function (tag, token) {
+			var path = token.split("."),
+			    len = path.length,
+			    lookup = data,
+			    i = 0;
+
+			for (; i < len; i++) {
+				lookup = lookup[path[i]];
+
+				// Property not found
+				if (lookup === undef) {
+					throw "tim: '" + path[i] + "' not found in " + tag;
+				}
+
+				// Return the required value
+				if (i === len - 1) {
+					return lookup;
+				}
+			}
+		});
+	};
+}();
+
+/**
+ * https://github.com/jeromeetienne/microevent.js
+ * MicroEvent - to make any js object an event emitter (server or browser)
+ *
+ * - pure javascript - server compatible, browser compatible
+ * - dont rely on the browser doms
+ * - super simple - you get it immediatly, no mistery, no magic involved
+ *
+ * - create a MicroEventDebug with goodies to debug
+ *   - make it safer to use
+ */
+DrawingBoard.Utils.MicroEvent = function () {};
+
+DrawingBoard.Utils.MicroEvent.prototype = {
+	bind: function bind(event, fct) {
+		this._events = this._events || {};
+		this._events[event] = this._events[event] || [];
+		this._events[event].push(fct);
+	},
+	unbind: function unbind(event, fct) {
+		this._events = this._events || {};
+		if (event in this._events === false) return;
+		this._events[event].splice(this._events[event].indexOf(fct), 1);
+	},
+	trigger: function trigger(event /* , args... */) {
+		this._events = this._events || {};
+		if (event in this._events === false) return;
+		for (var i = 0; i < this._events[event].length; i++) {
+			this._events[event][i].apply(this, Array.prototype.slice.call(arguments, 1));
+		}
+	}
+};
+
+//I know.
+DrawingBoard.Utils._boxBorderSize = function ($el, withPadding, withMargin, direction) {
+	withPadding = !!withPadding || true;
+	withMargin = !!withMargin || false;
+	var width = 0,
+	    props;
+	if (direction == "width") {
+		props = ['border-left-width', 'border-right-width'];
+		if (withPadding) props.push('padding-left', 'padding-right');
+		if (withMargin) props.push('margin-left', 'margin-right');
+	} else {
+		props = ['border-top-width', 'border-bottom-width'];
+		if (withPadding) props.push('padding-top', 'padding-bottom');
+		if (withMargin) props.push('margin-top', 'margin-bottom');
+	}
+	for (var i = props.length - 1; i >= 0; i--) {
+		width += parseInt($el.css(props[i]).replace('px', ''), 10);
+	}return width;
+};
+
+DrawingBoard.Utils.boxBorderWidth = function ($el, withPadding, withMargin) {
+	return DrawingBoard.Utils._boxBorderSize($el, withPadding, withMargin, 'width');
+};
+
+DrawingBoard.Utils.boxBorderHeight = function ($el, withPadding, withMargin) {
+	return DrawingBoard.Utils._boxBorderSize($el, withPadding, withMargin, 'height');
+};
+
+DrawingBoard.Utils.isColor = function (string) {
+	if (!string || !string.length) return false;
+	return (/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(string) || $.inArray(string.substring(0, 3), ['rgb', 'hsl']) !== -1
+	);
+};
+
+/**
+ * Packs an RGB color into a single integer.
+ */
+DrawingBoard.Utils.RGBToInt = function (r, g, b) {
+	var c = 0;
+	c |= (r & 255) << 16;
+	c |= (g & 255) << 8;
+	c |= b & 255;
+	return c;
+};
+
+/**
+ * Returns informations on the pixel located at (x,y).
+ */
+DrawingBoard.Utils.pixelAt = function (image, x, y) {
+	var i = (y * image.width + x) * 4;
+	var c = DrawingBoard.Utils.RGBToInt(image.data[i], image.data[i + 1], image.data[i + 2]);
+
+	return [i, // INDEX
+	x, // X
+	y, // Y
+	c // COLOR
+	];
+};
+
+/**
+ * Compares two colors with the given tolerance (between 0 and 255).
+ */
+DrawingBoard.Utils.compareColors = function (a, b, tolerance) {
+	if (tolerance === 0) {
+		return a === b;
+	}
+
+	var ra = a >> 16 & 255,
+	    rb = b >> 16 & 255,
+	    ga = a >> 8 & 255,
+	    gb = b >> 8 & 255,
+	    ba = a & 255,
+	    bb = b & 255;
+
+	return Math.abs(ra - rb) <= tolerance && Math.abs(ga - gb) <= tolerance && Math.abs(ba - bb) <= tolerance;
+};
+
+(function () {
+	var vendors = ['ms', 'moz', 'webkit', 'o'];
+	for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+		window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+		window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+	}
+})();
+
+window.DrawingBoard = typeof DrawingBoard !== "undefined" ? DrawingBoard : {};
+
+/**
+ * pass the id of the html element to put the drawing board into
+ * and some options : {
+ *	controls: array of controls to initialize with the drawingboard. 'Colors', 'Size', and 'Navigation' by default
+ *		instead of simple strings, you can pass an object to define a control opts
+ *		ie ['Color', { Navigation: { reset: false }}]
+ *	controlsPosition: "top left" by default. Define where to put the controls: at the "top" or "bottom" of the canvas, aligned to "left"/"right"/"center"
+ *	background: background of the drawing board. Give a hex color or an image url "#ffffff" (white) by default
+ *	color: pencil color ("#000000" by default)
+ *	size: pencil size (3 by default)
+ *	webStorage: 'session', 'local' or false ('session' by default). store the current drawing in session or local storage and restore it when you come back
+ *	droppable: true or false (false by default). If true, dropping an image on the canvas will include it and allow you to draw on it,
+ *	errorMessage: html string to put in the board's element on browsers that don't support canvas.
+ *	stretchImg: default behavior of image setting on the canvas: set to the canvas width/height or not? false by default
+ * }
+ */
+DrawingBoard.Board = function (id, opts) {
+	this.opts = this.mergeOptions(opts);
+
+	this.ev = new DrawingBoard.Utils.MicroEvent();
+
+	this.id = id;
+	this.$el = $(document.getElementById(id));
+	if (!this.$el.length) return false;
+
+	var tpl = '<div class="drawing-board-canvas-wrapper"></canvas><canvas class="drawing-board-canvas"></canvas><div class="drawing-board-cursor drawing-board-utils-hidden"></div></div>';
+	if (this.opts.controlsPosition.indexOf("bottom") > -1) tpl += '<div class="drawing-board-controls"></div>';else tpl = '<div class="drawing-board-controls"></div>' + tpl;
+
+	this.$el.addClass('drawing-board').append(tpl);
+	this.dom = {
+		$canvasWrapper: this.$el.find('.drawing-board-canvas-wrapper'),
+		$canvas: this.$el.find('.drawing-board-canvas'),
+		$cursor: this.$el.find('.drawing-board-cursor'),
+		$controls: this.$el.find('.drawing-board-controls')
+	};
+
+	$.each(['left', 'right', 'center'], $.proxy(function (n, val) {
+		if (this.opts.controlsPosition.indexOf(val) > -1) {
+			this.dom.$controls.attr('data-align', val);
+			return false;
+		}
+	}, this));
+
+	this.canvas = this.dom.$canvas.get(0);
+	this.ctx = this.canvas && this.canvas.getContext && this.canvas.getContext('2d') ? this.canvas.getContext('2d') : null;
+	this.color = this.opts.color;
+
+	if (!this.ctx) {
+		if (this.opts.errorMessage) this.$el.html(this.opts.errorMessage);
+		return false;
+	}
+
+	this.storage = this._getStorage();
+
+	this.initHistory();
+	//init default board values before controls are added (mostly pencil color and size)
+	this.reset({
+		webStorage: false,
+		history: false,
+		background: false
+	});
+	//init controls (they will need the default board values to work like pencil color and size)
+	this.initControls();
+	//set board's size after the controls div is added
+	this.resize();
+	//reset the board to take all resized space
+	this.reset({
+		webStorage: false,
+		history: false,
+		background: true
+	});
+	this.restoreWebStorage();
+	this.initDropEvents();
+	this.initDrawEvents();
+};
+
+DrawingBoard.Board.defaultOpts = {
+	controls: ['Color', 'DrawingMode', 'Size', 'Navigation'],
+	controlsPosition: "top left",
+	color: "#000000",
+	size: 1,
+	background: "#fff",
+	eraserColor: "background",
+	fillTolerance: 100,
+	fillHack: true, //try to prevent issues with anti-aliasing with a little hack by default
+	webStorage: 'session',
+	droppable: false,
+	enlargeYourContainer: false,
+	errorMessage: "<p>It seems you use an obsolete browser. <a href=\"http://browsehappy.com/\" target=\"_blank\">Update it</a> to start drawing.</p>",
+	stretchImg: false //when setting the canvas img, strech the image at the whole canvas size when this opt is true
+};
+
+DrawingBoard.Board.prototype = {
+
+	mergeOptions: function mergeOptions(opts) {
+		opts = $.extend({}, DrawingBoard.Board.defaultOpts, opts);
+		if (!opts.background && opts.eraserColor === "background") opts.eraserColor = "transparent";
+		return opts;
+	},
+
+	/**
+  * Canvas reset/resize methods: put back the canvas to its default values
+  *
+  * depending on options, can set color, size, background back to default values
+  * and store the reseted canvas in webstorage and history queue
+  *
+  * resize values depend on the `enlargeYourContainer` option
+  */
+
+	reset: function reset(opts) {
+		opts = $.extend({
+			color: this.opts.color,
+			size: this.opts.size,
+			webStorage: true,
+			history: true,
+			background: false
+		}, opts);
+
+		this.setMode('pencil');
+
+		if (opts.background) {
+			this.resetBackground(this.opts.background, $.proxy(function () {
+				if (opts.history) this.saveHistory();
+			}, this));
+		}
+
+		if (opts.color) this.setColor(opts.color);
+		if (opts.size) this.ctx.lineWidth = opts.size;
+
+		this.ctx.lineCap = "round";
+		this.ctx.lineJoin = "round";
+		// this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.width);
+
+		if (opts.webStorage) this.saveWebStorage();
+
+		// if opts.background we already dealt with the history
+		if (opts.history && !opts.background) this.saveHistory();
+
+		this.blankCanvas = this.getImg();
+
+		this.ev.trigger('board:reset', opts);
+	},
+
+	resetBackground: function resetBackground(background, callback) {
+		background = background || this.opts.background;
+
+		var bgIsColor = DrawingBoard.Utils.isColor(background);
+		var prevMode = this.getMode();
+		this.setMode('pencil');
+		this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+		if (bgIsColor) {
+			this.ctx.fillStyle = background;
+			this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+			this.history.initialize(this.getImg());
+			if (callback) callback();
+		} else if (background) this.setImg(background, {
+			callback: $.proxy(function () {
+				this.history.initialize(this.getImg());
+				if (callback) callback();
+			}, this)
+		});
+		this.setMode(prevMode);
+	},
+
+	resize: function resize() {
+		this.dom.$controls.toggleClass('drawing-board-controls-hidden', !this.controls || !this.controls.length);
+
+		var canvasWidth, canvasHeight;
+		var widths = [this.$el.width(), DrawingBoard.Utils.boxBorderWidth(this.$el), DrawingBoard.Utils.boxBorderWidth(this.dom.$canvasWrapper, true, true)];
+		var heights = [this.$el.height(), DrawingBoard.Utils.boxBorderHeight(this.$el), this.dom.$controls.height(), DrawingBoard.Utils.boxBorderHeight(this.dom.$controls, false, true), DrawingBoard.Utils.boxBorderHeight(this.dom.$canvasWrapper, true, true)];
+		var sum = function sum(values, multiplier) {
+			//make the sum of all array values
+			multiplier = multiplier || 1;
+			var res = values[0];
+			for (var i = 1; i < values.length; i++) {
+				res = res + values[i] * multiplier;
+			}
+			return res;
+		};
+		var sub = function sub(values) {
+			return sum(values, -1);
+		}; //substract all array values from the first one
+
+		if (this.opts.enlargeYourContainer) {
+			canvasWidth = this.$el.width();
+			canvasHeight = this.$el.height();
+
+			this.$el.width(sum(widths));
+			this.$el.height(sum(heights));
+		} else {
+			canvasWidth = sub(widths);
+			canvasHeight = sub(heights);
+		}
+
+		this.dom.$canvasWrapper.css('width', canvasWidth + 'px');
+		this.dom.$canvasWrapper.css('height', canvasHeight + 'px');
+
+		this.dom.$canvas.css('width', canvasWidth + 'px');
+		this.dom.$canvas.css('height', canvasHeight + 'px');
+
+		this.canvas.width = canvasWidth;
+		this.canvas.height = canvasHeight;
+	},
+
+	/**
+  * Controls:
+  * the drawing board can has various UI elements to control it.
+  * one control is represented by a class in the namespace DrawingBoard.Control
+  * it must have a $el property (jQuery object), representing the html element to append on the drawing board at initialization.
+  *
+  */
+
+	initControls: function initControls() {
+		this.controls = [];
+		if (!this.opts.controls.length || !DrawingBoard.Control) return false;
+		for (var i = 0; i < this.opts.controls.length; i++) {
+			var c = null;
+			if (typeof this.opts.controls[i] == "string") c = new window['DrawingBoard']['Control'][this.opts.controls[i]](this);else if (_typeof(this.opts.controls[i]) == "object") {
+				for (var controlName in this.opts.controls[i]) {
+					break;
+				}c = new window['DrawingBoard']['Control'][controlName](this, this.opts.controls[i][controlName]);
+			}
+			if (c) {
+				this.addControl(c);
+			}
+		}
+	},
+
+	//add a new control or an existing one at the position you want in the UI
+	//to add a totally new control, you can pass a string with the js class as 1st parameter and control options as 2nd ie "addControl('Navigation', { reset: false }"
+	//the last parameter (2nd or 3rd depending on the situation) is always the position you want to place the control at
+	addControl: function addControl(control, optsOrPos, pos) {
+		if (typeof control !== "string" && ((typeof control === 'undefined' ? 'undefined' : _typeof(control)) !== "object" || !(control instanceof DrawingBoard.Control))) return false;
+
+		var opts = (typeof optsOrPos === 'undefined' ? 'undefined' : _typeof(optsOrPos)) == "object" ? optsOrPos : {};
+		pos = pos ? pos * 1 : typeof optsOrPos == "number" ? optsOrPos : null;
+
+		if (typeof control == "string") control = new window['DrawingBoard']['Control'][control](this, opts);
+
+		if (pos) this.dom.$controls.children().eq(pos).before(control.$el);else this.dom.$controls.append(control.$el);
+
+		if (!this.controls) this.controls = [];
+		this.controls.push(control);
+		this.dom.$controls.removeClass('drawing-board-controls-hidden');
+	},
+
+	/**
+  * History methods: undo and redo drawed lines
+  */
+
+	initHistory: function initHistory() {
+		this.history = new SimpleUndo({
+			maxLength: 30,
+			provider: $.proxy(function (done) {
+				done(this.getImg());
+			}, this),
+			onUpdate: $.proxy(function () {
+				this.ev.trigger('historyNavigation');
+			}, this)
+		});
+	},
+
+	saveHistory: function saveHistory() {
+		this.history.save();
+	},
+
+	restoreHistory: function restoreHistory(image) {
+		this.setImg(image, {
+			callback: $.proxy(function () {
+				this.saveWebStorage();
+			}, this)
+		});
+	},
+
+	goBackInHistory: function goBackInHistory() {
+		this.history.undo($.proxy(this.restoreHistory, this));
+	},
+
+	goForthInHistory: function goForthInHistory() {
+		this.history.redo($.proxy(this.restoreHistory, this));
+	},
+
+	/**
+  * Image methods: you can directly put an image on the canvas, get it in base64 data url or start a download
+  */
+
+	setImg: function setImg(src, opts) {
+		opts = $.extend({
+			stretch: this.opts.stretchImg,
+			callback: null
+		}, opts);
+
+		var ctx = this.ctx;
+		var img = new Image();
+		var oldGCO = ctx.globalCompositeOperation;
+		img.onload = function () {
+			ctx.globalCompositeOperation = "source-over";
+			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+			if (opts.stretch) {
+				ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
+			} else {
+				ctx.drawImage(img, 0, 0);
+			}
+
+			ctx.globalCompositeOperation = oldGCO;
+
+			if (opts.callback) {
+				opts.callback();
+			}
+		};
+		img.src = src;
+	},
+
+	getImg: function getImg() {
+		return this.canvas.toDataURL("image/png");
+	},
+
+	downloadImg: function downloadImg() {
+		var img = this.getImg();
+		img = img.replace("image/png", "image/octet-stream");
+		window.location.href = img;
+	},
+
+	/**
+  * WebStorage handling : save and restore to local or session storage
+  */
+
+	saveWebStorage: function saveWebStorage() {
+		if (window[this.storage]) {
+			window[this.storage].setItem('drawing-board-' + this.id, this.getImg());
+			this.ev.trigger('board:save' + this.storage.charAt(0).toUpperCase() + this.storage.slice(1), this.getImg());
+		}
+	},
+
+	restoreWebStorage: function restoreWebStorage() {
+		if (window[this.storage] && window[this.storage].getItem('drawing-board-' + this.id) !== null) {
+			this.setImg(window[this.storage].getItem('drawing-board-' + this.id));
+			this.ev.trigger('board:restore' + this.storage.charAt(0).toUpperCase() + this.storage.slice(1), window[this.storage].getItem('drawing-board-' + this.id));
+		}
+	},
+
+	clearWebStorage: function clearWebStorage() {
+		if (window[this.storage] && window[this.storage].getItem('drawing-board-' + this.id) !== null) {
+			window[this.storage].removeItem('drawing-board-' + this.id);
+			this.ev.trigger('board:clear' + this.storage.charAt(0).toUpperCase() + this.storage.slice(1));
+		}
+	},
+
+	_getStorage: function _getStorage() {
+		if (!this.opts.webStorage || !(this.opts.webStorage === 'session' || this.opts.webStorage === 'local')) return false;
+		return this.opts.webStorage + 'Storage';
+	},
+
+	/**
+  * Drop an image on the canvas to draw on it
+  */
+
+	initDropEvents: function initDropEvents() {
+		if (!this.opts.droppable) return false;
+
+		this.dom.$canvas.on('dragover dragenter drop', function (e) {
+			e.stopPropagation();
+			e.preventDefault();
+		});
+
+		this.dom.$canvas.on('drop', $.proxy(this._onCanvasDrop, this));
+	},
+
+	_onCanvasDrop: function _onCanvasDrop(e) {
+		e = e.originalEvent ? e.originalEvent : e;
+		var files = e.dataTransfer.files;
+		if (!files || !files.length || files[0].type.indexOf('image') == -1 || !window.FileReader) return false;
+		var fr = new FileReader();
+		fr.readAsDataURL(files[0]);
+		fr.onload = $.proxy(function (ev) {
+			this.setImg(ev.target.result, {
+				callback: $.proxy(function () {
+					this.saveHistory();
+				}, this)
+			});
+			this.ev.trigger('board:imageDropped', ev.target.result);
+			this.ev.trigger('board:userAction');
+		}, this);
+	},
+
+	/**
+  * set and get current drawing mode
+  *
+  * possible modes are "pencil" (draw normally), "eraser" (draw transparent, like, erase, you know), "filler" (paint can)
+  */
+
+	setMode: function setMode(newMode, silent) {
+		silent = silent || false;
+		newMode = newMode || 'pencil';
+
+		this.ev.unbind('board:startDrawing', $.proxy(this.fill, this));
+
+		if (this.opts.eraserColor === "transparent") this.ctx.globalCompositeOperation = newMode === "eraser" ? "destination-out" : "source-over";else {
+			if (newMode === "eraser") {
+				if (this.opts.eraserColor === "background" && DrawingBoard.Utils.isColor(this.opts.background)) this.ctx.strokeStyle = this.opts.background;else if (DrawingBoard.Utils.isColor(this.opts.eraserColor)) this.ctx.strokeStyle = this.opts.eraserColor;
+			} else if (!this.mode || this.mode === "eraser") {
+				this.ctx.strokeStyle = this.color;
+			}
+
+			if (newMode === "filler") this.ev.bind('board:startDrawing', $.proxy(this.fill, this));
+		}
+		this.mode = newMode;
+		if (!silent) this.ev.trigger('board:mode', this.mode);
+	},
+
+	getMode: function getMode() {
+		return this.mode || "pencil";
+	},
+
+	setColor: function setColor(color) {
+		var that = this;
+		color = color || this.color;
+		if (!DrawingBoard.Utils.isColor(color)) return false;
+		this.color = color;
+		if (this.opts.eraserColor !== "transparent" && this.mode === "eraser") {
+			var setStrokeStyle = function setStrokeStyle(mode) {
+				if (mode !== "eraser") that.strokeStyle = that.color;
+				that.ev.unbind('board:mode', setStrokeStyle);
+			};
+			this.ev.bind('board:mode', setStrokeStyle);
+		} else this.ctx.strokeStyle = this.color;
+	},
+
+	/**
+  * Fills an area with the current stroke color.
+  */
+	fill: function fill(e) {
+		if (this.getImg() === this.blankCanvas) {
+			this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+			this.ctx.fillStyle = this.color;
+			this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+			return;
+		}
+
+		var img = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+
+		// constants identifying pixels components
+		var INDEX = 0,
+		    X = 1,
+		    Y = 2,
+		    COLOR = 3;
+
+		// target color components
+		var stroke = this.ctx.strokeStyle;
+		var r = parseInt(stroke.substr(1, 2), 16);
+		var g = parseInt(stroke.substr(3, 2), 16);
+		var b = parseInt(stroke.substr(5, 2), 16);
+
+		// starting point
+		var start = DrawingBoard.Utils.pixelAt(img, parseInt(e.coords.x, 10), parseInt(e.coords.y, 10));
+		var startColor = start[COLOR];
+		var tolerance = this.opts.fillTolerance;
+		var useHack = this.opts.fillHack; //see https://github.com/Leimi/drawingboard.js/pull/38
+
+		// no need to continue if starting and target colors are the same
+		if (DrawingBoard.Utils.compareColors(startColor, DrawingBoard.Utils.RGBToInt(r, g, b), tolerance)) return;
+
+		// pixels to evaluate
+		var queue = [start];
+
+		// loop vars
+		var pixel;
+		var maxX = img.width - 1;
+		var maxY = img.height - 1;
+
+		function updatePixelColor(pixel) {
+			img.data[pixel[INDEX]] = r;
+			img.data[pixel[INDEX] + 1] = g;
+			img.data[pixel[INDEX] + 2] = b;
+		}
+
+		while (pixel = queue.pop()) {
+			if (useHack) updatePixelColor(pixel);
+
+			if (DrawingBoard.Utils.compareColors(pixel[COLOR], startColor, tolerance)) {
+				if (!useHack) updatePixelColor(pixel);
+				if (pixel[X] > 0) // west
+					queue.push(DrawingBoard.Utils.pixelAt(img, pixel[X] - 1, pixel[Y]));
+				if (pixel[X] < maxX) // east
+					queue.push(DrawingBoard.Utils.pixelAt(img, pixel[X] + 1, pixel[Y]));
+				if (pixel[Y] > 0) // north
+					queue.push(DrawingBoard.Utils.pixelAt(img, pixel[X], pixel[Y] - 1));
+				if (pixel[Y] < maxY) // south
+					queue.push(DrawingBoard.Utils.pixelAt(img, pixel[X], pixel[Y] + 1));
+			}
+		}
+
+		this.ctx.putImageData(img, 0, 0);
+	},
+
+	/**
+  * Drawing handling, with mouse or touch
+  */
+
+	initDrawEvents: function initDrawEvents() {
+		this.isDrawing = false;
+		this.isMouseHovering = false;
+		this.coords = {};
+		this.coords.old = this.coords.current = this.coords.oldMid = {
+			x: 0,
+			y: 0
+		};
+
+		this.dom.$canvas.on('mousedown touchstart', $.proxy(function (e) {
+			this._onInputStart(e, this._getInputCoords(e));
+		}, this));
+
+		this.dom.$canvas.on('mousemove touchmove', $.proxy(function (e) {
+			this._onInputMove(e, this._getInputCoords(e));
+		}, this));
+
+		this.dom.$canvas.on('mousemove', $.proxy(function () {}, this));
+
+		this.dom.$canvas.on('mouseup touchend', $.proxy(function (e) {
+			this._onInputStop(e, this._getInputCoords(e));
+		}, this));
+
+		this.dom.$canvas.on('mouseover', $.proxy(function (e) {
+			this._onMouseOver(e, this._getInputCoords(e));
+		}, this));
+
+		this.dom.$canvas.on('mouseout', $.proxy(function (e) {
+			this._onMouseOut(e, this._getInputCoords(e));
+		}, this));
+
+		$('body').on('mouseup touchend', $.proxy(function () {
+			this.isDrawing = false;
+		}, this));
+
+		if (window.requestAnimationFrame) requestAnimationFrame($.proxy(this.draw, this));
+	},
+
+	draw: function draw() {
+		//if the pencil size is big (>10), the small crosshair makes a friend: a circle of the size of the pencil
+		//todo: have the circle works on every browser - it currently should be added only when CSS pointer-events are supported
+		//we assume that if requestAnimationFrame is supported, pointer-events is too, but this is terribad.
+		if (window.requestAnimationFrame && this.ctx.lineWidth > 10 && this.isMouseHovering) {
+			this.dom.$cursor.css({
+				width: this.ctx.lineWidth + 'px',
+				height: this.ctx.lineWidth + 'px'
+			});
+			var transform = DrawingBoard.Utils.tpl("translateX({{x}}px) translateY({{y}}px)", {
+				x: this.coords.current.x - this.ctx.lineWidth / 2,
+				y: this.coords.current.y - this.ctx.lineWidth / 2
+			});
+			this.dom.$cursor.css({
+				'transform': transform,
+				'-webkit-transform': transform,
+				'-ms-transform': transform
+			});
+			this.dom.$cursor.removeClass('drawing-board-utils-hidden');
+		} else {
+			this.dom.$cursor.addClass('drawing-board-utils-hidden');
+		}
+
+		if (this.isDrawing) {
+			var currentMid = this._getMidInputCoords(this.coords.current);
+			this.ctx.beginPath();
+			this.ctx.moveTo(currentMid.x, currentMid.y);
+			this.ctx.quadraticCurveTo(this.coords.old.x, this.coords.old.y, this.coords.oldMid.x, this.coords.oldMid.y);
+			this.ctx.stroke();
+
+			this.coords.old = this.coords.current;
+			this.coords.oldMid = currentMid;
+		}
+
+		if (window.requestAnimationFrame) requestAnimationFrame($.proxy(function () {
+			this.draw();
+		}, this));
+	},
+
+	_onInputStart: function _onInputStart(e, coords) {
+		this.coords.current = this.coords.old = coords;
+		this.coords.oldMid = this._getMidInputCoords(coords);
+		this.isDrawing = true;
+
+		if (!window.requestAnimationFrame) this.draw();
+
+		this.ev.trigger('board:startDrawing', {
+			e: e,
+			coords: coords
+		});
+		e.stopPropagation();
+		e.preventDefault();
+	},
+
+	_onInputMove: function _onInputMove(e, coords) {
+		this.coords.current = coords;
+		this.ev.trigger('board:drawing', {
+			e: e,
+			coords: coords
+		});
+
+		if (!window.requestAnimationFrame) this.draw();
+
+		e.stopPropagation();
+		e.preventDefault();
+	},
+
+	_onInputStop: function _onInputStop(e, coords) {
+		if (this.isDrawing && (!e.touches || e.touches.length === 0)) {
+			this.isDrawing = false;
+
+			this.saveWebStorage();
+			this.saveHistory();
+
+			this.ev.trigger('board:stopDrawing', {
+				e: e,
+				coords: coords
+			});
+			this.ev.trigger('board:userAction');
+			e.stopPropagation();
+			e.preventDefault();
+		}
+	},
+
+	_onMouseOver: function _onMouseOver(e, coords) {
+		this.isMouseHovering = true;
+		this.coords.old = this._getInputCoords(e);
+		this.coords.oldMid = this._getMidInputCoords(this.coords.old);
+
+		this.ev.trigger('board:mouseOver', {
+			e: e,
+			coords: coords
+		});
+	},
+
+	_onMouseOut: function _onMouseOut(e, coords) {
+		this.isMouseHovering = false;
+
+		this.ev.trigger('board:mouseOut', {
+			e: e,
+			coords: coords
+		});
+	},
+
+	_getInputCoords: function _getInputCoords(e) {
+		e = e.originalEvent ? e.originalEvent : e;
+		var rect = this.canvas.getBoundingClientRect(),
+		    width = this.dom.$canvas.width(),
+		    height = this.dom.$canvas.height();
+		var x, y;
+		if (e.touches && e.touches.length == 1) {
+			x = e.touches[0].pageX;
+			y = e.touches[0].pageY;
+		} else {
+			x = e.pageX;
+			y = e.pageY;
+		}
+		x = x - this.dom.$canvas.offset().left;
+		y = y - this.dom.$canvas.offset().top;
+		x *= width / rect.width;
+		y *= height / rect.height;
+		return {
+			x: x,
+			y: y
+		};
+	},
+
+	_getMidInputCoords: function _getMidInputCoords(coords) {
+		return {
+			x: this.coords.old.x + coords.x >> 1,
+			y: this.coords.old.y + coords.y >> 1
+		};
+	}
+};
+
+DrawingBoard.Control = function (drawingBoard, opts) {
+	this.board = drawingBoard;
+	this.opts = $.extend({}, this.defaults, opts);
+
+	this.$el = $(document.createElement('div')).addClass('drawing-board-control');
+	if (this.name) this.$el.addClass('drawing-board-control-' + this.name);
+
+	this.board.ev.bind('board:reset', $.proxy(this.onBoardReset, this));
+
+	this.initialize.apply(this, arguments);
+	return this;
+};
+
+DrawingBoard.Control.prototype = {
+
+	name: '',
+
+	defaults: {},
+
+	initialize: function initialize() {},
+
+	addToBoard: function addToBoard() {
+		this.board.addControl(this);
+	},
+
+	onBoardReset: function onBoardReset() {}
+
+};
+
+//extend directly taken from backbone.js
+DrawingBoard.Control.extend = function (protoProps, staticProps) {
+	var parent = this;
+	var child;
+	if (protoProps && protoProps.hasOwnProperty('constructor')) {
+		child = protoProps.constructor;
+	} else {
+		child = function child() {
+			return parent.apply(this, arguments);
+		};
+	}
+	$.extend(child, parent, staticProps);
+	var Surrogate = function Surrogate() {
+		this.constructor = child;
+	};
+	Surrogate.prototype = parent.prototype;
+	child.prototype = new Surrogate();
+	if (protoProps) $.extend(child.prototype, protoProps);
+	child.__super__ = parent.prototype;
+	return child;
+};
+DrawingBoard.Control.Color = DrawingBoard.Control.extend({
+	name: 'colors',
+
+	initialize: function initialize() {
+		this.initTemplate();
+
+		var that = this;
+		this.$el.on('click', '.drawing-board-control-colors-picker', function (e) {
+			var color = $(this).attr('data-color');
+			that.board.setColor(color);
+			that.$el.find('.drawing-board-control-colors-current').css('background-color', color).attr('data-color', color);
+
+			that.board.ev.trigger('color:changed', color);
+			that.$el.find('.drawing-board-control-colors-rainbows').addClass('drawing-board-utils-hidden');
+
+			e.preventDefault();
+		});
+
+		this.$el.on('click', '.drawing-board-control-colors-current', function (e) {
+			that.$el.find('.drawing-board-control-colors-rainbows').toggleClass('drawing-board-utils-hidden');
+			e.preventDefault();
+		});
+
+		$('body').on('click', function (e) {
+			var $target = $(e.target);
+			var $relatedButton = $target.hasClass('drawing-board-control-colors-current') ? $target : $target.closest('.drawing-board-control-colors-current');
+			var $myButton = that.$el.find('.drawing-board-control-colors-current');
+			var $popup = that.$el.find('.drawing-board-control-colors-rainbows');
+			if ((!$relatedButton.length || $relatedButton.get(0) !== $myButton.get(0)) && !$popup.hasClass('drawing-board-utils-hidden')) $popup.addClass('drawing-board-utils-hidden');
+		});
+	},
+
+	initTemplate: function initTemplate() {
+		var tpl = '<div class="drawing-board-control-inner">' + '<div class="drawing-board-control-colors-current" style="background-color: {{color}}" data-color="{{color}}"></div>' + '<div class="drawing-board-control-colors-rainbows">{{rainbows}}</div>' + '</div>';
+		var oneColorTpl = '<div class="drawing-board-control-colors-picker" data-color="{{color}}" style="background-color: {{color}}"></div>';
+		var rainbows = '';
+		$.each([0.75, 0.5, 0.25], $.proxy(function (key, val) {
+			var i = 0;
+			var additionalColor = null;
+			rainbows += '<div class="drawing-board-control-colors-rainbow">';
+			if (val == 0.25) additionalColor = this._rgba(0, 0, 0, 1);
+			if (val == 0.5) additionalColor = this._rgba(150, 150, 150, 1);
+			if (val == 0.75) additionalColor = this._rgba(255, 255, 255, 1);
+			rainbows += DrawingBoard.Utils.tpl(oneColorTpl, {
+				color: additionalColor.toString()
+			});
+			while (i <= 330) {
+				rainbows += DrawingBoard.Utils.tpl(oneColorTpl, {
+					color: this._hsl2Rgba(this._hsl(i - 60, 1, val)).toString()
+				});
+				i += 30;
+			}
+			rainbows += '</div>';
+		}, this));
+
+		this.$el.append($(DrawingBoard.Utils.tpl(tpl, {
+			color: this.board.color,
+			rainbows: rainbows
+		})));
+		this.$el.find('.drawing-board-control-colors-rainbows').addClass('drawing-board-utils-hidden');
+	},
+
+	onBoardReset: function onBoardReset() {
+		this.board.setColor(this.$el.find('.drawing-board-control-colors-current').attr('data-color'));
+	},
+
+	_rgba: function _rgba(r, g, b, a) {
+		return {
+			r: r,
+			g: g,
+			b: b,
+			a: a,
+			toString: function toString() {
+				return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+			}
+		};
+	},
+
+	_hsl: function _hsl(h, s, l) {
+		return {
+			h: h,
+			s: s,
+			l: l,
+			toString: function toString() {
+				return "hsl(" + h + ", " + s * 100 + "%, " + l * 100 + "%)";
+			}
+		};
+	},
+
+	_hex2Rgba: function _hex2Rgba(hex) {
+		var num = parseInt(hex.substring(1), 16);
+		return this._rgba(num >> 16, num >> 8 & 255, num & 255, 1);
+	},
+
+	//conversion function (modified a bit) taken from http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript
+	_hsl2Rgba: function _hsl2Rgba(hsl) {
+		var h = hsl.h / 360,
+		    s = hsl.s,
+		    l = hsl.l,
+		    r,
+		    g,
+		    b;
+
+		function hue2rgb(p, q, t) {
+			if (t < 0) t += 1;
+			if (t > 1) t -= 1;
+			if (t < 1 / 6) return p + (q - p) * 6 * t;
+			if (t < 1 / 2) return q;
+			if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+			return p;
+		}
+		if (s === 0) {
+			r = g = b = l; // achromatic
+		} else {
+			var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+			var p = 2 * l - q;
+			r = Math.floor(hue2rgb(p, q, h + 1 / 3) * 255);
+			g = Math.floor(hue2rgb(p, q, h) * 255);
+			b = Math.floor(hue2rgb(p, q, h - 1 / 3) * 255);
+		}
+		return this._rgba(r, g, b, 1);
+	}
+});
+DrawingBoard.Control.DrawingMode = DrawingBoard.Control.extend({
+
+	name: 'drawingmode',
+
+	defaults: {
+		pencil: true,
+		eraser: true,
+		filler: true
+	},
+
+	initialize: function initialize() {
+
+		this.prevMode = this.board.getMode();
+
+		$.each(["pencil", "eraser", "filler"], $.proxy(function (k, value) {
+			if (this.opts[value]) {
+				this.$el.append('<button class="drawing-board-control-drawingmode-' + value + '-button" data-mode="' + value + '"></button>');
+			}
+		}, this));
+
+		this.$el.on('click', 'button[data-mode]', $.proxy(function (e) {
+			var value = $(e.currentTarget).attr('data-mode');
+			var mode = this.board.getMode();
+			if (mode !== value) this.prevMode = mode;
+			var newMode = mode === value ? this.prevMode : value;
+			this.board.setMode(newMode);
+			e.preventDefault();
+		}, this));
+
+		this.board.ev.bind('board:mode', $.proxy(function (mode) {
+			this.toggleButtons(mode);
+		}, this));
+
+		this.toggleButtons(this.board.getMode());
+	},
+
+	toggleButtons: function toggleButtons(mode) {
+		this.$el.find('button[data-mode]').each(function (k, item) {
+			var $item = $(item);
+			$item.toggleClass('active', mode === $item.attr('data-mode'));
+		});
+	}
+
+});
+
+DrawingBoard.Control.Navigation = DrawingBoard.Control.extend({
+
+	name: 'navigation',
+
+	defaults: {
+		back: true,
+		forward: true,
+		reset: true
+	},
+
+	initialize: function initialize() {
+		var el = '';
+		if (this.opts.back) el += '<button class="drawing-board-control-navigation-back">&larr;</button>';
+		if (this.opts.forward) el += '<button class="drawing-board-control-navigation-forward">&rarr;</button>';
+		if (this.opts.reset) el += '<button class="drawing-board-control-navigation-reset">&times;</button>';
+		this.$el.append(el);
+
+		if (this.opts.back) {
+			var $back = this.$el.find('.drawing-board-control-navigation-back');
+			this.board.ev.bind('historyNavigation', $.proxy(this.updateBack, this, $back));
+			this.$el.on('click', '.drawing-board-control-navigation-back', $.proxy(function (e) {
+				this.board.goBackInHistory();
+				e.preventDefault();
+			}, this));
+
+			this.updateBack($back);
+		}
+
+		if (this.opts.forward) {
+			var $forward = this.$el.find('.drawing-board-control-navigation-forward');
+			this.board.ev.bind('historyNavigation', $.proxy(this.updateForward, this, $forward));
+			this.$el.on('click', '.drawing-board-control-navigation-forward', $.proxy(function (e) {
+				this.board.goForthInHistory();
+				e.preventDefault();
+			}, this));
+
+			this.updateForward($forward);
+		}
+
+		if (this.opts.reset) {
+			this.$el.on('click', '.drawing-board-control-navigation-reset', $.proxy(function (e) {
+				this.board.reset({
+					background: true
+				});
+				e.preventDefault();
+			}, this));
+		}
+	},
+
+	updateBack: function updateBack($back) {
+		if (this.board.history.canUndo()) {
+			$back.removeAttr('disabled');
+		} else {
+			$back.attr('disabled', 'disabled');
+		}
+	},
+
+	updateForward: function updateForward($forward) {
+		if (this.board.history.canRedo()) {
+			$forward.removeAttr('disabled');
+		} else {
+			$forward.attr('disabled', 'disabled');
+		}
+	}
+});
+DrawingBoard.Control.Size = DrawingBoard.Control.extend({
+
+	name: 'size',
+
+	defaults: {
+		type: "auto",
+		dropdownValues: [1, 3, 6, 10, 20, 30, 40, 50],
+		min: 1,
+		max: 50
+	},
+
+	types: ['dropdown', 'range'],
+
+	initialize: function initialize() {
+		if (this.opts.type == "auto") this.opts.type = this._iHasRangeInput() ? 'range' : 'dropdown';
+		var tpl = $.inArray(this.opts.type, this.types) > -1 ? this['_' + this.opts.type + 'Template']() : false;
+		if (!tpl) return false;
+
+		this.val = this.board.opts.size;
+
+		this.$el.append($(tpl));
+		this.$el.attr('data-drawing-board-type', this.opts.type);
+		this.updateView();
+
+		var that = this;
+
+		if (this.opts.type == "range") {
+			this.$el.on('change', '.drawing-board-control-size-range-input', function (e) {
+				that.val = $(this).val();
+				that.updateView();
+
+				that.board.ev.trigger('size:changed', that.val);
+
+				e.preventDefault();
+			});
+		}
+
+		if (this.opts.type == "dropdown") {
+			this.$el.on('click', '.drawing-board-control-size-dropdown-current', $.proxy(function () {
+				this.$el.find('.drawing-board-control-size-dropdown').toggleClass('drawing-board-utils-hidden');
+			}, this));
+
+			this.$el.on('click', '[data-size]', function (e) {
+				that.val = parseInt($(this).attr('data-size'), 0);
+				that.updateView();
+
+				that.board.ev.trigger('size:changed', that.val);
+
+				e.preventDefault();
+			});
+		}
+	},
+
+	_rangeTemplate: function _rangeTemplate() {
+		var tpl = '<div class="drawing-board-control-inner" title="{{size}}">' + '<input type="range" min="{{min}}" max="{{max}}" value="{{size}}" step="1" class="drawing-board-control-size-range-input">' + '<span class="drawing-board-control-size-range-current"></span>' + '</div>';
+		return DrawingBoard.Utils.tpl(tpl, {
+			min: this.opts.min,
+			max: this.opts.max,
+			size: this.board.opts.size
+		});
+	},
+
+	_dropdownTemplate: function _dropdownTemplate() {
+		var tpl = '<div class="drawing-board-control-inner" title="{{size}}">' + '<div class="drawing-board-control-size-dropdown-current"><span></span></div>' + '<ul class="drawing-board-control-size-dropdown">';
+		$.each(this.opts.dropdownValues, function (i, size) {
+			tpl += DrawingBoard.Utils.tpl('<li data-size="{{size}}"><span style="width: {{size}}px; height: {{size}}px; border-radius: {{size}}px;"></span></li>', {
+				size: size
+			});
+		});
+		tpl += '</ul></div>';
+		return tpl;
+	},
+
+	onBoardReset: function onBoardReset() {
+		this.updateView();
+	},
+
+	updateView: function updateView() {
+		var val = this.val;
+		this.board.ctx.lineWidth = val;
+
+		this.$el.find('.drawing-board-control-size-range-current, .drawing-board-control-size-dropdown-current span').css({
+			width: val + 'px',
+			height: val + 'px',
+			borderRadius: val + 'px',
+			marginLeft: -1 * val / 2 + 'px',
+			marginTop: -1 * val / 2 + 'px'
+		});
+
+		this.$el.find('.drawing-board-control-inner').attr('title', val);
+
+		if (this.opts.type == 'dropdown') {
+			var closest = null;
+			$.each(this.opts.dropdownValues, function (i, size) {
+				if (closest === null || Math.abs(size - val) < Math.abs(closest - val)) closest = size;
+			});
+			this.$el.find('.drawing-board-control-size-dropdown').addClass('drawing-board-utils-hidden');
+		}
+	},
+
+	_iHasRangeInput: function _iHasRangeInput() {
+		var inputElem = document.createElement('input'),
+		    smile = ':)',
+		    docElement = document.documentElement,
+		    inputElemType = 'range',
+		    available;
+		inputElem.setAttribute('type', inputElemType);
+		available = inputElem.type !== 'text';
+		inputElem.value = smile;
+		inputElem.style.cssText = 'position:absolute;visibility:hidden;';
+		if (/^range$/.test(inputElemType) && inputElem.style.WebkitAppearance !== undefined) {
+			docElement.appendChild(inputElem);
+			var defaultView = document.defaultView;
+			available = defaultView.getComputedStyle && defaultView.getComputedStyle(inputElem, null).WebkitAppearance !== 'textfield' && inputElem.offsetHeight !== 0;
+			docElement.removeChild(inputElem);
+		}
+		return !!available;
+	}
+});
+DrawingBoard.Control.Download = DrawingBoard.Control.extend({
+
+	name: 'download',
+
+	initialize: function initialize() {
+		this.$el.append('<button class="drawing-board-control-download-button"></button>');
+		this.$el.on('click', '.drawing-board-control-download-button', $.proxy(function (e) {
+			this.board.downloadImg();
+			e.preventDefault();
+		}, this));
+	}
+
+});
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -10011,56 +11651,57 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	return jQuery;
 });
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = require("react-dom");
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+// import ReactDOM from 'react-dom';
+
 var HomeScreen = function () {
 	function HomeScreen() {
 		_classCallCheck(this, HomeScreen);
-
-		this.header();
-		this.footer();
 	}
 
 	_createClass(HomeScreen, [{
-		key: "header",
-		value: function header() {
-			_reactDom2.default.render(_react2.default.createElement(
-				"header",
-				null,
-				"Test"
-			), document.getElementById("container"));
+		key: 'render',
+		value: function render() {
+			this.header();
+			this.footer();
 		}
 	}, {
-		key: "footer",
+		key: 'header',
+		value: function header() {
+			return _react2.default.createElement(
+				'header',
+				null,
+				'Test'
+			), document.getElementById('container');
+		}
+	}, {
+		key: 'footer',
 		value: function footer() {
-			_reactDom2.default.render(_react2.default.createElement(
-				"footer",
+			return _react2.default.createElement(
+				'footer',
 				null,
 				_react2.default.createElement(
-					"div",
-					{ className: "left" },
-					"\u0411\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442 \u043D\u0430 \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435\u0442\u043E \u043F\u043E \u043F\u044A\u0442\u0438\u0449\u0430\u0442\u0430 \xA9 \u0418\u043D\u043E\u0432\u0430\u0446\u0438\u0438 \u0438 \u041A\u043E\u043D\u0441\u0443\u043B\u0442\u0438\u0440\u0430\u043D\u0435"
+					'div',
+					{ className: 'left' },
+					'\u0411\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442 \u043D\u0430 \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435\u0442\u043E \u043F\u043E \u043F\u044A\u0442\u0438\u0449\u0430\u0442\u0430 \xA9 \u0418\u043D\u043E\u0432\u0430\u0446\u0438\u0438 \u0438 \u041A\u043E\u043D\u0441\u0443\u043B\u0442\u0438\u0440\u0430\u043D\u0435'
 				),
 				_react2.default.createElement(
-					"div",
-					{ className: "right" },
-					"\u0417\u0430 \u0438\u0433\u0440\u0430\u0442\u0430 \u2022 \u041A\u043E\u043D\u0442\u0430\u043A\u0442\u0438 \u2022 \u041F\u043E\u0432\u0435\u0440\u0438\u0442\u0435\u043B\u043D\u043E\u0441\u0442 \u0438 \u0443\u0441\u043B\u043E\u0432\u0438\u044F"
+					'div',
+					{ className: 'right' },
+					'\u0417\u0430 \u0438\u0433\u0440\u0430\u0442\u0430 \u2022 \u041A\u043E\u043D\u0442\u0430\u043A\u0442\u0438 \u2022 \u041F\u043E\u0432\u0435\u0440\u0438\u0442\u0435\u043B\u043D\u043E\u0441\u0442 \u0438 \u0443\u0441\u043B\u043E\u0432\u0438\u044F'
 				)
-			), document.getElementById("container"));
+			), document.getElementById('container');
 		}
 	}]);
 

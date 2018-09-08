@@ -17,9 +17,15 @@ let nwjs = false;
 
 gulp.task("watch", function () {
 	watch("./src/sass/**/*.scss", gulp.parallel("styles"));
+	watch("./src/fonts/**/*", gulp.parallel("copy-fonts"));
 	watch(["./src/js/**/*.js", "./src/js/**/*.jsx"], gulp.parallel("js-lint", "scripts"));
 	watch("./src/img/*", gulp.parallel("minify-images", "restart-nwjs"));
 	watch("./src/**/*.html", gulp.series("copy-html", "restart-nwjs"));
+});
+
+gulp.task("copy-fonts", function () {
+	return gulp.src("./src/fonts/**/*")
+		.pipe(gulp.dest("./dist/fonts"));
 });
 
 gulp.task("copy-html", function () {
@@ -45,7 +51,7 @@ gulp.task("scripts-dist", function () {
 });
 
 gulp.task("js-lint", function () {
-	return gulp.src(["./src/js/**/*.js", "./src/js/**/*.jsx", "!node_modules/**", "!./src/js/jquery-3.3.1.js"])
+	return gulp.src(["./src/js/**/*.js", "./src/js/**/*.jsx", "!node_modules/**", "!./src/js/plugins/jquery-3.3.1.js", "!./src/js/plugins/drawingboard.js"])
 		.pipe(eslint({
 			"configFile": "./.eslintrc.json"
 		}))
@@ -83,7 +89,8 @@ gulp.task("minify-images", function () {
 
 gulp.task("clean", function () {
 	return gulp.src("./dist", {
-		read: false
+		read: false,
+		allowEmpty: true
 	}).pipe(clean());
 });
 
@@ -113,5 +120,5 @@ gulp.task("build-info-message", function () {
 	return gulp.src("./");
 });
 
-gulp.task("default", gulp.series("clean", gulp.parallel("copy-html", "styles", "js-lint", "scripts", "minify-images"), "restart-nwjs", "watch"));
-gulp.task("export", gulp.series("clean", gulp.parallel("copy-html", "styles", "js-lint", "scripts-dist", "minify-images"), "js-tests", "build-info-message"));
+gulp.task("default", gulp.series("clean", gulp.parallel("copy-html", "copy-fonts", "styles", "js-lint", "scripts", "minify-images"), "restart-nwjs", "watch"));
+gulp.task("export", gulp.series("clean", gulp.parallel("copy-html", "copy-fonts", "styles", "js-lint", "scripts-dist", "minify-images"), "js-tests", "build-info-message"));
