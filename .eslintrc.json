@@ -2,7 +2,8 @@
 	"env": {
 		"browser": true,
 		"es6": true,
-		"node": true
+		"node": true,
+		"jquery": true
 	},
 	"extends": ["eslint:recommended", "plugin:react/recommended"],
 	"parser": "babel-eslint",
@@ -11,19 +12,15 @@
 	],
 	"rules": {
 		"indent": [
-			"error",
+			"warn",
 			"tab"
 		],
-		"linebreak-style": [
-			"error",
-			"windows"
-		],
 		"quotes": [
-			"error",
-			"single"
+			"warn",
+			"double"
 		],
 		"semi": [
-			"error",
+			"warn",
 			"always"
 		]
 	}

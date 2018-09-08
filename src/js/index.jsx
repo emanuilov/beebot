@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
 class HomeScreen {
 	constructor() {
@@ -12,7 +12,7 @@ class HomeScreen {
 			<header>
 				Test
 			</header>,
-			document.getElementById('container')
+			document.getElementById("container")
 		);
 	}
 
@@ -22,7 +22,7 @@ class HomeScreen {
 				<div className="left">Безопасност на движението по пътищата © Иновации и Консултиране</div>
 				<div className="right">За играта • Контакти • Поверителност и условия</div>
 			</footer>,
-			document.getElementById('container')
+			document.getElementById("container")
 		);
 	}
 }
