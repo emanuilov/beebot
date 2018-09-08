@@ -1,0 +1,25 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+footer {
+	background: #ffa01e;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	color: #fff;
+	line-height: 35px;
+	padding: 0 35px;
+	vertical-align: middle;
+}
+
+footer .left {
+	float: left;
+	width: 50%;
+}
+
+footer .right {
+	float: right;
+	width: 50%;
+}

@@ -1,21 +1,16 @@
-body {
+body,
+div,
+img,
+span,
+p {
   margin: 0;
   padding: 0; }
 
-footer {
-  background: #ffa01e;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  color: #fff;
-  line-height: 35px;
-  padding: 0 35px;
-  vertical-align: middle; }
+body {
+  background: url("../img/background.jpg"); }
 
-footer .left {
-  float: left;
-  width: 50%; }
-
-footer .right {
-  float: right;
-  width: 50%; }
+.white-box {
+  background: #fff;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 8px; }
