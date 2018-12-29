@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="./img/favicon.png">
+	<meta name="author" content="Radostin Emanuilov">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="white-box bee-manager">
+			<div>
+				<i class="material-icons" data-action="1">arrow_upward</i>
+			</div>
+			<div>
+				<i class="material-icons" data-action="5">arrow_back</i>
+				<span class="go-button" data-action="6">GO</span>
+				<i class="material-icons" data-action="2">arrow_forward</i>
+			</div>
+			<div>
+				<i class="material-icons" data-action="7">clear</i>
+				<i class="material-icons" data-action="4">arrow_downward</i>
+				<i class="material-icons" data-action="3">pause</i>
+			</div>
+		</div>
+		<div class="white-box bee-container">
+			<img src="./img/game/lessons/in-lesson-pictures/bee.png" alt="Bee">
+		</div>
+		<div class="white-box board-manager">
+			<div class="colors">
+				<div>
+					<img src="./img/game/drawing/colors/turquoise.png" data-color="#1abc9c" alt="Tturquoise">
+					<img src="./img/game/drawing/colors/emerald.png" data-color="#2ecc71" alt="Emerald">
+					<img src="./img/game/drawing/colors/peter-river.png" data-color="#3498db" alt="Peter River">
+					<img src="./img/game/drawing/colors/amethyst.png" data-color="#9b59b6" alt="Amethyst">
+					<img src="./img/game/drawing/colors/wet-asphalt.png" data-color="#34495e" alt="Wet Asphalt">
+				</div>
+				<div>
+					<img src="./img/game/drawing/colors/sun-flower.png" data-color="#f1c40f" alt="Sun Flower">
+					<img src="./img/game/drawing/colors/carrot.png" data-color="#e67e22" alt="Carrot">
+					<img src="./img/game/drawing/colors/alizarin.png" data-color="#e74c3c" alt="Alizarin">
+					<img src="./img/game/drawing/colors/cloud.png" data-color="#ecf0f1" alt="Cloud">
+					<img src="./img/game/drawing/colors/concrete.png" data-color="#95a5a6" alt="Concrete">
+				</div>
+			</div>
+			<div class="tools">
+				<span>
+					<img src="./img/game/drawing/tools/pencil.png" data-mode="pencil" alt="Pencil">
+					<img src="./img/game/drawing/tools/eraser.png" data-mode="eraser" alt="Eraser">
+				</span>
+				<span>
+					<img src="./img/game/drawing/tools/small-size.png" data-size="5" alt="Small">
+					<img src="./img/game/drawing/tools/big-size.png" data-size="10" alt="Big">
+				</span>
+			</div>
+		</div>
+
+		<div class="white-box lessons"></div>
+		<div class="board-container">
+			<embed class="white-box board" src="img/game/drawing/board.svg" alt="Board">
+			<div id="drawing-board"></div>
+		</div>
+		<script src='./js/script.js'></script>
+</body>
+
+</html>

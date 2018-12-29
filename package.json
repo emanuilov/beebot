@@ -8,11 +8,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@bitbucket.org/emanuilov/nw.js-project-template.git"
+		"url": "git+ssh://git@bitbucket.org/emanuilov/bluebot.git"
 	},
 	"author": "Radostin Emanuilov",
 	"license": "ISC",
-	"homepage": "https://bitbucket.org/emanuilov/nw.js-project-template#readme",
+	"homepage": "https://bitbucket.org/emanuilov/bluebot#readme",
 	"devDependencies": {
 		"babel-core": "^6.26.3",
 		"gulp": "^4.0.0",
@@ -34,5 +34,14 @@
 		"phantomjs-prebuilt": "^2.1.16",
 		"plugin-error": "^1.0.1",
 		"tunnel-agent": "^0.6.0"
+	},
+	"window": {
+		"title": "BLUEBOT",
+		"icon": "dist/images/favicon.png",
+		"toolbar": false,
+		"width": 1280,
+		"height": 720,
+		"frame": true,
+		"resizable": false
 	}
 }

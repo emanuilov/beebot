@@ -17,9 +17,15 @@ let nwjs = false;
 
 gulp.task("watch", function () {
 	watch("./src/sass/**/*.scss", gulp.parallel("styles"));
+	watch("./src/fonts/**/*", gulp.parallel("copy-fonts"));
 	watch("./src/js/**/*.js", gulp.series("js-lint", "scripts"));
 	watch("./src/img/*", gulp.series("minify-images", "restart-nwjs"));
 	watch("./src/**/*.html", gulp.series("copy-html", "restart-nwjs"));
+});
+
+gulp.task("copy-fonts", function () {
+	return gulp.src("./src/fonts/**/*")
+		.pipe(gulp.dest("./dist/fonts"));
 });
 
 gulp.task("copy-html", function () {
@@ -28,7 +34,7 @@ gulp.task("copy-html", function () {
 });
 
 gulp.task("scripts", function () {
-	return gulp.src("./src/js/**/*.js")
+	return gulp.src("./src/js/plugins/jquery-3.3.1.js", "./src/js/plugins/drawingboard.js", "./src/js/**/*.js")
 		.pipe(babel())
 		.pipe(concat("script.js"))
 		.pipe(gulp.dest("./dist/js"));
@@ -45,7 +51,7 @@ gulp.task("scripts-dist", function () {
 });
 
 gulp.task("js-lint", function () {
-	return gulp.src(["./src/js/**/*.js", "!node_modules/**", "!./src/js/jquery-3.3.1.js"])
+	return gulp.src(["./src/js/**/*.js", "!node_modules/**", "!./src/js/plugins/jquery-3.3.1.js"])
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError());
@@ -67,11 +73,12 @@ gulp.task("styles", function () {
 		.pipe(autoprefixer({
 			browsers: ["last 5 versions"]
 		}))
+		.pipe(concat("main.css"))
 		.pipe(gulp.dest("./dist/css"));
 });
 
 gulp.task("minify-images", function () {
-	return gulp.src("./src/img/*")
+	return gulp.src("./src/img/**/*")
 		.pipe(imagemin({
 			progressive: true,
 			use: [pngquant()]
@@ -111,5 +118,5 @@ gulp.task("build-info-message", function () {
 	return gulp.src("./");
 });
 
-gulp.task("default", gulp.series("clean", gulp.parallel("copy-html", "styles", "js-lint", "scripts", "minify-images"), "restart-nwjs", "watch"));
-gulp.task("export", gulp.series("clean", gulp.parallel("copy-html", "styles", "js-lint", "scripts-dist", "minify-images"), "js-tests", "build-info-message"));
+gulp.task("default", gulp.series("clean", gulp.parallel("copy-html", "copy-fonts", "styles", "js-lint", "scripts", "minify-images"), "restart-nwjs", "watch"));
+gulp.task("export", gulp.series("clean", gulp.parallel("copy-html", "copy-fonts", "styles", "js-lint", "scripts-dist", "minify-images"), "js-tests", "build-info-message"));

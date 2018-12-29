@@ -13,7 +13,13 @@
 </head>
 
 <body>
-	<div>Hello World</div>
+	<script>
+		if (localStorage.getItem('isActive') == '1') {
+			window.location.href = './home.html';
+		} else {
+			window.location.href = './activation.html';
+		}
+	</script>
 	<script src='./js/script.js'></script>
 </body>
 

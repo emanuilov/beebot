@@ -1,0 +1,189 @@
+.board-container,
+.container {
+  margin: 0 auto;
+  width: 50%;
+  height: 300px; }
+
+.board-container {
+  position: relative;
+  width: 690px;
+  height: 690px; }
+
+#drawing-board,
+.board {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+/* custom board styles for the title? no problem*/
+#title-board .drawing-board-canvas-wrapper {
+  border: none;
+  margin: 0; }
+
+.bee-manager {
+  width: 40%;
+  margin: 20px; }
+
+.bee-manager img,
+.bee-manager i {
+  cursor: pointer; }
+
+.bee-container {
+  width: 40%;
+  margin: 20px;
+  padding: 10px;
+  height: 150px; }
+
+.bee-container img {
+  cursor: move; }
+
+.board-manager {
+  width: 40%;
+  margin: 20px; }
+
+.board-manager img {
+  cursor: pointer; }
+
+.board-manager .colors {
+  border-bottom: 1px #d9d9d9 solid;
+  margin-bottom: 10px;
+  padding: 10px; }
+
+.board-manager .tools {
+  padding-bottom: 10px; }
+
+.board-manager .tools span {
+  display: inline-block;
+  width: 49%;
+  text-align: center; }
+
+.board-manager .tools span:first-of-type {
+  border-right: 1px #d9d9d9 solid; }
+
+.board-manager .tools img {
+  vertical-align: middle; }
+
+/*Controls*/
+.bee-manager {
+  color: #fff;
+  text-align: center; }
+
+.bee-manager i,
+.bee-manager span {
+  background: #ffa01e;
+  border-bottom: 3px #cc8018 solid;
+  border-radius: 5px;
+  vertical-align: middle; }
+
+.bee-manager span.go-button {
+  width: 30px;
+  height: 27px;
+  line-height: 30px;
+  border-bottom: 3px #46964f solid;
+  display: inline-block;
+  background: #57bb63;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 10pt;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 8px; }
+
+.bee-manager div:first-of-type i,
+.bee-manager div:last-of-type i {
+  padding: 8px 3px; }
+
+.bee-manager div:nth-last-of-type(2) i {
+  padding: 1px 10px; }
+
+.bee-manager > div:last-of-type i {
+  vertical-align: bottom; }
+
+.bee-manager > div:last-of-type i:nth-last-of-type(2) {
+  margin: 0 10px; }
+
+.bee-manager div:last-of-type i:first-of-type,
+.bee-manager div:last-of-type i:last-of-type {
+  background: #2980b9;
+  border-bottom: 3px #216694 solid;
+  padding: 1px 8px; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+footer {
+  background: #ffa01e;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  line-height: 35px;
+  padding: 0 35px;
+  vertical-align: middle; }
+
+footer .left {
+  float: left;
+  width: 50%; }
+
+footer .right {
+  float: right;
+  width: 50%; }
+
+.box-container.home > div {
+  float: left; }
+
+.white-box.home {
+  width: 60%;
+  height: 50vh; }
+
+.city img {
+  width: 80%; }
+
+body,
+div,
+img,
+span,
+p {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background: url("../img/background.jpg"); }
+
+.white-box {
+  background: #fff;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 8px; }
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/material-icons.woff2"); }
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  -webkit-font-feature-settings: 'liga';
+          font-feature-settings: 'liga'; }
