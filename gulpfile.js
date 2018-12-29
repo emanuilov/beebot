@@ -18,8 +18,13 @@ let nwjs = false;
 gulp.task("watch", function () {
 	watch("./src/sass/**/*.scss", gulp.parallel("styles"));
 	watch("./src/fonts/**/*", gulp.parallel("copy-fonts"));
+<<<<<<< HEAD
 	watch("./src/js/**/*.js", gulp.series("js-lint", "scripts"));
 	watch("./src/img/*", gulp.series("minify-images", "restart-nwjs"));
+=======
+	watch(["./src/js/**/*.js", "./src/js/**/*.jsx"], gulp.parallel("js-lint", "scripts"));
+	watch("./src/img/*", gulp.parallel("minify-images", "restart-nwjs"));
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 	watch("./src/**/*.html", gulp.series("copy-html", "restart-nwjs"));
 });
 
@@ -34,14 +39,22 @@ gulp.task("copy-html", function () {
 });
 
 gulp.task("scripts", function () {
+<<<<<<< HEAD
 	return gulp.src("./src/js/plugins/jquery-3.3.1.js", "./src/js/plugins/drawingboard.js", "./src/js/**/*.js")
+=======
+	return gulp.src(["./src/js/**/*.js", "./src/js/**/*.jsx"])
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		.pipe(babel())
 		.pipe(concat("script.js"))
 		.pipe(gulp.dest("./dist/js"));
 });
 
 gulp.task("scripts-dist", function () {
+<<<<<<< HEAD
 	return gulp.src(["./src/js/**/*.js", "!./src/js/dev-reload.js"])
+=======
+	return gulp.src(["./src/js/**/*.js", "./src/js/**/*.jsx", "!./src/js/dev-reload.js"])
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		.pipe(babel())
 		.pipe(sourcemaps.init())
 		.pipe(concat("script.js"))
@@ -51,8 +64,15 @@ gulp.task("scripts-dist", function () {
 });
 
 gulp.task("js-lint", function () {
+<<<<<<< HEAD
 	return gulp.src(["./src/js/**/*.js", "!node_modules/**", "!./src/js/plugins/jquery-3.3.1.js"])
 		.pipe(eslint())
+=======
+	return gulp.src(["./src/js/**/*.js", "./src/js/**/*.jsx", "!node_modules/**", "!./src/js/plugins/jquery-3.3.1.js", "!./src/js/plugins/drawingboard.js"])
+		.pipe(eslint({
+			"configFile": "./.eslintrc.json"
+		}))
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError());
 });
@@ -73,12 +93,19 @@ gulp.task("styles", function () {
 		.pipe(autoprefixer({
 			browsers: ["last 5 versions"]
 		}))
+<<<<<<< HEAD
 		.pipe(concat("main.css"))
+=======
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		.pipe(gulp.dest("./dist/css"));
 });
 
 gulp.task("minify-images", function () {
+<<<<<<< HEAD
 	return gulp.src("./src/img/**/*")
+=======
+	return gulp.src("./src/img/*")
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		.pipe(imagemin({
 			progressive: true,
 			use: [pngquant()]
@@ -88,7 +115,12 @@ gulp.task("minify-images", function () {
 
 gulp.task("clean", function () {
 	return gulp.src("./dist", {
+<<<<<<< HEAD
 		read: false
+=======
+		read: false,
+		allowEmpty: true
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 	}).pipe(clean());
 });
 

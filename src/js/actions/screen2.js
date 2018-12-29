@@ -1,4 +1,5 @@
 $(document).ready(function () {
+<<<<<<< HEAD
 	var drawingBoard = new DrawingBoard.Board("drawing-board", {
 			background: false,
 			eraserColor: "transparent",
@@ -9,6 +10,18 @@ $(document).ready(function () {
 		}),
 		isTheMouseInTheCanvas = false,
 		beeImg = $(".bee-container img"),
+=======
+	var drawingBoard = new DrawingBoard.Board('drawing-board', {
+			background: false,
+			eraserColor: 'transparent',
+			controls: false,
+			webStorage: false,
+			size: 6,
+			color: '#1abc9c'
+		}),
+		isTheMouseInTheCanvas = false,
+		beeImg = $('.bee-container img'),
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		canvas = $(drawingBoard.canvas),
 		beePosition = null,
 		beeSteps = [],
@@ -18,19 +31,33 @@ $(document).ready(function () {
 			pause: 1
 		};
 
+<<<<<<< HEAD
 	canvas.on("dragenter", function () {
 		isTheMouseInTheCanvas = true;
 	});
 	canvas.on("dragover", function (e) {
+=======
+	canvas.on('dragenter', function () {
+		isTheMouseInTheCanvas = true;
+	});
+	canvas.on('dragover', function (e) {
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		if (e.preventDefault) {
 			e.preventDefault(); // Necessary. Allows us to drop.
 		}
 		return false;
 	});
+<<<<<<< HEAD
 	canvas.on("dragleave", function () {
 		isTheMouseInTheCanvas = false;
 	});
 	canvas.on("drop", function (e) {
+=======
+	canvas.on('dragleave', function () {
+		isTheMouseInTheCanvas = false;
+	});
+	canvas.on('drop', function (e) {
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		// this / e.target is current target element.
 
 		if (e.stopPropagation) {
@@ -38,22 +65,37 @@ $(document).ready(function () {
 		}
 
 		if (isTheMouseInTheCanvas) {
+<<<<<<< HEAD
 			insertImage("bee", getBoxAndRowID(getMouseCoordinates(drawingBoard.canvas,
+=======
+			insertImage('bee', getBoxAndRowID(getMouseCoordinates(drawingBoard.canvas,
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 				e)));
 			beeImg.remove();
 		}
 
 		return false;
 	});
+<<<<<<< HEAD
 	beeImg.on("dragstart", function () {
 		this.style.opacity = "0.4"; // this / e.target is the source node.
 	});
 	beeImg.on("dragend", function () {
+=======
+	beeImg.on('dragstart', function () {
+		this.style.opacity = '0.4'; // this / e.target is the source node.
+	});
+	beeImg.on('dragend', function () {
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		if (isTheMouseInTheCanvas) {
 			$(this).remove();
 			isTheMouseInTheCanvas = false;
 		} else {
+<<<<<<< HEAD
 			$(this).css("opacity", 1);
+=======
+			$(this).css('opacity', 1);
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		}
 	});
 
@@ -146,9 +188,15 @@ $(document).ready(function () {
 		if (checkIfTheMovementIsPossible(newPosition)) {
 			setTimeout(
 				function () {
+<<<<<<< HEAD
 					var beeContainer = $($("embed")[0].getSVGDocument()).find("#beeContainer");
 					beeContainer.empty();
 					insertImage("bee", newPosition, rotation);
+=======
+					var beeContainer = $($('embed')[0].getSVGDocument()).find('#beeContainer');
+					beeContainer.empty();
+					insertImage('bee', newPosition, rotation);
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 				}, intervals.betweenActions);
 			return true;
 		} else {
@@ -197,10 +245,22 @@ $(document).ready(function () {
 
 		return coordinates;
 	}
+<<<<<<< HEAD
+=======
+	setTimeout(
+		function () {
+			insertImage('bee', {
+				boxID: 1,
+				rowID: 1
+			}, 0);
+		}, 500);
+
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 
 	function insertImage(imageName, imagePosition, rotation = 0) {
 		var imageCoordinates = getBoxCoordinates(imagePosition);
 
+<<<<<<< HEAD
 		var image = document.createElementNS("http://www.w3.org/2000/svg", "image");
 		image.setAttribute("href", "/img/screen2/lessons/in-lesson-pictures/" + imageName + ".png");
 		image.setAttribute("x", imageCoordinates.x);
@@ -211,6 +271,18 @@ $(document).ready(function () {
 			beePosition = imagePosition;
 		} else {
 			$("embed")[0].getSVGDocument().getElementById("lessonImages").appendChild(image);
+=======
+		var image = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+		image.setAttribute('href', '/img/screen2/lessons/in-lesson-pictures/' + imageName + '.png');
+		image.setAttribute('x', imageCoordinates.x);
+		image.setAttribute('y', imageCoordinates.y);
+		if (imageName == 'bee') {
+			image.setAttribute('transform', 'rotate(' + rotation + ', ' + (62.5 + imageCoordinates.x) + ', ' + (62.5 + imageCoordinates.y) + ')');
+			$('embed')[0].getSVGDocument().getElementById('beeContainer').appendChild(image);
+			beePosition = imagePosition;
+		} else {
+			$('embed')[0].getSVGDocument().getElementById('lessonImages').appendChild(image);
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		}
 	}
 
@@ -225,6 +297,7 @@ $(document).ready(function () {
 		};
 	}
 
+<<<<<<< HEAD
 	$(".board-manager .colors img").click(function () {
 		drawingBoard.setColor($(this).data("color"));
 	});
@@ -235,6 +308,18 @@ $(document).ready(function () {
 
 	$(".bee-manager div *").click(function () {
 		var actionID = $(this).data("action");
+=======
+	$('.board-manager .colors img').click(function () {
+		drawingBoard.setColor($(this).data('color'));
+	});
+
+	$('.board-manager .tools span:first-of-type img').click(function () {
+		drawingBoard.setMode($(this).data('mode'));
+	});
+
+	$('.bee-manager div *').click(function () {
+		var actionID = $(this).data('action');
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		if (actionID != 7 && actionID != 6) {
 			beeSteps.push(actionID);
 		} else if (actionID == 6) {
@@ -249,6 +334,7 @@ $(document).ready(function () {
 		drawingBoard.reset({
 			background: true
 		});
+<<<<<<< HEAD
 		$($("embed")[0].getSVGDocument()).find("#beeContainer").empty();
 		var beeContainer = $(".bee-container");
 		beeContainer.empty();
@@ -257,6 +343,16 @@ $(document).ready(function () {
 
 	$(".board-manager .tools span:last-of-type img").click(function () {
 		var newSize = parseInt($(this).data("size"));
+=======
+		$($('embed')[0].getSVGDocument()).find('#beeContainer').empty();
+		var beeContainer = $('.bee-container');
+		beeContainer.empty();
+		beeContainer.append('<img src="./img/screen2/lessons/in-lesson-pictures/bee.png" alt="Bee">');
+	}
+
+	$('.board-manager .tools span:last-of-type img').click(function () {
+		var newSize = parseInt($(this).data('size'));
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		drawingBoard.opts.size = newSize;
 		drawingBoard.ctx.lineWidth = newSize;
 	});

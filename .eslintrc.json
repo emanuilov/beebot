@@ -5,7 +5,15 @@
 		"node": true,
 		"jquery": true
 	},
+<<<<<<< HEAD
 	"extends": "eslint:recommended",
+=======
+	"extends": ["eslint:recommended", "plugin:react/recommended"],
+	"parser": "babel-eslint",
+	"plugins": [
+		"react"
+	],
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 	"rules": {
 		"indent": [
 			"warn",
@@ -13,7 +21,11 @@
 		],
 		"quotes": [
 			"warn",
+<<<<<<< HEAD
 			"double"
+=======
+			"single"
+>>>>>>> e7d0902f3efc7443404f6e39ec7cba117f0b6cd5
 		],
 		"semi": [
 			"warn",
