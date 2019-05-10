@@ -1,0 +1,38 @@
+@import './variables';
+@import './colors';
+
+.activation .white-box.big {
+	text-align: center;
+	h2 {
+		color: map-get($colors, red);
+	}
+	input {
+		width: 100%;
+		height: 5vh;
+		padding: 0 1vw;
+	}
+
+	> div {
+		align-items: center;
+		justify-content: center;
+	}
+
+	div.activate {
+		margin-top: 3%;
+		background: map-get($colors, orange);
+		color: map-get($colors, inButtonText);
+		width: 100%;
+		line-height: 5.5vh;
+		padding: 1% 1%;
+		border-radius: $borderRadius;
+		cursor: pointer;
+	}
+	.result {
+		margin-top: 3vh;
+		font-weight: bold;
+		span.red {
+			color: map-get($colors, red);
+		}
+
+	}
+}

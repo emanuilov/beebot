@@ -1,38 +1,44 @@
-# NW.JS Project Template
-This template has everything needed to start an html-javascript NW.jS project right away
+This project was bootstrapped with [Create NW.js React App](https://github.com/naviapps/create-nw-react-app).
 
-#Needed global npm dependencies
-```
-npm view nw versions - get the latest version of NW.JS and replace it in the command below
-npm install -g nw@version-sdk
-npm install -g nwbuild
-```
+## Available Scripts
 
-# Run the project
-Open terminal and run gulp
+In the project directory, you can run:
 
-# Run auto refreshing copy of dist
-Just run gulp
+### `npm start`
 
-# Build the project
-```
-gulp export
-nwbuild . -p win32,win64,osx32,osx64,linux32,linux64 --flavor normal
-```
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the app.
 
-# Git - recommended SSH using the set key
-###Set the new repo name
-```
-git remote set-url origin git@bitbucket.org:emanuilov/new-repo-name.git
-```
-###Check the current repo
-```
-git remote -v
-```
-###Merge with the new after the change
-```
-git pull --allow-unrelated-histories
-```
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-# Edits
-The only place that needs edits is package.json
+### `npm test`
+
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be released!
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+[Create NW.js React App documentation](https://github.com/naviapps/create-nw-react-app) TODO
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).

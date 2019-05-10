@@ -1,0 +1,32 @@
+@import './variables';
+@import './colors';
+
+.white-box.big {
+	width: 54vw;
+	height: $whiteBoxHeight;
+	padding: 5vw;
+	> div{
+		display: flex;
+	}
+	> div > div:last-of-type{
+		margin-right: 0;
+	}
+}
+
+.box-container.main{
+	.title {
+		margin: 3vw auto;
+		width: 80vw;
+	}
+	.city {
+		display:flex;
+		padding: 0 8vw;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.city img {
+		width: 13vw;
+		height: $whiteBoxHeight;
+	}
+}

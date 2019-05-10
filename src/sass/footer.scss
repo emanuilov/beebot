@@ -1,0 +1,26 @@
+@import './colors';
+
+footer {
+	background: map-get($colors, yellow);
+	position: absolute;
+	bottom: 0;
+    width: 94.61vw;
+	color: #fff;
+	line-height: 35px;
+	padding: 0 35px;
+	font-size: 10pt;
+	.left {
+		float: left;
+		width: 50%;
+	}
+
+	.right {
+		float: right;
+		width: 50%;
+		text-align: right;
+	}
+
+	span {
+		cursor: pointer;
+	}
+}
