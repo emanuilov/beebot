@@ -11,22 +11,22 @@ export default class Lesson {
 
 	trophies() {
 		const trophies = [
-			true,
-			true,
-			true,
-			true,
-			true,
-			true,
-			true,
-			true,
-			true,
-			true,
-			true,
-			true,
-			true,
-			true
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false
 		];
-		trophies.fill(false, 0, parseInt(this.lessonID, 10));
+		trophies.fill(true, 0, parseInt(this.lessonID, 10));
 		return trophies;
 	}
 }

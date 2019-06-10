@@ -100,21 +100,21 @@ export default class Home extends React.PureComponent {
 								className={'box'}
 								role={'button'}
 								tabIndex={'0'}
-								onClick={this.switchLang}
-								onKeyDown={this.switchLang}
-							>
-								<img src={this.state.lang} alt={'Български'} />
-								<span>{text.ui.home[1]}</span>
-							</div>
-							<div
-								className={'box'}
-								role={'button'}
-								tabIndex={'0'}
 								onClick={this.switchBot}
 								onKeyDown={this.switchBot}
 							>
 								<img src={this.state.bot} alt={'Пчела'} />
 								<span>{text.ui.home[2]}</span>
+							</div>
+							<div
+								className={'box'}
+								role={'button'}
+								tabIndex={'0'}
+								onClick={this.switchLang}
+								onKeyDown={this.switchLang}
+							>
+								<img src={this.state.lang} alt={'Български'} />
+								<span>{text.ui.home[1]}</span>
 							</div>
 							<div className={'box'}>
 								<img src={bee} alt={'Пчела'} />

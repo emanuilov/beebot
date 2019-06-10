@@ -46,11 +46,11 @@ export default class Game extends React.PureComponent {
 						</div>
 						<div className={'item'}>
 							<i className={'material-icons'}>flag</i>
-							<span>Инструкции</span>
+							<span>Съдържание</span>
 						</div>
 						<div className={'item'}>
 							<i className={'material-icons'}>settings</i>
-							<span>Настройки</span>
+							<span>За играта</span>
 						</div>
 						<div className={'item'}>
 							<i className={'material-icons'}>phone</i>

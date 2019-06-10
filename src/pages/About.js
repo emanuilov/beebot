@@ -1,8 +1,7 @@
 import React from 'react';
-// eslint-disable-next-line import/no-cycle
 import Container from '../components/Container';
 
-export default class About extends React.PureComponent {
+export default class Settings extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {};
@@ -16,7 +15,7 @@ export default class About extends React.PureComponent {
 	render() {
 		return (
 			<Container
-				class={'about'}
+				class={'settings'}
 				content={
 					<div className={'white-box big'}>
 						<div
@@ -26,7 +25,7 @@ export default class About extends React.PureComponent {
 							onClick={this.submit}
 							onKeyDown={this.submit}
 						>
-							За играта
+							Настройки
 						</div>
 					</div>
 				}
