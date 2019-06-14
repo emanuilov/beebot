@@ -18,13 +18,7 @@ export default class Settings extends React.PureComponent {
 				class={'settings'}
 				content={
 					<div className={'white-box big'}>
-						<div
-							role={'button'}
-							tabIndex={'0'}
-							className={'activate'}
-							onClick={this.submit}
-							onKeyDown={this.submit}
-						>
+						<div role={'button'} tabIndex={'0'} className={'activate'} onClick={this.submit}>
 							Настройки
 						</div>
 					</div>

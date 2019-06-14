@@ -54,13 +54,7 @@ export default class Activation extends React.PureComponent {
 							value={this.state.key}
 							onChange={this.change}
 						/>
-						<div
-							role={'button'}
-							tabIndex={'0'}
-							className={'activate'}
-							onClick={this.submit}
-							onKeyDown={this.submit}
-						>
+						<div role={'button'} tabIndex={'0'} className={'activate'} onClick={this.submit}>
 							Активирай
 						</div>
 						<div className={'result'}>

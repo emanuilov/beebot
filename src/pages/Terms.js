@@ -19,13 +19,7 @@ export default class Terms extends React.PureComponent {
 				class={'terms'}
 				content={
 					<div className={'white-box big'}>
-						<div
-							role={'button'}
-							tabIndex={'0'}
-							className={'activate'}
-							onClick={this.submit}
-							onKeyDown={this.submit}
-						>
+						<div role={'button'} tabIndex={'0'} className={'activate'} onClick={this.submit}>
 							Условия
 						</div>
 					</div>

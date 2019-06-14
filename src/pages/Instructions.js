@@ -18,13 +18,7 @@ export default class Instructions extends React.PureComponent {
 				class={'instructions'}
 				content={
 					<div className={'white-box big'}>
-						<div
-							role={'button'}
-							tabIndex={'0'}
-							className={'activate'}
-							onClick={this.submit}
-							onKeyDown={this.submit}
-						>
+						<div role={'button'} tabIndex={'0'} className={'activate'} onClick={this.submit}>
 							Активирай
 						</div>
 					</div>

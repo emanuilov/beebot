@@ -26,15 +26,15 @@ export default class Footer extends React.PureComponent {
 					Безопасност на движението по пътищата © Иновации и Консултиране
 				</div>
 				<div className={'right'}>
-					<span role={'button'} tabIndex={'0'} onClick={this.about} onKeyDown={this.about}>
+					<span role={'button'} tabIndex={'0'} onClick={this.about}>
 						За играта
 					</span>{' '}
 					•{' '}
-					<span role={'button'} tabIndex={'0'} onClick={this.contacts} onKeyDown={this.contacts}>
+					<span role={'button'} tabIndex={'0'} onClick={this.contacts}>
 						Контакти
 					</span>{' '}
 					•{' '}
-					<span role={'button'} tabIndex={'0'} onClick={this.terms} onKeyDown={this.terms}>
+					<span role={'button'} tabIndex={'0'} onClick={this.terms}>
 						Поверителност и условия
 					</span>
 				</div>

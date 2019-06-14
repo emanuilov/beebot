@@ -47,13 +47,7 @@ export default class Lesson extends React.PureComponent {
 						<i className={'material-icons'}>navigate_next</i>
 					</div>
 					<div className={'right'}>
-						<i
-							className={'material-icons'}
-							role={'button'}
-							tabIndex={'0'}
-							onClick={this.playSound}
-							onKeyDown={this.playSound}
-						>
+						<i className={'material-icons'} role={'button'} tabIndex={'0'} onClick={this.playSound}>
 							record_voice_over
 						</i>
 					</div>

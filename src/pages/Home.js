@@ -73,46 +73,22 @@ export default class Home extends React.PureComponent {
 				content={
 					<div className={'white-box big'}>
 						<div className={'topRow'}>
-							<div
-								className={'play'}
-								role={'button'}
-								tabIndex={'0'}
-								onClick={this.play}
-								onKeyDown={this.play}
-							>
+							<div className={'play'} role={'button'} tabIndex={'0'} onClick={this.play}>
 								<i className={'material-icons'} data-action={'1'}>
 									play_arrow
 								</i>
 								<div>{text.ui.home[0]}</div>
 							</div>
-							<div
-								className={'faq'}
-								role={'button'}
-								tabIndex={'0'}
-								onClick={this.about}
-								onKeyDown={this.about}
-							>
+							<div className={'faq'} role={'button'} tabIndex={'0'} onClick={this.about}>
 								<img src={faq} alt={'FAQ'} />
 							</div>
 						</div>
 						<div className={'bottomRow'}>
-							<div
-								className={'box'}
-								role={'button'}
-								tabIndex={'0'}
-								onClick={this.switchBot}
-								onKeyDown={this.switchBot}
-							>
+							<div className={'box'} role={'button'} tabIndex={'0'} onClick={this.switchBot}>
 								<img src={this.state.bot} alt={'Пчела'} />
 								<span>{text.ui.home[2]}</span>
 							</div>
-							<div
-								className={'box'}
-								role={'button'}
-								tabIndex={'0'}
-								onClick={this.switchLang}
-								onKeyDown={this.switchLang}
-							>
+							<div className={'box'} role={'button'} tabIndex={'0'} onClick={this.switchLang}>
 								<img src={this.state.lang} alt={'Български'} />
 								<span>{text.ui.home[1]}</span>
 							</div>

@@ -19,13 +19,7 @@ export default class Contacts extends React.PureComponent {
 				class={'contacts'}
 				content={
 					<div className={'white-box big'}>
-						<div
-							role={'button'}
-							tabIndex={'0'}
-							className={'activate'}
-							onClick={this.submit}
-							onKeyDown={this.submit}
-						>
+						<div role={'button'} tabIndex={'0'} className={'activate'} onClick={this.submit}>
 							Контакти
 						</div>
 					</div>
