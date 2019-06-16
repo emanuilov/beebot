@@ -1,5 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line import/no-cycle
 import Container from '../components/Container';
 
 export default class Terms extends React.PureComponent {

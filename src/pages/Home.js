@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Redirect } from 'react-router-dom';
 import Container from '../components/Container';
-import Game from './Game';
-import About from './About';
 import langBG from '../img/home/bg.png';
 import langEN from '../img/home/us.png';
 import blueBot from '../img/home/blueBot.png';
@@ -59,11 +57,11 @@ export default class Home extends React.PureComponent {
 	}
 
 	play() {
-		ReactDOM.render(<Game />, document.getElementById('root'));
+		return <Redirect to={'/Game'} />;
 	}
 
 	about() {
-		ReactDOM.render(<About />, document.getElementById('root'));
+		return <Redirect to={'/About'} />;
 	}
 
 	render() {

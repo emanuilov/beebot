@@ -1,22 +1,18 @@
-/* eslint-disable import/no-cycle */
 import React from 'react';
-import ReactDOM from 'react-dom';
-import About from '../pages/About';
-import Contacts from '../pages/Contacts';
-import Terms from '../pages/Terms';
+import { Redirect } from 'react-router-dom';
 import '../sass/footer.scss';
 
 export default class Footer extends React.PureComponent {
 	about() {
-		ReactDOM.render(<About />, document.getElementById('root'));
+		return <Redirect to={'/About'} />;
 	}
 
 	contacts() {
-		ReactDOM.render(<Contacts />, document.getElementById('root'));
+		return <Redirect to={'/Contacts'} />;
 	}
 
 	terms() {
-		ReactDOM.render(<Terms />, document.getElementById('root'));
+		return <Redirect to={'/Terms'} />;
 	}
 
 	render() {

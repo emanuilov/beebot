@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// eslint-disable-next-line import/no-cycle
 import Footer from './Footer';
 import title from '../img/home/title.png';
 import cityLeft from '../img/home/city-left.png';

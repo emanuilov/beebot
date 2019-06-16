@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Redirect } from 'react-router-dom';
 import os from 'os';
-import Home from '../pages/Home';
 import config from '../config';
 
 export default class ManageLicense {
@@ -17,15 +16,13 @@ export default class ManageLicense {
 			case 200:
 				localStorage.setItem('expiration', requestValidation[1].expiration);
 				localStorage.setItem('mac', requestValidation[2]);
-				ReactDOM.render(<Home />, document.getElementById('root'));
-				break;
+				return <Redirect to={'/Home'} />;
 			case 400: // Wrong key
 				return 1;
 			default:
 				// Technical error
 				return 2;
 		}
-		return 2;
 	}
 
 	async validateKey() {
