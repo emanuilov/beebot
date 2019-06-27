@@ -3,6 +3,7 @@
 
 .box-container.home{
 	.white-box.big {
+		text-transform: uppercase;
 		> div.topRow {
 			div.play {
 				display: flex;
@@ -25,7 +26,7 @@
 					font-size: 7vh;
 				}
 			}
-			div.faq {
+			div.contents {
 				background: map-get($colors, yellow);
 				padding: 3%;
 				padding-top: 2.5%;
@@ -38,7 +39,7 @@
 				}
 			}
 			> div {
-				border-radius: $borderRadius;
+				border-radius: $buttonRadius;
 			}
 			display:flex;
 			height: 25%;
@@ -60,8 +61,7 @@
 				background: map-get($colors, yellow);
 				padding: 1vw;
 				margin-right: 2vw;
-				border-radius: $borderRadius;
-				text-transform: uppercase;
+				border-radius: $buttonRadius;
 				color: map-get($colors, inButtonText);
 				display: flex;
 				flex-direction: column;
@@ -72,6 +72,63 @@
 			}
 			> div:last-of-type {
 				margin-right: 0
+			}
+
+			.switchContainer {
+				align-self: flex-end;
+
+				.switch {
+					position: relative;
+					display: inline-block;
+					width: 30px;
+					height: 18px;
+				}
+
+				.switch input { 
+					opacity: 0;
+					width: 0;
+					height: 0;
+				}
+
+				.slider {
+					position: absolute;
+					cursor: pointer;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					background-color: #ccc;
+					-webkit-transition: .4s;
+					transition: .4s;
+					border-radius: 34px;
+				}
+
+				.slider:before {
+					position: absolute;
+					content: "";
+					height: 13px;
+					width: 13px;
+					left: 4px;
+					bottom: 2.49px;
+					background-color: white;
+					-webkit-transition: .4s;
+					transition: .4s;
+					border-radius: 50%;
+				}
+
+				input:checked + .slider {
+					background-color: #2196F3;
+				}
+
+				input:focus + .slider {
+					box-shadow: 0 0 1px #2196F3;
+				}
+
+				input:checked + .slider:before {
+					-webkit-transform: translateX(10px);
+					-ms-transform: translateX(10px);
+					transform: translateX(10px);
+				}
 			}
 		}
 	}
