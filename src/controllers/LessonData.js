@@ -1,11 +1,15 @@
 export default class Lesson {
-	constructor() {
-		if (localStorage.getItem('lessonID') === null) {
+	constructor(id) {
+		if (localStorage.getItem('lessonID') === null && !id) {
 			localStorage.setItem('lessonID', 0);
 			localStorage.setItem('taskID', 0);
+		} else if (!id) {
+			this.lessonID = parseInt(localStorage.getItem('lessonID'), 10);
+			this.taskID = parseInt(localStorage.getItem('taskID'), 10);
+		} else {
+			this.lessonID = parseInt(id, 10);
+			this.taskID = parseInt(id, 10);
 		}
-		this.lessonID = parseInt(localStorage.getItem('lessonID'), 10);
-		this.taskID = parseInt(localStorage.getItem('taskID'), 10);
 		this.trophies = this.trophies();
 	}
 

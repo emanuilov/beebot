@@ -1,5 +1,6 @@
 import React from 'react';
 import LessonsContainer from '../components/LessonsContainer';
+import goTo, { openLink } from '../controllers/Redirect';
 import ribbon from '../img/game/ribbon.png';
 import board from '../img/game/drawing/board.svg';
 import bee from '../img/game/lessons/in-lesson-pictures/bee.png';
@@ -30,6 +31,14 @@ export default class Game extends React.PureComponent {
 
 	onBackwardsClick() {}
 
+	backgroundMusic() {
+		if (!window.music.paused) {
+			window.music.pause();
+		} else {
+			window.music.play();
+		}
+	}
+
 	render() {
 		return (
 			<div>
@@ -39,29 +48,54 @@ export default class Game extends React.PureComponent {
 						<img src={ribbon} alt={'Ribbon'} />
 						<h1 className={'title'}>Test</h1>
 					</div>
-					<nav>
-						<div className={'item'}>
-							<i className={'material-icons'}>home</i>
-							<span>Начало</span>
+					<div className={'nav'}>
+						<nav>
+							<div className={'item'} role={'button'} tabIndex={'0'} onClick={() => goTo('/Home')}>
+								<i className={'material-icons'}>home</i>
+								<span>Начало</span>
+							</div>
+							<div
+								className={'item'}
+								role={'button'}
+								tabIndex={'0'}
+								onClick={() => goTo('/Contents')}
+							>
+								<i className={'material-icons'}>flag</i>
+								<span>Съдържание</span>
+							</div>
+							<div
+								className={'item'}
+								role={'button'}
+								tabIndex={'0'}
+								onClick={() => openLink('https://innovateconsult.net')}
+							>
+								<i className={'material-icons'}>settings</i>
+								<span>За играта</span>
+							</div>
+							<div
+								className={'item'}
+								role={'button'}
+								tabIndex={'0'}
+								onClick={() => goTo('/Contacts')}
+							>
+								<i className={'material-icons'}>phone</i>
+								<span>Контакти</span>
+							</div>
+						</nav>
+						<div
+							className={'background-sound-button'}
+							role={'button'}
+							tabIndex={'0'}
+							onClick={this.backgroundMusic}
+						>
+							<i className={'material-icons'}>volume_up</i>
 						</div>
-						<div className={'item'}>
-							<i className={'material-icons'}>flag</i>
-							<span>Съдържание</span>
-						</div>
-						<div className={'item'}>
-							<i className={'material-icons'}>settings</i>
-							<span>За играта</span>
-						</div>
-						<div className={'item'}>
-							<i className={'material-icons'}>phone</i>
-							<span>Контакти</span>
-						</div>
-					</nav>
+					</div>
 				</header>
 
 				<div className={'container'}>
 					<div className={'left'}>
-						<LessonsContainer />
+						<LessonsContainer id={new URL(window.location.href).searchParams.get('id')} />
 						<div className={'game-managment'}>
 							<div className={'white-box bee-controls'}>
 								<div>

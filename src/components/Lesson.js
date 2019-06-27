@@ -37,7 +37,7 @@ export default class Lesson extends React.PureComponent {
 				<nav>
 					<div className={'left'}>
 						<i className={'material-icons'}>skip_previous</i>
-						<i className={'material-icons'}>skip_next</i>
+						<i className={'material-icons next'}>skip_next</i>
 						<i className={'material-icons'}>navigate_before</i>
 						<div>
 							<span className={'current-page'}>{this.state.currentPage}</span>
@@ -47,6 +47,9 @@ export default class Lesson extends React.PureComponent {
 						<i className={'material-icons'}>navigate_next</i>
 					</div>
 					<div className={'right'}>
+						<i className={'material-icons'} role={'button'} tabIndex={'0'} onClick={this.playSound}>
+							check
+						</i>
 						<i className={'material-icons'} role={'button'} tabIndex={'0'} onClick={this.playSound}>
 							record_voice_over
 						</i>

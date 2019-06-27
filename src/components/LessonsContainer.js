@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LessonData from '../controllers/LessonData';
 import Lesson from './Lesson';
 import Trophies from './Trophies';
@@ -6,7 +7,7 @@ import Trophies from './Trophies';
 export default class LessonsContainer extends React.PureComponent {
 	constructor(props) {
 		super(props);
-		this.lessonData = new LessonData();
+		this.lessonData = new LessonData(props.id);
 		this.lesson = React.createRef();
 		this.trophies = React.createRef();
 	}
@@ -24,3 +25,11 @@ export default class LessonsContainer extends React.PureComponent {
 		);
 	}
 }
+
+LessonsContainer.propTypes = {
+	id: PropTypes.string
+};
+
+LessonsContainer.defaultProps = {
+	id: null
+};
