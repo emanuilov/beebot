@@ -1,36 +1,28 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import goTo, { openLink } from '../controllers/Redirect';
 import '../sass/footer.scss';
 
 export default class Footer extends React.PureComponent {
-	about() {
-		return <Redirect to={'/About'} />;
-	}
-
-	contacts() {
-		return <Redirect to={'/Contacts'} />;
-	}
-
-	terms() {
-		return <Redirect to={'/Terms'} />;
-	}
-
 	render() {
 		return (
 			<footer>
 				<div className={'left'}>
-					Безопасност на движението по пътищата © Иновации и Консултиране
+					Безопасност на движението по пътищата © Иновации и консултиране
 				</div>
 				<div className={'right'}>
-					<span role={'button'} tabIndex={'0'} onClick={this.about}>
+					<span
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => openLink('https://innovateconsult.net')}
+					>
 						За играта
 					</span>{' '}
 					•{' '}
-					<span role={'button'} tabIndex={'0'} onClick={this.contacts}>
+					<span role={'button'} tabIndex={'0'} onClick={() => goTo('/Contacts')}>
 						Контакти
 					</span>{' '}
 					•{' '}
-					<span role={'button'} tabIndex={'0'} onClick={this.terms}>
+					<span role={'button'} tabIndex={'0'} onClick={() => goTo('/Terms')}>
 						Поверителност и условия
 					</span>
 				</div>

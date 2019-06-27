@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Game from './pages/Game';
-import About from './pages/About';
+import Contents from './pages/Contents';
 import Contacts from './pages/Contacts';
 import Terms from './pages/Terms';
 import InitialLocation from './InitialLocation';
@@ -16,7 +16,7 @@ const App = () => {
 			<Switch>
 				<Route path={'/Home'} component={Home} />
 				<Route path={'/Game'} component={Game} />
-				<Route path={'/About'} component={About} />
+				<Route path={'/Contents'} component={Contents} />
 				<Route path={'/Contacts'} component={Contacts} />
 				<Route path={'/Terms'} component={Terms} />
 				<Route path={'/Activation'} component={Activation} />
