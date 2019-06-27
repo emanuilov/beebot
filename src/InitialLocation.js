@@ -10,9 +10,9 @@ const InitialLocation = () => {
 		new Date(localStorage.getItem('expiration')) >= new Date() &&
 		localStorage.getItem('mac') === networkInterfaces[Object.keys(networkInterfaces)[0]][0].mac
 	) {
-		return <Redirect to={'/Game'} />;
+		return <Redirect to={'/Home'} />;
 	}
-	return <Redirect to={'/Game'} />;
+	return <Redirect to={'/Activation'} />;
 };
 
 export default InitialLocation;
