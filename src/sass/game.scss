@@ -1,5 +1,6 @@
 @import './colors';
 @import './variables';
+@import './mixins';
 
 .orange-line {
 	background: map-get($colors, yellow);
@@ -9,7 +10,10 @@
 
 header {
 	display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
+	> div {
+		flex-shrink: 0;
+	}
 	.ribbon {
 		margin-top: 1.2vh;
 		position: relative;
@@ -19,36 +23,48 @@ header {
 			position: absolute;
 			top: 0;
 			right: 5%;
-			color: #fff;
+			color: map-get($colors, inButtonText);
 			margin: 0;
 			padding: 2% 6%;
 			font-size: 19pt;
 		}
 	}
 
-	nav {
-	    width: 39.5vw;
-	    height: 4vh;
-		background: map-get($colors, yellow);
-		margin-right: 2.3%;
-		border-bottom-left-radius: $borderRadius;
-		border-bottom-right-radius: $borderRadius;
-	    padding: 0 2.5%;
-		.item {
-			display: inline-block;
-			color: map-get($colors, inButtonText);
-			margin-right: 4%;
-			i, span {
-				vertical-align: middle;
-				display: inline;
+	.nav {
+		display: flex;
+	    margin-right: 1.7%;
+
+		nav {
+			padding: 0 2.5%;
+			display: flex;
+		    justify-content: center;
+			@include orangeButtons();
+			width: 43.5vw;
+			margin-right:2.9%;
+			.item {
+				margin-right: 6%;
+				white-space: nowrap;
+				cursor: pointer;
+				i, span {
+					vertical-align: middle;
+					display: inline;
+				}
+				i {
+				    font-size: 16pt;
+					margin-right: 5%;
+				}
 			}
-			i {
-				margin: 0 5%;
+			> div:last-of-type {
+				margin-right: 0;
 			}
 		}
-		> div:last-of-type {
-			margin-right: 0;
+
+		> div.background-sound-button {
+			@include orangeButtons();
+			padding: 0 1.4%;
+			cursor: pointer;
 		}
+
 	}
 
 }
@@ -66,21 +82,24 @@ header {
 	width: 47%;
 	margin-right: 1.75%;
 
+// First section
 	.white-box.trophies{
 		padding: 4%;
 		> div:first-of-type {
 		    margin-bottom: 3%;
 		}
-		> div img {
+		> div > a {
 			margin-right: 5%;
-			width: 10%;
-			cursor: pointer;
+			> img {
+				width: 10%;
+			}
 		}
-		> div img:last-of-type {
+		> div > a:last-of-type {
 				margin-right: 0;
 		}
 	}
 
+// Second section
 	.white-box.lesson {
 		margin: 3.5% 0;
 		h3 {
@@ -118,6 +137,9 @@ header {
 			.left {
 				width: 70%;
 				float: left;
+				i.next {
+					margin-right: 3vw;
+				}
 				i, span, div {
 					vertical-align: middle;
 				}
@@ -131,11 +153,15 @@ header {
 				width: 30%;
 				float: right;
 				text-align:right;
+				i:first-of-type {
+					margin-right: 10%;
+				}
 			}
 
 		}
 	}
 
+//Third section
 	.game-managment {
 		display: flex;
 		clear: both;
@@ -223,20 +249,23 @@ header {
 
 			.tools {
 				padding-bottom: 10px;
-			}
+				> span:first-of-type {
+					border-right: 1px #d9d9d9 solid;
+				}
 
-			.tools span {
-				display: inline-block;
-				width: 49%;
-				text-align: center;
-			}
+				span {
+					display: inline-block;
+					width: 49%;
+					text-align: center;
+				}
 
-			.tools span:first-of-type {
-				border-right: 1px #d9d9d9 solid;
-			}
+				> span:first-of-type > img:first-of-type {
+					margin-right: 2vw;
+				}
 
-			.tools img {
-				vertical-align: middle;
+				img {
+					vertical-align: middle;
+				}
 			}
 		}
 
@@ -259,7 +288,7 @@ header {
 			position: relative;
 			width: 690px;
 			height: 690px;
-			margin-top:-7%;
+			margin-top:-8.9%;
 		}
 
 		#drawing-board,
@@ -269,7 +298,7 @@ header {
 			position: absolute;
 			top: 0;
 			left: 0;
-			transform: scale(0.91);
+			transform: scale(0.92);
 			transform-origin: top left;
 		}
 

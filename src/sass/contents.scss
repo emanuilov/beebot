@@ -1,0 +1,10 @@
+@import './colors';
+
+.contents {
+	a {
+		text-decoration: none;
+		display: block;
+		color: map-get($colors, gray);
+		margin-bottom: 2%;
+	}
+}

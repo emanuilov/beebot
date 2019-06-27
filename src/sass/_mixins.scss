@@ -1,0 +1,10 @@
+@import './colors';
+@import './variables';
+
+@mixin orangeButtons(){
+		background: map-get($colors, yellow);
+		border-bottom-left-radius: $navRadius;
+		border-bottom-right-radius: $navRadius;
+		color: map-get($colors, inButtonText);
+	    height: 4vh;
+}

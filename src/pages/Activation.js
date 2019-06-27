@@ -24,15 +24,12 @@ export default class Activation extends React.PureComponent {
 		this.setState({ key: event.target.value });
 	}
 
-	submit() {
-		const result = new LicenseManagment(this.state.key);
-		if (result !== true) {
+	async submit() {
+		const result = await new LicenseManagment(this.state.key);
+		if (result !== 200) {
 			switch (result) {
-				case 1:
+				case 406:
 					this.setState({ wrongKey: true });
-					break;
-				case 2:
-					this.setState({ technicalError: true });
 					break;
 				default:
 					this.setState({ technicalError: true });
