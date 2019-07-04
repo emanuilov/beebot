@@ -47,9 +47,13 @@
 		}
 		> div.bottomRow {
 			height: 65%;
+			.langSwitch {
+				pointer-events: none;
+				opacity: 0.7;
+			}
 			div.box {
 				img {
-					width: 100%;
+					width: auto;
 					height: auto;
 					max-height: 15vh;
 					max-width: 15vh;
