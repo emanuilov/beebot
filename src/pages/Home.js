@@ -16,8 +16,9 @@ export default class Home extends React.PureComponent {
 		this.state = {
 			langPicture: this.getLangPicture(),
 			botPicture: this.getCharacterPicture(),
-			botOpt: window.localStorage.getItem('botOpt') !== '1',
-			langOpt: window.localStorage.getItem('lang') !== 'bg'
+			botOpt:
+				window.localStorage.getItem('botOpt') !== '1' && window.localStorage.getItem('botOpt'),
+			langOpt: window.localStorage.getItem('lang') !== 'bg' && window.localStorage.getItem('lang')
 		};
 
 		this.switchBot = this.switchBot.bind(this);
@@ -106,7 +107,12 @@ export default class Home extends React.PureComponent {
 								<img src={this.state.botPicture} alt={'Пчела'} />
 								<span>{text.ui.home[1]}</span>
 							</div>
-							<div className={'box'} role={'button'} tabIndex={'0'} onClick={this.switchLang}>
+							<div
+								className={'box langSwitch'}
+								role={'button'}
+								tabIndex={'0'}
+								onClick={this.switchLang}
+							>
 								<div className={'switchContainer'}>
 									<label className={'switch'} htmlFor={'lang'}>
 										<input
