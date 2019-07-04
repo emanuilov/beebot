@@ -5,6 +5,7 @@ import Game from './pages/Game';
 import Contents from './pages/Contents';
 import Contacts from './pages/Contacts';
 import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 import InitialLocation from './InitialLocation';
 import Activation from './pages/Activation';
 import './sass/main.scss';
@@ -19,6 +20,7 @@ const App = () => {
 				<Route path={'/Contents'} component={Contents} />
 				<Route path={'/Contacts'} component={Contacts} />
 				<Route path={'/Terms'} component={Terms} />
+				<Route path={'/Privacy'} component={Privacy} />
 				<Route path={'/Activation'} component={Activation} />
 				<Route path={'/'} component={InitialLocation} />
 			</Switch>

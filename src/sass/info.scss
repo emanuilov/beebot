@@ -1,0 +1,25 @@
+.white-box.big.contacts, .white-box.big.terms {
+	h1 {
+		font-size: 16pt;
+	}
+}
+
+.white-box.big.contacts {
+	.authors > div {
+		margin-bottom: 1vw;		
+		.email {
+			margin-left: 2vw;
+		}
+	}
+}
+
+.box-container.terms {
+	h1 {
+		text-align: center;
+	}
+	.more {
+		cursor: pointer;
+		justify-content: center;
+		font-weight: bold;
+	}
+}

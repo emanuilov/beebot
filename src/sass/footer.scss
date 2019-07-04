@@ -18,9 +18,16 @@ footer {
 		float: right;
 		width: 50%;
 		text-align: right;
-	}
 
-	span {
-		cursor: pointer;
+		> div {
+			cursor: pointer;
+			display: inline-block;
+		}
+		> div.terms {
+			cursor: default;
+			span {
+				cursor: pointer;
+			}
+		}
 	}
 }

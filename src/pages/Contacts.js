@@ -2,7 +2,7 @@
 import React from 'react';
 import Container from '../components/Container';
 import { openLink, openMail } from '../controllers/Redirect';
-import '../sass/contacts.scss';
+import '../sass/info.scss';
 
 export default class Contacts extends React.PureComponent {
 	constructor(props) {
@@ -67,9 +67,9 @@ export default class Contacts extends React.PureComponent {
 										className={'email pointer'}
 										role={'button'}
 										tabIndex={'0'}
-										onClick={() => openMail('galinahaidar@abv.bg')}
+										onClick={() => openMail('angelov@innovateconsult.net')}
 									>
-										• galinahaidar@abv.bg
+										• angelov@innovateconsult.net
 									</p>
 								</div>
 								<div>

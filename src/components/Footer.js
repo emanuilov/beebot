@@ -10,21 +10,27 @@ export default class Footer extends React.PureComponent {
 					Безопасност на движението по пътищата © Иновации и консултиране
 				</div>
 				<div className={'right'}>
-					<span
+					<div
 						role={'button'}
 						tabIndex={'0'}
 						onClick={() => openLink('https://innovateconsult.net')}
 					>
 						За играта
-					</span>{' '}
+					</div>{' '}
 					•{' '}
-					<span role={'button'} tabIndex={'0'} onClick={() => goTo('/Contacts')}>
+					<div role={'button'} tabIndex={'0'} onClick={() => goTo('/Contacts')}>
 						Контакти
-					</span>{' '}
+					</div>{' '}
 					•{' '}
-					<span role={'button'} tabIndex={'0'} onClick={() => goTo('/Terms')}>
-						Поверителност и условия
-					</span>
+					<div className={'terms'}>
+						<span role={'button'} tabIndex={'0'} onClick={() => goTo('/Privacy')}>
+							Поверителност
+						</span>{' '}
+						и{' '}
+						<span role={'button'} tabIndex={'0'} onClick={() => goTo('/Terms')}>
+							условия
+						</span>
+					</div>
 				</div>
 			</footer>
 		);
