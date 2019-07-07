@@ -4,9 +4,9 @@ export default class BeeMovement {
 		this.beeSteps = [];
 		this.beeRotation = 0;
 		this.intervals = {
-			betweenActions: 500,
-			pause: 1000,
-			redEyes: 1000
+			movement: 500,
+			pause: 1500,
+			redEyes: 600
 		};
 		this.embed = embed;
 		this.svg = embed.getSVGDocument();
@@ -159,14 +159,16 @@ export default class BeeMovement {
 		}
 	}
 
-	moveTheBee(rotation, inputPosition, direction = null) {
-		let newPosition = inputPosition;
-		// Not rotating
-		if (inputPosition == null) {
-			newPosition = this.getNewPosition(direction, this.getBeeOrientation());
-		}
-		if (this.checkIfTheMovementIsPossible(newPosition)) {
-			setTimeout(() => {
+	moveTheBee(rotation, direction = null) {
+		return new Promise(resolve => {
+			let result = false;
+			let newPosition = this.beePosition;
+			// Not rotating
+			if (direction) {
+				newPosition = this.getNewPosition(direction, this.getBeeOrientation());
+			}
+			if (this.checkIfTheMovementIsPossible(newPosition)) {
+				this.beePosition = newPosition;
 				const bee = this.svg.querySelector('#beeContainer image');
 				const imageCoordinates = this.getBoxCoordinates(newPosition);
 				bee.setAttribute('x', imageCoordinates.x);
@@ -175,46 +177,64 @@ export default class BeeMovement {
 					'transform',
 					`rotate(${rotation}, ${62.5 + imageCoordinates.x}, ${62.5 + imageCoordinates.y})`
 				);
-			}, this.intervals.betweenActions);
-			return true;
-		}
-		return false;
+				result = true;
+			}
+
+			setTimeout(() => {
+				resolve(result);
+			}, this.intervals.movement);
+		});
 	}
 
-	runTheSteps() {
-		this.beeSteps.forEach(beeStep => {
+	async runTheSteps() {
+		// eslint-disable-next-line no-restricted-syntax
+		for (const beeStep of this.beeSteps) {
 			switch (beeStep) {
 				case 1: // Go up
-					if (!this.moveTheBee(this.beeRotation, null, 1)) {
+					// eslint-disable-next-line no-await-in-loop
+					if (!(await this.moveTheBee(this.beeRotation, 1))) {
 						this.makeTheBeeEyesBlinkRed();
 					}
 					break;
 				case 2: // Rotate right
 					this.beeRotation = (90 + this.beeRotation) % 360;
-					this.moveTheBee(this.beeRotation, this.beePosition);
+					// eslint-disable-next-line no-await-in-loop
+					await this.moveTheBee(this.beeRotation);
 					break;
 				case 3: // Go Down
-					if (!this.moveTheBee(this.beeRotation, null, 2)) {
+					// eslint-disable-next-line no-await-in-loop
+					if (!(await this.moveTheBee(this.beeRotation, 2))) {
 						this.makeTheBeeEyesBlinkRed();
 					}
 					break;
 				case 4: // Rotate left
 					this.beeRotation = (-90 + this.beeRotation) % 360;
-					this.moveTheBee(this.beeRotation, this.beePosition);
+					// eslint-disable-next-line no-await-in-loop
+					await this.moveTheBee(this.beeRotation);
 					break;
 				case 5: // Pause
-					setTimeout(() => {}, this.intervals.pause);
+					// eslint-disable-next-line no-await-in-loop
+					await this.wait();
 					break;
 				default:
 					break;
 			}
+		}
+	}
+
+	wait() {
+		return new Promise(resolve => {
+			setTimeout(() => {
+				resolve();
+			}, this.intervals.pause);
 		});
 	}
 
 	reset() {
+		this.removeBee();
 		this.deleteStepsHistory();
 		this.resetBeeRotation();
-		this.removeBee();
+		this.makeTheBeeEyesBlinkRed();
 	}
 
 	resetBeeRotation() {
@@ -233,19 +253,21 @@ export default class BeeMovement {
 		this.beeSteps.push(actionID);
 	}
 
-	async makeTheBeeEyesBlinkRed() {
+	makeTheBeeEyesBlinkRed() {
 		const bee = this.svg.querySelector('#beeContainer image');
-		bee.setAttribute('href', `/img/bees/redEyed/${this.beeImageName}`);
-		await setTimeout(async () => {
-			bee.setAttribute('href', `/img/bees/regular/${this.beeImageName}`);
-			await setTimeout(() => {
-				if (this.eyesBlinkedCounter < 2) {
-					this.eyesBlinkedCounter += 1;
-					this.makeTheBeeEyesBlinkRed();
-				} else {
-					this.eyesBlinkedCounter = 0;
-				}
+		if (bee) {
+			bee.setAttribute('href', `/img/bees/redEyed/${this.beeImageName}`);
+			setTimeout(async () => {
+				bee.setAttribute('href', `/img/bees/regular/${this.beeImageName}`);
+				await setTimeout(() => {
+					if (this.eyesBlinkedCounter < 2) {
+						this.eyesBlinkedCounter += 1;
+						this.makeTheBeeEyesBlinkRed();
+					} else {
+						this.eyesBlinkedCounter = 0;
+					}
+				}, this.intervals.redEyes);
 			}, this.intervals.redEyes);
-		}, this.intervals.redEyes);
+		}
 	}
 }
