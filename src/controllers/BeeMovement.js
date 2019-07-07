@@ -24,7 +24,7 @@ export default class BeeMovement {
 
 	getBoxCoordinates(imagePosition) {
 		const defaultValues = {
-			padding: 10,
+			padding: 15,
 			grid: 4.5,
 			box: 130
 		};
@@ -241,7 +241,9 @@ export default class BeeMovement {
 			await setTimeout(() => {
 				if (this.eyesBlinkedCounter < 2) {
 					this.eyesBlinkedCounter += 1;
-					this.makeTheBeeEyesRed();
+					this.makeTheBeeEyesBlinkRed();
+				} else {
+					this.eyesBlinkedCounter = 0;
 				}
 			}, this.intervals.redEyes);
 		}, this.intervals.redEyes);

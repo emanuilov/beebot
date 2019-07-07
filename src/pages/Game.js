@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 import Sketchpad from '../controllers/Sketchpad';
 import BeeMovement from '../controllers/BeeMovement';
 import LessonsContainer from '../components/LessonsContainer';
@@ -29,6 +28,7 @@ export default class Game extends React.PureComponent {
 			beeOpacity: '1',
 			beeInvisibility: ''
 		};
+		this.embed = React.createRef();
 		this.bee = React.createRef();
 		this.isTheBeeOnTheCanvas = false;
 		this.beeImageName = localStorage.getItem('character') === 'blue' ? 'blueBot.png' : 'beeBot.png';
@@ -119,8 +119,8 @@ export default class Game extends React.PureComponent {
 	};
 
 	initiateControls = () => {
-		$(document).ready(() => {
-			this.controller = new BeeMovement($('embed')[0], this.beeImageName);
+		this.embed.current.addEventListener('load', () => {
+			this.controller = new BeeMovement(this.embed.current, this.beeImageName);
 		});
 	};
 
@@ -386,7 +386,7 @@ export default class Game extends React.PureComponent {
 					</div>
 					<div className={'right'}>
 						<div className={'board-container'}>
-							<embed className={'white-box board'} src={board} alt={'Board'} />
+							<embed ref={this.embed} className={'white-box board'} src={board} alt={'Board'} />
 							<canvas
 								onDragEnter={this.onDragEnter}
 								onDragOver={this.onDragOver}
