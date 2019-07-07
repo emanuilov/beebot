@@ -12,7 +12,7 @@ export default class Contents extends React.PureComponent {
 
 	getContents() {
 		return text.lessons.map((lesson, index) => {
-			return <a href={`/Game?id=${index}`}>{lesson.lessonName}</a>;
+			return <a href={`/Game?id=${index}`}>{`${index + 1}. ${lesson.title}`}</a>;
 		});
 	}
 

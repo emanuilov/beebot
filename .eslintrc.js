@@ -1,4 +1,4 @@
-{
+module.exports = {
 	"extends": [
 		"airbnb",
 		"prettier",
@@ -14,6 +14,7 @@
 		"es6": true
 	},
 	"rules": {
+		"jsx-a11y/no-noninteractive-element-to-interactive-role": 0,
 		"linebreak-style": 0,
 		"class-methods-use-this": 0,
 		"import/no-named-as-default": 0,
@@ -53,6 +54,6 @@
 	},
 	"globals": {
 		"$": true,
-		"DrawingBoard": true
+		"nw": true
 	}
-}
+};

@@ -24,7 +24,6 @@ export default class Lesson extends React.PureComponent {
 	}
 
 	render() {
-		// this.lessonTitle = text.lessons[this.lessonID].lessonName;
 		return (
 			<div className={'white-box lesson'}>
 				<div className={'content'}>

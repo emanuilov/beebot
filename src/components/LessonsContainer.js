@@ -1,26 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LessonData from '../controllers/LessonData';
+import SubjectProgress from '../controllers/SubjectProgress';
 import Lesson from './Lesson';
 import Trophies from './Trophies';
+import ribbon from '../img/game/ribbon.png';
+import text from '../controllers/TextContent';
 
 export default class LessonsContainer extends React.PureComponent {
 	constructor(props) {
 		super(props);
-		this.lessonData = new LessonData(props.id);
-		this.lesson = React.createRef();
-		this.trophies = React.createRef();
+		this.subjectProgress = new SubjectProgress(props.id);
 	}
 
 	render() {
 		return (
 			<div>
-				<Trophies status={this.lessonData.trophies} ref={this.trophies} />
-				<Lesson
-					lessonID={this.lessonData.lessonID}
-					taskID={this.lessonData.taskID}
-					ref={this.lesson}
-				/>
+				<div className={'ribbon'}>
+					<img src={ribbon} alt={'Ribbon'} />
+					<h1 className={'title'}>{text.lessons[this.subjectProgress.lessonID].title}</h1>
+				</div>
+				<Trophies status={this.subjectProgress.trophies} />
+				<Lesson lessonID={this.subjectProgress.lessonID} taskID={this.subjectProgress.taskID} />
 			</div>
 		);
 	}

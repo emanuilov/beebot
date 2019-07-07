@@ -1,4 +1,3 @@
-import os from 'os';
 import $ from 'jquery';
 import config from '../config';
 
@@ -23,8 +22,6 @@ export default class ManageLicense {
 	}
 
 	async validateKey() {
-		const networkInterfaces = os.networkInterfaces();
-		const { mac } = networkInterfaces[Object.keys(networkInterfaces)[0]][0];
 		let response;
 		await $.ajax({
 			beforeSend: xhr => {
@@ -35,10 +32,10 @@ export default class ManageLicense {
 			data: {
 				action: 1,
 				licenseKey: this.licenseKey,
-				macAddress: mac
+				macAddress: window.MAC
 			},
 			success: async (res, textStatus, xhr) => {
-				response = { status: await xhr.status, expiration: res, mac };
+				response = { status: await xhr.status, expiration: res, mac: window.MAC };
 			}
 		}).catch(err => {
 			response = { status: err.status };

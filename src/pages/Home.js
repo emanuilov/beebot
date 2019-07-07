@@ -1,6 +1,5 @@
 import React from 'react';
 import Container from '../components/Container';
-import goTo from '../controllers/Redirect';
 import langBG from '../img/home/bg.png';
 import langEN from '../img/home/us.png';
 import blueBot from '../img/home/blueBot.png';
@@ -76,7 +75,12 @@ export default class Home extends React.PureComponent {
 				content={
 					<div className={'white-box big'}>
 						<div className={'topRow'}>
-							<div className={'play'} role={'button'} tabIndex={'0'} onClick={() => goTo('/Game')}>
+							<div
+								className={'play'}
+								role={'button'}
+								tabIndex={'0'}
+								onClick={() => window.goTo('/Game')}
+							>
 								<i className={'material-icons'} data-action={'1'}>
 									play_arrow
 								</i>
@@ -86,7 +90,7 @@ export default class Home extends React.PureComponent {
 								className={'contents'}
 								role={'button'}
 								tabIndex={'0'}
-								onClick={() => goTo('/Contents')}
+								onClick={() => window.goTo('/Contents')}
 							>
 								<img src={contents} alt={'Contents'} />
 							</div>
@@ -131,7 +135,7 @@ export default class Home extends React.PureComponent {
 								className={'box'}
 								role={'button'}
 								tabIndex={'0'}
-								onClick={() => goTo('/Contacts')}
+								onClick={() => window.goTo('/Contacts')}
 							>
 								<img src={contacts} alt={'Контакти'} />
 								<span>{text.ui.home[3]}</span>

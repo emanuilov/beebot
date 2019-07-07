@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import React from 'react';
 import Container from '../components/Container';
-import { openLink, openMail } from '../controllers/Redirect';
 import '../sass/info.scss';
 
 export default class Contacts extends React.PureComponent {
@@ -33,7 +32,7 @@ export default class Contacts extends React.PureComponent {
 									className={'pointer'}
 									role={'button'}
 									tabIndex={'0'}
-									onClick={() => openMail('office@innovateconsult.net')}
+									onClick={() => window.openMail('office@innovateconsult.net')}
 								>
 									Е: office@innovateconsult.net
 								</div>
@@ -42,7 +41,7 @@ export default class Contacts extends React.PureComponent {
 									className={'pointer'}
 									role={'button'}
 									tabIndex={'0'}
-									onClick={() => openLink('https://bdp.innovateconsult.net')}
+									onClick={() => window.openLink('https://bdp.innovateconsult.net')}
 								>
 									W: bdp.innovateconsult.net
 								</div>
@@ -56,7 +55,7 @@ export default class Contacts extends React.PureComponent {
 										className={'email pointer'}
 										role={'button'}
 										tabIndex={'0'}
-										onClick={() => openMail('galinahaidar@abv.bg')}
+										onClick={() => window.openMail('galinahaidar@abv.bg')}
 									>
 										• galinahaidar@abv.bg
 									</p>
@@ -67,7 +66,7 @@ export default class Contacts extends React.PureComponent {
 										className={'email pointer'}
 										role={'button'}
 										tabIndex={'0'}
-										onClick={() => openMail('angelov@innovateconsult.net')}
+										onClick={() => window.openMail('angelov@innovateconsult.net')}
 									>
 										• angelov@innovateconsult.net
 									</p>
@@ -78,7 +77,7 @@ export default class Contacts extends React.PureComponent {
 										className={'email pointer'}
 										role={'button'}
 										tabIndex={'0'}
-										onClick={() => openMail('bebenovnikolai@abv.bg')}
+										onClick={() => window.openMail('bebenovnikolai@abv.bg')}
 									>
 										• bebenovnikolai@abv.bg
 									</p>
@@ -89,7 +88,7 @@ export default class Contacts extends React.PureComponent {
 										className={'email pointer'}
 										role={'button'}
 										tabIndex={'0'}
-										onClick={() => openMail('me@gabo.space')}
+										onClick={() => window.openMail('me@gabo.space')}
 									>
 										• me@gabo.space
 									</p>

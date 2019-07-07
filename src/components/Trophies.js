@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import trophyActive from '../img/game/lessons/trophies/trophy-active.png';
-import trophyInactive from '../img/game/lessons/trophies/trophy-inactive.png';
+import trophyActive from '../img/game/trophies/trophy-active.png';
+import trophyInactive from '../img/game/trophies/trophy-inactive.png';
 
 export default class Trophies extends React.PureComponent {
 	constructor(props) {
@@ -64,9 +64,6 @@ export default class Trophies extends React.PureComponent {
 					</a>
 					<a href={'/Game?id=12'}>
 						<img src={this.state.status[12] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
-					<a href={'/Game?id=13'}>
-						<img src={this.state.status[13] ? trophyActive : trophyInactive} alt={'Трофей'} />
 					</a>
 				</div>
 			</div>

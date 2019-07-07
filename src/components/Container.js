@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import goTo from '../controllers/Redirect';
 import Footer from './Footer';
 import title from '../img/home/title.png';
 import cityLeft from '../img/home/city-left.png';
@@ -15,7 +14,7 @@ export default class Container extends React.PureComponent {
 					className={'title pointer'}
 					role={'button'}
 					tabIndex={'0'}
-					onClick={() => goTo('/Home')}
+					onClick={() => window.goTo('/Home')}
 				>
 					<img src={title} alt={'Заглавие'} />
 				</div>

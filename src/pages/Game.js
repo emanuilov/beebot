@@ -1,9 +1,9 @@
 import React from 'react';
+import $ from 'jquery';
+import Sketchpad from '../controllers/Sketchpad';
+import BeeMovement from '../controllers/BeeMovement';
 import LessonsContainer from '../components/LessonsContainer';
-import goTo, { openLink } from '../controllers/Redirect';
-import ribbon from '../img/game/ribbon.png';
 import board from '../img/game/drawing/board.svg';
-import bee from '../img/game/lessons/in-lesson-pictures/bee.png';
 import turquoise from '../img/game/drawing/colors/turquoise.png';
 import emerald from '../img/game/drawing/colors/emerald.png';
 import peterRiver from '../img/game/drawing/colors/peter-river.png';
@@ -20,9 +20,79 @@ import smallSize from '../img/game/drawing/tools/small-size.png';
 import bigSize from '../img/game/drawing/tools/big-size.png';
 import '../sass/main.scss';
 import '../sass/game.scss';
-// import '../board/ManageUI';
 
 export default class Game extends React.PureComponent {
+	constructor(props) {
+		super(props);
+		this.state = {
+			backgrMusicIcon: 'volume_up',
+			beeOpacity: '1',
+			beeInvisibility: ''
+		};
+		this.bee = React.createRef();
+		this.isTheBeeOnTheCanvas = false;
+		this.beeImageName = localStorage.getItem('character') === 'blue' ? 'blueBot.png' : 'beeBot.png';
+	}
+
+	componentDidMount() {
+		this.initiateDrawing();
+		this.initiateControls();
+	}
+
+	onControlClick = e => {
+		const actionID = parseInt(e.target.getAttribute('data-action'), 10);
+		if (actionID !== 7 && actionID !== 6) {
+			this.controller.pushSteps(actionID);
+		} else if (actionID === 6) {
+			this.controller.runTheSteps();
+		} else {
+			this.sketchpad.clear();
+			this.controller.reset();
+			this.setState({ beeInvisibility: '' });
+		}
+	};
+
+	// Cnvas
+	onDragEnter = () => {
+		this.isTheBeeOnTheCanvas = true;
+	};
+
+	onDragOver(e) {
+		e.preventDefault();
+		return false;
+	}
+
+	onDragLeave = () => {
+		this.isTheBeeOnTheCanvas = false;
+	};
+
+	onDrop = e => {
+		e.stopPropagation();
+		// this.isTheBeeOnTheCanvas = false;
+		// return false;
+		if (this.isTheBeeOnTheCanvas) {
+			this.setState({ beeOpacity: '1' });
+			this.controller.insertImage(
+				this.controller.getBoxAndRowID(this.controller.getMouseCoordinates(e))
+			);
+		}
+		return false;
+	};
+
+	// Bee image
+	onDragStart = () => {
+		this.setState({ beeOpacity: 0.4 });
+	};
+
+	onDragEnd = () => {
+		if (this.isTheBeeOnTheCanvas) {
+			this.setState({ beeInvisibility: 'invisible' });
+			this.isTheBeeOnTheCanvas = false;
+		} else {
+			this.setState({ beeOpacity: 1 });
+		}
+	};
+
 	onNextClick() {}
 
 	onPrevClick() {}
@@ -31,65 +101,79 @@ export default class Game extends React.PureComponent {
 
 	onBackwardsClick() {}
 
-	backgroundMusic() {
+	toggleBackgroundMusic = () => {
 		if (!window.music.paused) {
+			this.setState({ backgrMusicIcon: 'volume_off' });
 			window.music.pause();
 		} else {
+			this.setState({ backgrMusicIcon: 'volume_up' });
 			window.music.play();
 		}
-	}
+	};
+
+	initiateDrawing = () => {
+		this.sketchpad = new Sketchpad({
+			element: '#drawing-board',
+			scale: 0.92
+		});
+	};
+
+	initiateControls = () => {
+		$(document).ready(() => {
+			this.controller = new BeeMovement($('embed')[0], this.beeImageName);
+		});
+	};
 
 	render() {
 		return (
 			<div>
 				<div className={'orange-line'} />
 				<header>
-					<div className={'ribbon'}>
-						<img src={ribbon} alt={'Ribbon'} />
-						<h1 className={'title'}>Test</h1>
-					</div>
-					<div className={'nav'}>
-						<nav>
-							<div className={'item'} role={'button'} tabIndex={'0'} onClick={() => goTo('/Home')}>
-								<i className={'material-icons'}>home</i>
-								<span>Начало</span>
-							</div>
-							<div
-								className={'item'}
-								role={'button'}
-								tabIndex={'0'}
-								onClick={() => goTo('/Contents')}
-							>
-								<i className={'material-icons'}>flag</i>
-								<span>Съдържание</span>
-							</div>
-							<div
-								className={'item'}
-								role={'button'}
-								tabIndex={'0'}
-								onClick={() => openLink('https://innovateconsult.net')}
-							>
-								<i className={'material-icons'}>settings</i>
-								<span>За играта</span>
-							</div>
-							<div
-								className={'item'}
-								role={'button'}
-								tabIndex={'0'}
-								onClick={() => goTo('/Contacts')}
-							>
-								<i className={'material-icons'}>phone</i>
-								<span>Контакти</span>
-							</div>
-						</nav>
+					<nav>
 						<div
-							className={'background-sound-button'}
+							className={'item'}
 							role={'button'}
 							tabIndex={'0'}
-							onClick={this.backgroundMusic}
+							onClick={() => window.goTo('/Home')}
 						>
-							<i className={'material-icons'}>volume_up</i>
+							<i className={'material-icons'}>home</i>
+							<span>Начало</span>
 						</div>
+						<div
+							className={'item'}
+							role={'button'}
+							tabIndex={'0'}
+							onClick={() => window.goTo('/Contents')}
+						>
+							<i className={'material-icons'}>flag</i>
+							<span>Съдържание</span>
+						</div>
+						<div
+							className={'item'}
+							role={'button'}
+							tabIndex={'0'}
+							onClick={() => window.openLink('https://innovateconsult.net')}
+						>
+							<i className={'material-icons'}>settings</i>
+							<span>За играта</span>
+						</div>
+						<div
+							className={'item'}
+							role={'button'}
+							tabIndex={'0'}
+							onClick={() => window.goTo('/Contacts')}
+						>
+							<i className={'material-icons'}>phone</i>
+							<span>Контакти</span>
+						</div>
+					</nav>
+					<div
+						className={'background-sound-button'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={this.toggleBackgroundMusic}
+					>
+						<i className={'material-icons'}>{this.state.backgrMusicIcon}</i>
 					</div>
 				</header>
 
@@ -99,29 +183,71 @@ export default class Game extends React.PureComponent {
 						<div className={'game-managment'}>
 							<div className={'white-box bee-controls'}>
 								<div>
-									<i className={'material-icons'} data-action={'1'}>
+									<i
+										role={'button'}
+										tabIndex={'0'}
+										onClick={this.onControlClick}
+										className={'material-icons'}
+										data-action={'1'}
+									>
 										arrow_upward
 									</i>
 								</div>
 								<div>
-									<i className={'material-icons'} data-action={'5'}>
+									<i
+										role={'button'}
+										tabIndex={'0'}
+										onClick={this.onControlClick}
+										className={'material-icons'}
+										data-action={'4'}
+									>
 										arrow_back
 									</i>
-									<span className={'go-button'} data-action={'6'}>
+									<span
+										role={'button'}
+										tabIndex={'0'}
+										className={'go-button'}
+										onClick={this.onControlClick}
+										data-action={'6'}
+									>
 										GO
 									</span>
-									<i className={'material-icons'} data-action={'2'}>
+									<i
+										role={'button'}
+										tabIndex={'0'}
+										onClick={this.onControlClick}
+										className={'material-icons'}
+										data-action={'2'}
+									>
 										arrow_forward
 									</i>
 								</div>
 								<div>
-									<i className={'material-icons'} data-action={'7'}>
+									<i
+										role={'button'}
+										tabIndex={'0'}
+										className={'material-icons'}
+										data-action={'7'}
+										onClick={this.onControlClick}
+									>
 										clear
 									</i>
-									<i className={'material-icons'} data-action={'4'}>
+									<i
+										role={'button'}
+										tabIndex={'0'}
+										className={'material-icons'}
+										onClick={this.onControlClick}
+										data-action={'3'}
+									>
 										arrow_downward
 									</i>
-									<i className={'material-icons'} data-action={'3'}>
+									<i
+										role={'button'}
+										tabIndex={'0'}
+										className={'material-icons'}
+										onClick={this.onControlClick}
+										data-action={'5'}
+									>
 										pause
 									</i>
 								</div>
@@ -129,41 +255,146 @@ export default class Game extends React.PureComponent {
 							<div className={'white-box board-manager'}>
 								<div className={'colors'}>
 									<div>
-										<img src={turquoise} data-color={'#1abc9c'} alt={'Tturquoise'} />
-										<img src={emerald} data-color={'#2ecc71'} alt={'Emerald'} />
-										<img src={peterRiver} data-color={'#3498db'} alt={'Peter River'} />
-										<img src={amethyst} data-color={'#9b59b6'} alt={'Amethyst'} />
-										<img src={wetAsphalt} data-color={'#34495e'} alt={'Wet Asphalt'} />
+										<img
+											role={'button'}
+											src={turquoise}
+											alt={'Tturquoise'}
+											onClick={() => {
+												this.sketchpad.color = '#1abc9c';
+											}}
+										/>
+										<img
+											role={'button'}
+											src={emerald}
+											alt={'Emerald'}
+											onClick={() => {
+												this.sketchpad.color = '#2ecc71';
+											}}
+										/>
+										<img
+											role={'button'}
+											src={peterRiver}
+											alt={'Peter River'}
+											onClick={() => {
+												this.sketchpad.color = '#3498db';
+											}}
+										/>
+										<img
+											role={'button'}
+											src={amethyst}
+											alt={'Amethyst'}
+											onClick={() => {
+												this.sketchpad.color = '#9b59b6';
+											}}
+										/>
+										<img
+											role={'button'}
+											src={wetAsphalt}
+											alt={'Wet Asphalt'}
+											onClick={() => {
+												this.sketchpad.color = '#34495e';
+											}}
+										/>
 									</div>
 									<div>
-										<img src={sunFlower} data-color={'#f1c40f'} alt={'Sun Flower'} />
-										<img src={carrot} data-color={'#e67e22'} alt={'Carrot'} />
-										<img src={alizarin} data-color={'#e74c3c'} alt={'Alizarin'} />
-										<img src={cloud} data-color={'#ecf0f1'} alt={'Cloud'} />
-										<img src={concrete} data-color={'#95a5a6'} alt={'Concrete'} />
+										<img
+											role={'button'}
+											src={sunFlower}
+											alt={'Sun Flower'}
+											onClick={() => {
+												this.sketchpad.color = '#f1c40f';
+											}}
+										/>
+										<img
+											role={'button'}
+											src={carrot}
+											alt={'Carrot'}
+											onClick={() => {
+												this.sketchpad.color = '#e67e22';
+											}}
+										/>
+										<img
+											role={'button'}
+											src={alizarin}
+											alt={'Alizarin'}
+											onClick={() => {
+												this.sketchpad.color = '#e74c3c';
+											}}
+										/>
+										<img
+											role={'button'}
+											src={cloud}
+											alt={'Cloud'}
+											onClick={() => {
+												this.sketchpad.color = '#ecf0f1';
+											}}
+										/>
+										<img
+											role={'button'}
+											src={concrete}
+											alt={'Concrete'}
+											onClick={() => {
+												this.sketchpad.color = '#95a5a6';
+											}}
+										/>
 									</div>
 								</div>
 								<div className={'tools'}>
 									<span>
 										<img src={pencil} data-mode={'pencil'} alt={'Pencil'} />
-										<img src={eraser} data-mode={'eraser'} alt={'Eraser'} />
+										<img
+											role={'button'}
+											src={eraser}
+											data-mode={'eraser'}
+											alt={'Eraser'}
+											onClick={() => this.sketchpad.clear()}
+										/>
 									</span>
 									<span>
-										<img src={smallSize} data-size={'5'} alt={'Small'} />
-										<img src={bigSize} data-size={'10'} alt={'Big'} />
+										<img
+											role={'button'}
+											src={smallSize}
+											alt={'Small'}
+											onClick={() => {
+												this.sketchpad.penSize = 5;
+											}}
+										/>
+										<img
+											role={'button'}
+											src={bigSize}
+											alt={'Big'}
+											onClick={() => {
+												this.sketchpad.penSize = 10;
+											}}
+										/>
 									</span>
 								</div>
 							</div>
 
 							<div className={'white-box bee-container'}>
-								<img src={bee} alt={'Bee'} />
+								<img
+									ref={this.bee}
+									className={this.state.beeInvisibility}
+									style={{ opacity: this.state.beeOpacity }}
+									onDragStart={this.onDragStart}
+									onDragEnd={this.onDragEnd}
+									src={`${process.env.PUBLIC_URL}/img/bees/regular/${this.beeImageName}`}
+									alt={'Bot'}
+								/>
 							</div>
 						</div>
 					</div>
 					<div className={'right'}>
 						<div className={'board-container'}>
 							<embed className={'white-box board'} src={board} alt={'Board'} />
-							<div id={'drawing-board'} />
+							<canvas
+								onDragEnter={this.onDragEnter}
+								onDragOver={this.onDragOver}
+								onDragLeave={this.onDragLeave}
+								onDrop={this.onDrop}
+								className={'drawing-board'}
+								id={'drawing-board'}
+							/>
 						</div>
 					</div>
 				</div>

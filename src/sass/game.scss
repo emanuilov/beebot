@@ -1,7 +1,7 @@
 @import './colors';
 @import './variables';
 @import './mixins';
-
+$navSpacing: 2.9vw;
 .orange-line {
 	background: map-get($colors, yellow);
 	width: 100%;
@@ -10,61 +10,35 @@
 
 header {
 	display: flex;
-	justify-content: space-between;
-	> div {
-		flex-shrink: 0;
-	}
-	.ribbon {
-		margin-top: 1.2vh;
-		position: relative;
-		.title {
-			font-family: 'Roboto-Slab';
-			font-weight: bold;
-			position: absolute;
-			top: 0;
-			right: 5%;
-			color: map-get($colors, inButtonText);
-			margin: 0;
-			padding: 2% 6%;
-			font-size: 19pt;
-		}
-	}
+	justify-content: flex-end;
 
-	.nav {
+	nav {
+		@include orangeButtons();
 		display: flex;
-	    margin-right: 1.7%;
-
-		nav {
-			padding: 0 2.5%;
+		width: 38.7vw;
+		padding: 0 $navSpacing;
+		.item {
+			margin-right: $navSpacing;
+			white-space: nowrap;
 			display: flex;
-		    justify-content: center;
-			@include orangeButtons();
-			width: 43.5vw;
-			margin-right:2.9%;
-			.item {
-				margin-right: 6%;
-				white-space: nowrap;
-				cursor: pointer;
-				i, span {
-					vertical-align: middle;
-					display: inline;
-				}
-				i {
-				    font-size: 16pt;
-					margin-right: 5%;
-				}
-			}
-			> div:last-of-type {
-				margin-right: 0;
-			}
-		}
-
-		> div.background-sound-button {
-			@include orangeButtons();
-			padding: 0 1.4%;
 			cursor: pointer;
+
+			i {
+				font-size: 16pt;
+				margin-right: 5%;
+			}
 		}
 
+		> div:last-of-type {
+			margin-right: 0;
+		}
+	}
+
+	> div.background-sound-button {
+		@include orangeButtons();
+		padding: 0 0.65vw;
+		margin: 0 1.70vw;
+		cursor: pointer;
 	}
 
 }
@@ -73,222 +47,274 @@ header {
 	margin: 0 auto;
 	width: 96.5%;
 
-	> .left, > .right {
+	>.left,
+	>.right {
 		display: inline-block;
 	}
 
-	> .left {
-	float: left;
-	width: 47%;
-	margin-right: 1.75%;
+	>.left {
+		float: left;
+		width: 47%;
+		margin-right: 1.75%;
+		
+		.ribbon {
+			margin-top: -2.5vh;
+			position: relative;
+			margin-left: -1.713vw;
 
-// First section
-	.white-box.trophies{
-		padding: 4%;
-		> div:first-of-type {
-		    margin-bottom: 3%;
-		}
-		> div > a {
-			margin-right: 5%;
-			> img {
-				width: 10%;
+			.title {
+				font-family: 'Roboto-Slab';
+				font-weight: bold;
+				position: absolute;
+				top: 0;
+				right: 5%;
+				color: map-get($colors, inButtonText);
+				margin: 0;
+				padding: 2% 6%;
+				font-size: 19pt;
 			}
 		}
-		> div > a:last-of-type {
+
+		// First section
+		.white-box.trophies {
+			padding: 4%;
+
+			>div:first-of-type {
+				margin-bottom: 3%;
+			}
+
+			>div>a {
+				margin-right: 5%;
+
+				>img {
+					width: 10%;
+				}
+			}
+
+			>div>a:last-of-type {
 				margin-right: 0;
-		}
-	}
-
-// Second section
-	.white-box.lesson {
-		margin: 3.5% 0;
-		h3 {
-			font-family: 'Roboto';
-			font-weight: bold;
-			font-size: larger;
-			color: map-get($colors, red);
+			}
 		}
 
-		.content {
-			padding: 2%;
-			ul {
-				color: map-get($colors, gray);
-				line-height: 2.7vh;
+		// Second section
+		.white-box.lesson {
+			margin: 3.5% 0;
+
+			h3 {
+				font-family: 'Roboto';
+				font-weight: bold;
 				font-size: larger;
-				margin: 2vh 2.1vh;
-				li {
-					list-style-position: outside;
-					list-style-type: disc;
+				color: map-get($colors, red);
+			}
+
+			.content {
+				padding: 2%;
+				height: 19vh;
+
+				ul {
+					color: map-get($colors, gray);
+					line-height: 2.7vh;
+					font-size: larger;
+					margin: 2vh 2.1vh;
+
+					li {
+						list-style-position: outside;
+						list-style-type: disc;
+					}
+
+					li:first-of-type {
+						margin-bottom: 2vh;
+					}
 				}
-				li:first-of-type {
-					margin-bottom: 2vh;
+			}
+
+			nav {
+				overflow: hidden;
+				background: map-get($colors, yellow);
+				color: map-get($colors, inButtonText);
+				padding: 1% 2.8%;
+
+				i {
+					cursor: pointer;
 				}
+
+				.left {
+					width: 70%;
+					float: left;
+
+					i.next {
+						margin-right: 3vw;
+					}
+
+					i,
+					span,
+					div {
+						vertical-align: middle;
+					}
+
+					div {
+						display: inline-block;
+						margin: 0 4%;
+					}
+				}
+
+				.right {
+					width: 30%;
+					float: right;
+					text-align: right;
+
+					i:first-of-type {
+						margin-right: 10%;
+					}
+				}
+
 			}
 		}
 
-		nav {
-			overflow: hidden;
-			background: map-get($colors, yellow);
-			color: map-get($colors, inButtonText);
-		    padding: 1% 2.8%;
-			i {
-				cursor: pointer;
+		//Third section
+		.game-managment {
+			display: flex;
+			clear: both;
+
+			>div {
+				margin-right: 3.5%;
 			}
-			.left {
-				width: 70%;
-				float: left;
-				i.next {
-					margin-right: 3vw;
+
+			>div:last-of-type {
+				margin-right: 0;
+			}
+
+			.bee-container,
+			.bee-controls {
+				width: 24%;
+				padding: 1.5%;
+			}
+
+			// Movement
+			.bee-controls {
+				color: #fff;
+				text-align: center;
+
+				img,
+				i {
+					cursor: pointer;
 				}
-				i, span, div {
+
+				i,
+				span {
+					background: #ffa01e;
+					border-bottom: 3px #cc8018 solid;
+					border-radius: 5px;
 					vertical-align: middle;
 				}
-				div {
+
+				span.go-button {
+					width: 30px;
+					height: 27px;
+					line-height: 30px;
+					border-bottom: 3px #46964f solid;
 					display: inline-block;
-					margin: 0 4%;
-				}
-			}
-
-			.right {
-				width: 30%;
-				float: right;
-				text-align:right;
-				i:first-of-type {
-					margin-right: 10%;
-				}
-			}
-
-		}
-	}
-
-//Third section
-	.game-managment {
-		display: flex;
-		clear: both;
-		> div {
-			margin-right: 3.5%;
-		}
-		> div:last-of-type {
-			margin-right: 0;
-		}
-
-		.bee-container, .bee-controls {
-			width: 24%;
-			padding: 1.5%;
-		}
-
-		// Movement
-		.bee-controls {
-			color: #fff;
-			text-align: center;
-			img, i {
-				cursor: pointer;
-			}
-
-			i, span {
-				background: #ffa01e;
-				border-bottom: 3px #cc8018 solid;
-				border-radius: 5px;
-				vertical-align: middle;
-			}
-
-			span.go-button {
-				width: 30px;
-				height: 27px;
-				line-height: 30px;
-				border-bottom: 3px #46964f solid;
-				display: inline-block;
-				background: #57bb63;
-				border-radius: 50%;
-				text-align: center;
-				font-size: 10pt;
-				font-weight: bold;
-				cursor: pointer;
-				margin: 8px;
-			}
-
-			div:first-of-type i, div:last-of-type i {
-				padding: 8px 3px;
-			}
-
-			div:nth-last-of-type(2) i {
-				padding: 1px 10px;
-			}
-
-			> div:last-of-type i {
-				vertical-align: bottom;
-			}
-
-			> div:last-of-type i:nth-last-of-type(2) {
-				margin: 0 10px;
-			}
-
-			div:last-of-type i:first-of-type, div:last-of-type i:last-of-type {
-				background: #2980b9;
-				border-bottom: 3px #216694 solid;
-				padding: 1px 8px;
-			}
-		}
-
-		// Drawing
-		.board-manager {
-			width: 40%;
-			img {
-				cursor: pointer;
-				margin-right: 7%;
-			}
-			> div img:last-of-type {
-				margin-right: 0;
-			}
-
-			.colors {
-				border-bottom: 1px #d9d9d9 solid;
-				margin-bottom: 10px;
-				padding: 10px
-			}
-
-			.tools {
-				padding-bottom: 10px;
-				> span:first-of-type {
-					border-right: 1px #d9d9d9 solid;
-				}
-
-				span {
-					display: inline-block;
-					width: 49%;
+					background: #57bb63;
+					border-radius: 50%;
 					text-align: center;
+					font-size: 10pt;
+					font-weight: bold;
+					cursor: pointer;
+					margin: 8px;
 				}
 
-				> span:first-of-type > img:first-of-type {
-					margin-right: 2vw;
+				div:first-of-type i,
+				div:last-of-type i {
+					padding: 8px 3px;
 				}
+
+				div:nth-last-of-type(2) i {
+					padding: 1px 10px;
+				}
+
+				>div:last-of-type i {
+					vertical-align: bottom;
+				}
+
+				>div:last-of-type i:nth-last-of-type(2) {
+					margin: 0 10px;
+				}
+
+				div:last-of-type i:first-of-type,
+				div:last-of-type i:last-of-type {
+					background: #2980b9;
+					border-bottom: 3px #216694 solid;
+					padding: 1px 8px;
+				}
+			}
+
+			// Drawing
+			.board-manager {
+				width: 40%;
 
 				img {
-					vertical-align: middle;
+					cursor: pointer;
+					margin-right: 7%;
+				}
+
+				>div img:last-of-type {
+					margin-right: 0;
+				}
+
+				.colors {
+					border-bottom: 1px #d9d9d9 solid;
+					margin-bottom: 10px;
+					padding: 10px
+				}
+
+				.tools {
+					padding-bottom: 10px;
+
+					>span:first-of-type {
+						border-right: 1px #d9d9d9 solid;
+					}
+
+					span {
+						display: inline-block;
+						width: 49%;
+						text-align: center;
+					}
+
+					>span:first-of-type>img:first-of-type {
+						margin-right: 2vw;
+					}
+
+					img {
+						vertical-align: middle;
+					}
+				}
+			}
+
+			// Bee
+			.bee-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				img {
+					cursor: move;
+				}
+				img.invisible {
+					display: none;
 				}
 			}
 		}
-
-		// Bee
-		.bee-container {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			img {
-				cursor: move;
-			}
-		}
-	}
 	}
 
-	> .right {
+	>.right {
 		float: right;
 		width: 51%;
+
 		.board-container {
 			position: relative;
 			width: 690px;
 			height: 690px;
-			margin-top:-8.9%;
+			margin-top: 5.4vh;
 		}
 
 		#drawing-board,
