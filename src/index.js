@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useRoutes } from 'hookrouter';
-import routes from './Router';
+import routes from './routes';
 import * as serviceWorker from './serviceWorker';
 import './sass/main.scss';
 
