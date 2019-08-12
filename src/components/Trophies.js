@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import trophyActive from '../img/game/trophies/trophy-active.png';
 import trophyInactive from '../img/game/trophies/trophy-inactive.png';
 
-export default class Trophies extends React.PureComponent {
+export default class Trophies extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { status: this.props.status };

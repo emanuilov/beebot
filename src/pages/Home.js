@@ -9,7 +9,7 @@ import contacts from '../img/home/contacts.png';
 import text from '../controllers/TextContent';
 import '../sass/home.scss';
 
-export default class Home extends React.PureComponent {
+export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

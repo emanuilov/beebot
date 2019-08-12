@@ -7,9 +7,11 @@ function getText() {
 	if (langSetting !== 'en') {
 		text.lessons = lessons.bg;
 		text.ui = ui.bg;
+		text.lang = 'bg';
 	} else {
 		text.lessons = lessons.en;
 		text.ui = ui.en;
+		text.lang = 'en';
 	}
 	return text;
 }

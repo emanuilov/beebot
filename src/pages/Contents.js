@@ -3,10 +3,9 @@ import Container from '../components/Container';
 import '../sass/contents.scss';
 import text from '../controllers/TextContent';
 
-export default class Contents extends React.PureComponent {
+export default class Contents extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
 		this.getContents = this.getContents.bind(this);
 	}
 

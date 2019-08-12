@@ -1,65 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import SubjectProgress from '../controllers/SubjectProgress';
+import Task from './Task';
+import Trophies from './Trophies';
+import ribbon from '../img/game/ribbon.png';
 import text from '../controllers/TextContent';
 
-export default class Lesson extends React.PureComponent {
+export default class Lesson extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			title: `${this.props.lessonID + 1}.${' '}
-						${text.lessons[this.props.lessonID].tasks[this.props.taskID].title}`,
-			topLine: '',
-			bottomLine: ''
-		};
-		this.playSound = this.playSound.bind(this);
-	}
-
-	generateTasks() {}
-
-	playSound() {
-		import(`../sounds/${this.props.lessonID}.mp3`).then(song => {
-			const sound = new Audio(song.default);
-			sound.play();
-		});
+		this.subjectProgress = new SubjectProgress(props.id);
 	}
 
 	render() {
 		return (
-			<div className={'white-box lesson'}>
-				<div className={'content'}>
-					<h3>{this.state.title}</h3>
-					<ul>
-						<li>{this.state.topLine}</li>
-						<li>{this.state.bottomLine}</li>
-					</ul>
+			<div>
+				<div className={'ribbon'}>
+					<img src={ribbon} alt={'Ribbon'} />
+					<h1 className={'title'}>{text.lessons[this.subjectProgress.lessonID].title}</h1>
 				</div>
-				<nav>
-					<div className={'left'}>
-						<i className={'material-icons'}>skip_previous</i>
-						<i className={'material-icons next'}>skip_next</i>
-						<i className={'material-icons'}>navigate_before</i>
-						<div>
-							<span className={'current-page'}>{this.state.currentPage}</span>
-							<span>/</span>
-							<span className={'total-pages'}>{this.state.totalPages}</span>
-						</div>
-						<i className={'material-icons'}>navigate_next</i>
-					</div>
-					<div className={'right'}>
-						<i className={'material-icons'} role={'button'} tabIndex={'0'} onClick={this.playSound}>
-							check
-						</i>
-						<i className={'material-icons'} role={'button'} tabIndex={'0'} onClick={this.playSound}>
-							record_voice_over
-						</i>
-					</div>
-				</nav>
+				<Trophies status={this.subjectProgress.trophies} />
+				<Task lessonID={this.subjectProgress.lessonID} taskID={this.subjectProgress.taskID} />
 			</div>
 		);
 	}
 }
 
 Lesson.propTypes = {
-	lessonID: PropTypes.number.isRequired,
-	taskID: PropTypes.number.isRequired
+	id: PropTypes.string
+};
+
+Lesson.defaultProps = {
+	id: null
 };

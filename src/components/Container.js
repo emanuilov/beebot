@@ -6,30 +6,30 @@ import cityLeft from '../img/home/city-left.png';
 import cityRight from '../img/home/city-right.png';
 import '../sass/container.scss';
 
-export default class Container extends React.PureComponent {
-	render() {
-		return (
-			<div className={`box-container main ${this.props.class}`}>
-				<div
-					className={'title pointer'}
-					role={'button'}
-					tabIndex={'0'}
-					onClick={() => window.goTo('/Home')}
-				>
-					<img src={title} alt={'Заглавие'} />
-				</div>
-				<div className={'city'}>
-					<img src={cityLeft} alt={'Град'} />
-					{this.props.content}
-					<img src={cityRight} alt={'Град'} />
-				</div>
-
-				<Footer />
+const Container = props => {
+	return (
+		<div className={`box-container main ${props.class}`}>
+			<div
+				className={'title pointer'}
+				role={'button'}
+				tabIndex={'0'}
+				onClick={() => window.goTo('/Home')}
+			>
+				<img src={title} alt={'Заглавие'} />
 			</div>
-		);
-	}
-}
+			<div className={'city'}>
+				<img src={cityLeft} alt={'Град'} />
+				{props.content}
+				<img src={cityRight} alt={'Град'} />
+			</div>
+
+			<Footer />
+		</div>
+	);
+};
 Container.propTypes = {
 	class: PropTypes.node.isRequired,
 	content: PropTypes.node.isRequired
 };
+
+export default Container;

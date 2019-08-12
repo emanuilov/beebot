@@ -3,7 +3,7 @@ import LicenseManagment from '../controllers/LicenseManagment';
 import Container from '../components/Container';
 import '../sass/activation.scss';
 
-export default class Activation extends React.PureComponent {
+export default class Activation extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { key: '', wrongKey: false, technicalError: false };

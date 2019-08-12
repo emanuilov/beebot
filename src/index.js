@@ -5,11 +5,10 @@ import routes from './routes';
 import * as serviceWorker from './serviceWorker';
 import './sass/main.scss';
 
-import(`./sounds/background.mp3`).then(song => {
-	window.music = new Audio(song.default);
-	window.music.loop = true;
-	// window.music.play();
-});
+document.title = 'Безопастност на движението по пътищата';
+window.music = new Audio('/sounds/background.mp3');
+window.music.loop = true;
+// window.music.play();
 
 function App() {
 	return useRoutes(routes);

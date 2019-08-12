@@ -1,5 +1,5 @@
 {
-	"name": "bluebot",
+	"name": "beebot",
 	"version": "0.1.0",
 	"private": true,
 	"main": "nw.html",
@@ -51,13 +51,15 @@
 		"version": "latest",
 		"flavor": "normal",
 		"buildDir": "./build",
-		"cacheDir": "./cache"
+		"cacheDir": "./cache",
+		"appName": "Безопастност на движението по пътищата"
 	},
 	"window": {
 		"toolbar": false,
 		"width": 1280,
 		"height": 720,
 		"frame": true,
-		"resizable": false
+		"resizable": false,
+		"icon": "./public/img/favicon.png"
 	}
 }

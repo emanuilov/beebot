@@ -1,7 +1,7 @@
 import React from 'react';
 import Sketchpad from '../controllers/Sketchpad';
 import BeeMovement from '../controllers/BeeMovement';
-import LessonsContainer from '../components/LessonsContainer';
+import Lesson from '../components/Lesson';
 import board from '../img/game/drawing/board.svg';
 import turquoise from '../img/game/drawing/colors/turquoise.png';
 import emerald from '../img/game/drawing/colors/emerald.png';
@@ -20,7 +20,7 @@ import bigSize from '../img/game/drawing/tools/big-size.png';
 import '../sass/main.scss';
 import '../sass/game.scss';
 
-export default class Game extends React.PureComponent {
+export default class Game extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -92,14 +92,6 @@ export default class Game extends React.PureComponent {
 			this.setState({ beeOpacity: 1 });
 		}
 	};
-
-	onNextClick() {}
-
-	onPrevClick() {}
-
-	onForwardClick() {}
-
-	onBackwardsClick() {}
 
 	toggleBackgroundMusic = () => {
 		if (!window.music.paused) {
@@ -179,7 +171,7 @@ export default class Game extends React.PureComponent {
 
 				<div className={'container'}>
 					<div className={'left'}>
-						<LessonsContainer id={new URL(window.location.href).searchParams.get('id')} />
+						<Lesson id={new URL(window.location.href).searchParams.get('id')} />
 						<div className={'game-managment'}>
 							<div className={'white-box bee-controls'}>
 								<div>
