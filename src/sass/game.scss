@@ -116,13 +116,15 @@ header {
             }
 
             .content {
-                padding: 2%;
+                padding: 1vw;
                 height: 19vh;
+                overflow: auto;
 
                 ul {
                     color: map-get($colors, gray);
                     font-size: larger;
-                    margin: 2vh 2vw;
+                    margin: 0.98vw 1.5vw;
+                    margin-bottom: 0;
                     list-style: none;
                     line-height: 2.7vh;
                     padding: 0;
@@ -144,8 +146,12 @@ header {
                         }
                     }
 
-                    li:first-of-type {
-                        margin-bottom: 2vh;
+                    li {
+                        margin-bottom: 0.5vw;
+                    }
+
+                    li:last-of-type {
+                        margin-bottom: 0;
                     }
                 }
             }
@@ -165,18 +171,16 @@ header {
                     width: 70%;
                     float: left;
 
+                    div {
+                        display: flex;
+                        align-items: center;
+                    }
+
                     i.next {
                         margin-right: 3vw;
                     }
 
-                    i,
-                    span,
-                    div {
-                        vertical-align: middle;
-                    }
-
-                    div {
-                        display: inline-block;
+                    div.pageStats {
                         margin: 0 4%;
                     }
                 }

@@ -123,8 +123,7 @@ export default {
 					imageName: '1-5-5.png',
 					position: [5, 5]
 				}
-			],
-			sound: '1.mp3'
+			]
 		},
 		{
 			title: 'Детето - пешеходец. Неподвижни елементи на пътя.',
@@ -241,8 +240,7 @@ export default {
 					imageName: '2-5-5.png',
 					position: [5, 5]
 				}
-			],
-			sound: '2.mp3'
+			]
 		},
 		{
 			title:
@@ -363,8 +361,7 @@ export default {
 					imageName: '3-5-5.png',
 					position: [5, 5]
 				}
-			],
-			sound: '3.mp3'
+			]
 		},
 		{
 			title: 'Аз съм пешеходец. Избор на място за безопасно пресичане на улица.',
@@ -1592,8 +1589,7 @@ export default {
 					imageName: '12-5-5.png',
 					position: [5, 5]
 				}
-			],
-			sound: '12.mp3'
+			]
 		},
 		{
 			title:
