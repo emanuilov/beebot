@@ -79,7 +79,7 @@ export default class Home extends React.Component {
 								className={'play'}
 								role={'button'}
 								tabIndex={'0'}
-								onClick={() => window.goTo('/Game')}
+								onClick={() => window.goTo(`/Game?id=${window.localStorage.getItem('lessonId')}`)}
 							>
 								<i className={'material-icons'} data-action={'1'}>
 									play_arrow
