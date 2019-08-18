@@ -1,6 +1,7 @@
 import React from 'react';
 import Sketchpad from '../controllers/Sketchpad';
 import BeeMovement from '../controllers/BeeMovement';
+import text from '../controllers/TextContent';
 import Lesson from '../components/Lesson';
 import board from '../img/game/drawing/board.svg';
 import turquoise from '../img/game/drawing/colors/turquoise.png';
@@ -28,15 +29,18 @@ export default class Game extends React.Component {
 			beeOpacity: '1',
 			beeInvisibility: ''
 		};
+		this.appendLessonPictures = this.appendLessonPictures.bind(this);
 		this.embed = React.createRef();
 		this.bee = React.createRef();
 		this.isTheBeeOnTheCanvas = false;
 		this.beeImageName = localStorage.getItem('character') === 'blue' ? 'blueBot.png' : 'beeBot.png';
+		const urlLessonId = new URL(window.location.href).searchParams.get('id');
+		this.lessonId = urlLessonId || '0';
 	}
 
 	componentDidMount() {
 		this.initiateDrawing();
-		this.initiateControls();
+		this.initiateGameUI();
 	}
 
 	onControlClick = e => {
@@ -110,11 +114,18 @@ export default class Game extends React.Component {
 		});
 	};
 
-	initiateControls = () => {
+	initiateGameUI = () => {
 		this.embed.current.addEventListener('load', () => {
 			this.controller = new BeeMovement(this.embed.current, this.beeImageName);
+			this.appendLessonPictures();
 		});
 	};
+
+	appendLessonPictures() {
+		text.lessons[this.lessonId].images.forEach(image =>
+			this.controller.insertImage(image.position, image.name)
+		);
+	}
 
 	render() {
 		return (
@@ -171,7 +182,7 @@ export default class Game extends React.Component {
 
 				<div className={'container'}>
 					<div className={'left'}>
-						<Lesson id={new URL(window.location.href).searchParams.get('id')} />
+						<Lesson id={this.lessonId} />
 						<div className={'game-managment'}>
 							<div className={'white-box bee-controls'}>
 								<div>

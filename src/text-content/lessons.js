@@ -22,106 +22,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '1-1-1.png',
-					position: [1, 1]
+					name: '1-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '1-1-2.png',
-					position: [1, 2]
+					name: '1-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '1-1-3.png',
-					position: [1, 3]
+					name: '1-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '1-1-4.png',
-					position: [1, 4]
+					name: '1-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '1-1-5.png',
-					position: [1, 5]
+					name: '1-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '1-2-1.png',
-					position: [2, 1]
+					name: '1-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '1-2-2.png',
-					position: [2, 2]
+					name: '1-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '1-2-3.png',
-					position: [2, 3]
+					name: '1-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '1-2-4.png',
-					position: [2, 4]
+					name: '1-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '1-2-5.png',
-					position: [2, 5]
+					name: '1-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '1-3-1.png',
-					position: [3, 1]
+					name: '1-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '1-3-2.png',
-					position: [3, 2]
+					name: '1-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '1-3-3.png',
-					position: [3, 3]
+					name: '1-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '1-3-4.png',
-					position: [3, 4]
+					name: '1-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '1-3-5.png',
-					position: [3, 5]
+					name: '1-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '1-4-1.png',
-					position: [4, 1]
+					name: '1-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '1-4-2.png',
-					position: [4, 2]
+					name: '1-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '1-4-3.png',
-					position: [4, 3]
+					name: '1-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '1-4-4.png',
-					position: [4, 4]
+					name: '1-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '1-4-5.png',
-					position: [4, 5]
+					name: '1-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '1-5-1.png',
-					position: [5, 1]
+					name: '1-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '1-5-2.png',
-					position: [5, 2]
+					name: '1-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '1-5-3.png',
-					position: [5, 3]
+					name: '1-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '1-5-4.png',
-					position: [5, 4]
+					name: '1-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '1-5-5.png',
-					position: [5, 5]
+					name: '1-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		},
@@ -139,106 +139,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '2-1-1.png',
-					position: [1, 1]
+					name: '2-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '2-1-2.png',
-					position: [1, 2]
+					name: '2-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '2-1-3.png',
-					position: [1, 3]
+					name: '2-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '2-1-4.png',
-					position: [1, 4]
+					name: '2-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '2-1-5.png',
-					position: [1, 5]
+					name: '2-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '2-2-1.png',
-					position: [2, 1]
+					name: '2-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '2-2-2.png',
-					position: [2, 2]
+					name: '2-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '2-2-3.png',
-					position: [2, 3]
+					name: '2-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '2-2-4.png',
-					position: [2, 4]
+					name: '2-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '2-2-5.png',
-					position: [2, 5]
+					name: '2-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '2-3-1.png',
-					position: [3, 1]
+					name: '2-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '2-3-2.png',
-					position: [3, 2]
+					name: '2-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '2-3-3.png',
-					position: [3, 3]
+					name: '2-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '2-3-4.png',
-					position: [3, 4]
+					name: '2-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '2-3-5.png',
-					position: [3, 5]
+					name: '2-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '2-4-1.png',
-					position: [4, 1]
+					name: '2-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '2-4-2.png',
-					position: [4, 2]
+					name: '2-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '2-4-3.png',
-					position: [4, 3]
+					name: '2-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '2-4-4.png',
-					position: [4, 4]
+					name: '2-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '2-4-5.png',
-					position: [4, 5]
+					name: '2-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '2-5-1.png',
-					position: [5, 1]
+					name: '2-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '2-5-2.png',
-					position: [5, 2]
+					name: '2-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '2-5-3.png',
-					position: [5, 3]
+					name: '2-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '2-5-4.png',
-					position: [5, 4]
+					name: '2-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '2-5-5.png',
-					position: [5, 5]
+					name: '2-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		},
@@ -260,106 +260,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '3-1-1.png',
-					position: [1, 1]
+					name: '3-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '3-1-2.png',
-					position: [1, 2]
+					name: '3-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '3-1-3.png',
-					position: [1, 3]
+					name: '3-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '3-1-4.png',
-					position: [1, 4]
+					name: '3-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '3-1-5.png',
-					position: [1, 5]
+					name: '3-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '3-2-1.png',
-					position: [2, 1]
+					name: '3-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '3-2-2.png',
-					position: [2, 2]
+					name: '3-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '3-2-3.png',
-					position: [2, 3]
+					name: '3-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '3-2-4.png',
-					position: [2, 4]
+					name: '3-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '3-2-5.png',
-					position: [2, 5]
+					name: '3-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '3-3-1.png',
-					position: [3, 1]
+					name: '3-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '3-3-2.png',
-					position: [3, 2]
+					name: '3-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '3-3-3.png',
-					position: [3, 3]
+					name: '3-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '3-3-4.png',
-					position: [3, 4]
+					name: '3-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '3-3-5.png',
-					position: [3, 5]
+					name: '3-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '3-4-1.png',
-					position: [4, 1]
+					name: '3-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '3-4-2.png',
-					position: [4, 2]
+					name: '3-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '3-4-3.png',
-					position: [4, 3]
+					name: '3-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '3-4-4.png',
-					position: [4, 4]
+					name: '3-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '3-4-5.png',
-					position: [4, 5]
+					name: '3-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '3-5-1.png',
-					position: [5, 1]
+					name: '3-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '3-5-2.png',
-					position: [5, 2]
+					name: '3-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '3-5-3.png',
-					position: [5, 3]
+					name: '3-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '3-5-4.png',
-					position: [5, 4]
+					name: '3-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '3-5-5.png',
-					position: [5, 5]
+					name: '3-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		},
@@ -384,106 +384,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '4-1-1.png',
-					position: [1, 1]
+					name: '4-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '4-1-2.png',
-					position: [1, 2]
+					name: '4-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '4-1-3.png',
-					position: [1, 3]
+					name: '4-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '4-1-4.png',
-					position: [1, 4]
+					name: '4-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '4-1-5.png',
-					position: [1, 5]
+					name: '4-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '4-2-1.png',
-					position: [2, 1]
+					name: '4-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '4-2-2.png',
-					position: [2, 2]
+					name: '4-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '4-2-3.png',
-					position: [2, 3]
+					name: '4-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '4-2-4.png',
-					position: [2, 4]
+					name: '4-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '4-2-5.png',
-					position: [2, 5]
+					name: '4-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '4-3-1.png',
-					position: [3, 1]
+					name: '4-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '4-3-2.png',
-					position: [3, 2]
+					name: '4-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '4-3-3.png',
-					position: [3, 3]
+					name: '4-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '4-3-4.png',
-					position: [3, 4]
+					name: '4-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '4-3-5.png',
-					position: [3, 5]
+					name: '4-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '4-4-1.png',
-					position: [4, 1]
+					name: '4-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '4-4-2.png',
-					position: [4, 2]
+					name: '4-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '4-4-3.png',
-					position: [4, 3]
+					name: '4-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '4-4-4.png',
-					position: [4, 4]
+					name: '4-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '4-4-5.png',
-					position: [4, 5]
+					name: '4-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '4-5-1.png',
-					position: [5, 1]
+					name: '4-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '4-5-2.png',
-					position: [5, 2]
+					name: '4-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '4-5-3.png',
-					position: [5, 3]
+					name: '4-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '4-5-4.png',
-					position: [5, 4]
+					name: '4-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '4-5-5.png',
-					position: [5, 5]
+					name: '4-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		},
@@ -545,106 +545,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '5-1-1.png',
-					position: [1, 1]
+					name: '5-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '5-1-2.png',
-					position: [1, 2]
+					name: '5-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '5-1-3.png',
-					position: [1, 3]
+					name: '5-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '5-1-4.png',
-					position: [1, 4]
+					name: '5-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '5-1-5.png',
-					position: [1, 5]
+					name: '5-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '5-2-1.png',
-					position: [2, 1]
+					name: '5-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '5-2-2.png',
-					position: [2, 2]
+					name: '5-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '5-2-3.png',
-					position: [2, 3]
+					name: '5-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '5-2-4.png',
-					position: [2, 4]
+					name: '5-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '5-2-5.png',
-					position: [2, 5]
+					name: '5-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '5-3-1.png',
-					position: [3, 1]
+					name: '5-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '5-3-2.png',
-					position: [3, 2]
+					name: '5-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '5-3-3.png',
-					position: [3, 3]
+					name: '5-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '5-3-4.png',
-					position: [3, 4]
+					name: '5-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '5-3-5.png',
-					position: [3, 5]
+					name: '5-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '5-4-1.png',
-					position: [4, 1]
+					name: '5-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '5-4-2.png',
-					position: [4, 2]
+					name: '5-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '5-4-3.png',
-					position: [4, 3]
+					name: '5-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '5-4-4.png',
-					position: [4, 4]
+					name: '5-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '5-4-5.png',
-					position: [4, 5]
+					name: '5-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '5-5-1.png',
-					position: [5, 1]
+					name: '5-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '5-5-2.png',
-					position: [5, 2]
+					name: '5-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '5-5-3.png',
-					position: [5, 3]
+					name: '5-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '5-5-4.png',
-					position: [5, 4]
+					name: '5-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '5-5-5.png',
-					position: [5, 5]
+					name: '5-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		},
@@ -689,106 +689,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '6-1-1.png',
-					position: [1, 1]
+					name: '6-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '6-1-2.png',
-					position: [1, 2]
+					name: '6-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '6-1-3.png',
-					position: [1, 3]
+					name: '6-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '6-1-4.png',
-					position: [1, 4]
+					name: '6-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '6-1-5.png',
-					position: [1, 5]
+					name: '6-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '6-2-1.png',
-					position: [2, 1]
+					name: '6-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '6-2-2.png',
-					position: [2, 2]
+					name: '6-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '6-2-3.png',
-					position: [2, 3]
+					name: '6-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '6-2-4.png',
-					position: [2, 4]
+					name: '6-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '6-2-5.png',
-					position: [2, 5]
+					name: '6-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '6-3-1.png',
-					position: [3, 1]
+					name: '6-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '6-3-2.png',
-					position: [3, 2]
+					name: '6-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '6-3-3.png',
-					position: [3, 3]
+					name: '6-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '6-3-4.png',
-					position: [3, 4]
+					name: '6-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '6-3-5.png',
-					position: [3, 5]
+					name: '6-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '6-4-1.png',
-					position: [4, 1]
+					name: '6-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '6-4-2.png',
-					position: [4, 2]
+					name: '6-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '6-4-3.png',
-					position: [4, 3]
+					name: '6-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '6-4-4.png',
-					position: [4, 4]
+					name: '6-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '6-4-5.png',
-					position: [4, 5]
+					name: '6-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '6-5-1.png',
-					position: [5, 1]
+					name: '6-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '6-5-2.png',
-					position: [5, 2]
+					name: '6-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '6-5-3.png',
-					position: [5, 3]
+					name: '6-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '6-5-4.png',
-					position: [5, 4]
+					name: '6-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '6-5-5.png',
-					position: [5, 5]
+					name: '6-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		},
@@ -831,106 +831,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '7-1-1.png',
-					position: [1, 1]
+					name: '7-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '7-1-2.png',
-					position: [1, 2]
+					name: '7-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '7-1-3.png',
-					position: [1, 3]
+					name: '7-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '7-1-4.png',
-					position: [1, 4]
+					name: '7-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '7-1-5.png',
-					position: [1, 5]
+					name: '7-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '7-2-1.png',
-					position: [2, 1]
+					name: '7-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '7-2-2.png',
-					position: [2, 2]
+					name: '7-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '7-2-3.png',
-					position: [2, 3]
+					name: '7-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '7-2-4.png',
-					position: [2, 4]
+					name: '7-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '7-2-5.png',
-					position: [2, 5]
+					name: '7-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '7-3-1.png',
-					position: [3, 1]
+					name: '7-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '7-3-2.png',
-					position: [3, 2]
+					name: '7-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '7-3-3.png',
-					position: [3, 3]
+					name: '7-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '7-3-4.png',
-					position: [3, 4]
+					name: '7-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '7-3-5.png',
-					position: [3, 5]
+					name: '7-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '7-4-1.png',
-					position: [4, 1]
+					name: '7-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '7-4-2.png',
-					position: [4, 2]
+					name: '7-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '7-4-3.png',
-					position: [4, 3]
+					name: '7-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '7-4-4.png',
-					position: [4, 4]
+					name: '7-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '7-4-5.png',
-					position: [4, 5]
+					name: '7-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '7-5-1.png',
-					position: [5, 1]
+					name: '7-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '7-5-2.png',
-					position: [5, 2]
+					name: '7-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '7-5-3.png',
-					position: [5, 3]
+					name: '7-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '7-5-4.png',
-					position: [5, 4]
+					name: '7-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '7-5-5.png',
-					position: [5, 5]
+					name: '7-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		},
@@ -976,106 +976,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '8-1-1.png',
-					position: [1, 1]
+					name: '8-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '8-1-2.png',
-					position: [1, 2]
+					name: '8-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '8-1-3.png',
-					position: [1, 3]
+					name: '8-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '8-1-4.png',
-					position: [1, 4]
+					name: '8-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '8-1-5.png',
-					position: [1, 5]
+					name: '8-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '8-2-1.png',
-					position: [2, 1]
+					name: '8-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '8-2-2.png',
-					position: [2, 2]
+					name: '8-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '8-2-3.png',
-					position: [2, 3]
+					name: '8-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '8-2-4.png',
-					position: [2, 4]
+					name: '8-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '8-2-5.png',
-					position: [2, 5]
+					name: '8-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '8-3-1.png',
-					position: [3, 1]
+					name: '8-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '8-3-2.png',
-					position: [3, 2]
+					name: '8-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '8-3-3.png',
-					position: [3, 3]
+					name: '8-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '8-3-4.png',
-					position: [3, 4]
+					name: '8-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '8-3-5.png',
-					position: [3, 5]
+					name: '8-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '8-4-1.png',
-					position: [4, 1]
+					name: '8-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '8-4-2.png',
-					position: [4, 2]
+					name: '8-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '8-4-3.png',
-					position: [4, 3]
+					name: '8-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '8-4-4.png',
-					position: [4, 4]
+					name: '8-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '8-4-5.png',
-					position: [4, 5]
+					name: '8-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '8-5-1.png',
-					position: [5, 1]
+					name: '8-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '8-5-2.png',
-					position: [5, 2]
+					name: '8-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '8-5-3.png',
-					position: [5, 3]
+					name: '8-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '8-5-4.png',
-					position: [5, 4]
+					name: '8-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '8-5-5.png',
-					position: [5, 5]
+					name: '8-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		},
@@ -1121,106 +1121,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '9-1-1.png',
-					position: [1, 1]
+					name: '9-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '9-1-2.png',
-					position: [1, 2]
+					name: '9-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '9-1-3.png',
-					position: [1, 3]
+					name: '9-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '9-1-4.png',
-					position: [1, 4]
+					name: '9-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '9-1-5.png',
-					position: [1, 5]
+					name: '9-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '9-2-1.png',
-					position: [2, 1]
+					name: '9-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '9-2-2.png',
-					position: [2, 2]
+					name: '9-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '9-2-3.png',
-					position: [2, 3]
+					name: '9-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '9-2-4.png',
-					position: [2, 4]
+					name: '9-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '9-2-5.png',
-					position: [2, 5]
+					name: '9-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '9-3-1.png',
-					position: [3, 1]
+					name: '9-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '9-3-2.png',
-					position: [3, 2]
+					name: '9-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '9-3-3.png',
-					position: [3, 3]
+					name: '9-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '9-3-4.png',
-					position: [3, 4]
+					name: '9-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '9-3-5.png',
-					position: [3, 5]
+					name: '9-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '9-4-1.png',
-					position: [4, 1]
+					name: '9-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '9-4-2.png',
-					position: [4, 2]
+					name: '9-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '9-4-3.png',
-					position: [4, 3]
+					name: '9-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '9-4-4.png',
-					position: [4, 4]
+					name: '9-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '9-4-5.png',
-					position: [4, 5]
+					name: '9-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '9-5-1.png',
-					position: [5, 1]
+					name: '9-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '9-5-2.png',
-					position: [5, 2]
+					name: '9-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '9-5-3.png',
-					position: [5, 3]
+					name: '9-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '9-5-4.png',
-					position: [5, 4]
+					name: '9-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '9-5-5.png',
-					position: [5, 5]
+					name: '9-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		},
@@ -1243,106 +1243,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '10-1-1.png',
-					position: [1, 1]
+					name: '10-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '10-1-2.png',
-					position: [1, 2]
+					name: '10-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '10-1-3.png',
-					position: [1, 3]
+					name: '10-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '10-1-4.png',
-					position: [1, 4]
+					name: '10-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '10-1-5.png',
-					position: [1, 5]
+					name: '10-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '10-2-1.png',
-					position: [2, 1]
+					name: '10-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '10-2-2.png',
-					position: [2, 2]
+					name: '10-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '10-2-3.png',
-					position: [2, 3]
+					name: '10-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '10-2-4.png',
-					position: [2, 4]
+					name: '10-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '10-2-5.png',
-					position: [2, 5]
+					name: '10-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '10-3-1.png',
-					position: [3, 1]
+					name: '10-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '10-3-2.png',
-					position: [3, 2]
+					name: '10-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '10-3-3.png',
-					position: [3, 3]
+					name: '10-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '10-3-4.png',
-					position: [3, 4]
+					name: '10-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '10-3-5.png',
-					position: [3, 5]
+					name: '10-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '10-4-1.png',
-					position: [4, 1]
+					name: '10-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '10-4-2.png',
-					position: [4, 2]
+					name: '10-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '10-4-3.png',
-					position: [4, 3]
+					name: '10-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '10-4-4.png',
-					position: [4, 4]
+					name: '10-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '10-4-5.png',
-					position: [4, 5]
+					name: '10-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '10-5-1.png',
-					position: [5, 1]
+					name: '10-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '10-5-2.png',
-					position: [5, 2]
+					name: '10-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '10-5-3.png',
-					position: [5, 3]
+					name: '10-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '10-5-4.png',
-					position: [5, 4]
+					name: '10-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '10-5-5.png',
-					position: [5, 5]
+					name: '10-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		},
@@ -1375,106 +1375,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '11-1-1.png',
-					position: [1, 1]
+					name: '11-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '11-1-2.png',
-					position: [1, 2]
+					name: '11-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '11-1-3.png',
-					position: [1, 3]
+					name: '11-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '11-1-4.png',
-					position: [1, 4]
+					name: '11-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '11-1-5.png',
-					position: [1, 5]
+					name: '11-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '11-2-1.png',
-					position: [2, 1]
+					name: '11-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '11-2-2.png',
-					position: [2, 2]
+					name: '11-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '11-2-3.png',
-					position: [2, 3]
+					name: '11-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '11-2-4.png',
-					position: [2, 4]
+					name: '11-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '11-2-5.png',
-					position: [2, 5]
+					name: '11-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '11-3-1.png',
-					position: [3, 1]
+					name: '11-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '11-3-2.png',
-					position: [3, 2]
+					name: '11-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '11-3-3.png',
-					position: [3, 3]
+					name: '11-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '11-3-4.png',
-					position: [3, 4]
+					name: '11-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '11-3-5.png',
-					position: [3, 5]
+					name: '11-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '11-4-1.png',
-					position: [4, 1]
+					name: '11-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '11-4-2.png',
-					position: [4, 2]
+					name: '11-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '11-4-3.png',
-					position: [4, 3]
+					name: '11-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '11-4-4.png',
-					position: [4, 4]
+					name: '11-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '11-4-5.png',
-					position: [4, 5]
+					name: '11-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '11-5-1.png',
-					position: [5, 1]
+					name: '11-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '11-5-2.png',
-					position: [5, 2]
+					name: '11-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '11-5-3.png',
-					position: [5, 3]
+					name: '11-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '11-5-4.png',
-					position: [5, 4]
+					name: '11-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '11-5-5.png',
-					position: [5, 5]
+					name: '11-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		},
@@ -1488,106 +1488,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '12-1-1.png',
-					position: [1, 1]
+					name: '12-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '12-1-2.png',
-					position: [1, 2]
+					name: '12-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '12-1-3.png',
-					position: [1, 3]
+					name: '12-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '12-1-4.png',
-					position: [1, 4]
+					name: '12-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '12-1-5.png',
-					position: [1, 5]
+					name: '12-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '12-2-1.png',
-					position: [2, 1]
+					name: '12-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '12-2-2.png',
-					position: [2, 2]
+					name: '12-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '12-2-3.png',
-					position: [2, 3]
+					name: '12-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '12-2-4.png',
-					position: [2, 4]
+					name: '12-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '12-2-5.png',
-					position: [2, 5]
+					name: '12-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '12-3-1.png',
-					position: [3, 1]
+					name: '12-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '12-3-2.png',
-					position: [3, 2]
+					name: '12-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '12-3-3.png',
-					position: [3, 3]
+					name: '12-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '12-3-4.png',
-					position: [3, 4]
+					name: '12-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '12-3-5.png',
-					position: [3, 5]
+					name: '12-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '12-4-1.png',
-					position: [4, 1]
+					name: '12-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '12-4-2.png',
-					position: [4, 2]
+					name: '12-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '12-4-3.png',
-					position: [4, 3]
+					name: '12-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '12-4-4.png',
-					position: [4, 4]
+					name: '12-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '12-4-5.png',
-					position: [4, 5]
+					name: '12-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '12-5-1.png',
-					position: [5, 1]
+					name: '12-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '12-5-2.png',
-					position: [5, 2]
+					name: '12-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '12-5-3.png',
-					position: [5, 3]
+					name: '12-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '12-5-4.png',
-					position: [5, 4]
+					name: '12-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '12-5-5.png',
-					position: [5, 5]
+					name: '12-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		},
@@ -1628,106 +1628,106 @@ export default {
 					]
 				}
 			],
-			image: [
+			images: [
 				{
-					imageName: '13-1-1.png',
-					position: [1, 1]
+					name: '13-1-1.jpg',
+					position: { rowID: 1, columnID: 1 }
 				},
 				{
-					imageName: '13-1-2.png',
-					position: [1, 2]
+					name: '13-1-2.jpg',
+					position: { rowID: 1, columnID: 2 }
 				},
 				{
-					imageName: '13-1-3.png',
-					position: [1, 3]
+					name: '13-1-3.jpg',
+					position: { rowID: 1, columnID: 3 }
 				},
 				{
-					imageName: '13-1-4.png',
-					position: [1, 4]
+					name: '13-1-4.jpg',
+					position: { rowID: 1, columnID: 4 }
 				},
 				{
-					imageName: '13-1-5.png',
-					position: [1, 5]
+					name: '13-1-5.jpg',
+					position: { rowID: 1, columnID: 5 }
 				},
 				{
-					imageName: '13-2-1.png',
-					position: [2, 1]
+					name: '13-2-1.jpg',
+					position: { rowID: 2, columnID: 1 }
 				},
 				{
-					imageName: '13-2-2.png',
-					position: [2, 2]
+					name: '13-2-2.jpg',
+					position: { rowID: 2, columnID: 2 }
 				},
 				{
-					imageName: '13-2-3.png',
-					position: [2, 3]
+					name: '13-2-3.jpg',
+					position: { rowID: 2, columnID: 3 }
 				},
 				{
-					imageName: '13-2-4.png',
-					position: [2, 4]
+					name: '13-2-4.jpg',
+					position: { rowID: 2, columnID: 4 }
 				},
 				{
-					imageName: '13-2-5.png',
-					position: [2, 5]
+					name: '13-2-5.jpg',
+					position: { rowID: 2, columnID: 5 }
 				},
 				{
-					imageName: '13-3-1.png',
-					position: [3, 1]
+					name: '13-3-1.jpg',
+					position: { rowID: 3, columnID: 1 }
 				},
 				{
-					imageName: '13-3-2.png',
-					position: [3, 2]
+					name: '13-3-2.jpg',
+					position: { rowID: 3, columnID: 2 }
 				},
 				{
-					imageName: '13-3-3.png',
-					position: [3, 3]
+					name: '13-3-3.jpg',
+					position: { rowID: 3, columnID: 3 }
 				},
 				{
-					imageName: '13-3-4.png',
-					position: [3, 4]
+					name: '13-3-4.jpg',
+					position: { rowID: 3, columnID: 4 }
 				},
 				{
-					imageName: '13-3-5.png',
-					position: [3, 5]
+					name: '13-3-5.jpg',
+					position: { rowID: 3, columnID: 5 }
 				},
 				{
-					imageName: '13-4-1.png',
-					position: [4, 1]
+					name: '13-4-1.jpg',
+					position: { rowID: 4, columnID: 1 }
 				},
 				{
-					imageName: '13-4-2.png',
-					position: [4, 2]
+					name: '13-4-2.jpg',
+					position: { rowID: 4, columnID: 2 }
 				},
 				{
-					imageName: '13-4-3.png',
-					position: [4, 3]
+					name: '13-4-3.jpg',
+					position: { rowID: 4, columnID: 3 }
 				},
 				{
-					imageName: '13-4-4.png',
-					position: [4, 4]
+					name: '13-4-4.jpg',
+					position: { rowID: 4, columnID: 4 }
 				},
 				{
-					imageName: '13-4-5.png',
-					position: [4, 5]
+					name: '13-4-5.jpg',
+					position: { rowID: 4, columnID: 5 }
 				},
 				{
-					imageName: '13-5-1.png',
-					position: [5, 1]
+					name: '13-5-1.jpg',
+					position: { rowID: 5, columnID: 1 }
 				},
 				{
-					imageName: '13-5-2.png',
-					position: [5, 2]
+					name: '13-5-2.jpg',
+					position: { rowID: 5, columnID: 2 }
 				},
 				{
-					imageName: '13-5-3.png',
-					position: [5, 3]
+					name: '13-5-3.jpg',
+					position: { rowID: 5, columnID: 3 }
 				},
 				{
-					imageName: '13-5-4.png',
-					position: [5, 4]
+					name: '13-5-4.jpg',
+					position: { rowID: 5, columnID: 4 }
 				},
 				{
-					imageName: '13-5-5.png',
-					position: [5, 5]
+					name: '13-5-5.jpg',
+					position: { rowID: 5, columnID: 5 }
 				}
 			]
 		}

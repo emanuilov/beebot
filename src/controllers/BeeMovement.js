@@ -31,8 +31,8 @@ export default class BeeMovement {
 		return {
 			x:
 				defaultValues.padding +
-				defaultValues.box * (imagePosition.boxID - 1) +
-				defaultValues.grid * (imagePosition.boxID - 1),
+				defaultValues.box * (imagePosition.columnID - 1) +
+				defaultValues.grid * (imagePosition.columnID - 1),
 			y:
 				defaultValues.padding +
 				defaultValues.box * (imagePosition.rowID - 1) +
@@ -49,7 +49,7 @@ export default class BeeMovement {
 		image.setAttribute('width', 125);
 		image.setAttribute('height', 125);
 		if (imageName) {
-			image.setAttribute('href', `/img/lesson-pictures/${imageName}.png`);
+			image.setAttribute('href', `/img/lesson-pictures/${imageName}`);
 			this.svg.getElementById('lessonImages').appendChild(image);
 		} else {
 			image.setAttribute('href', `/img/bees/regular/${this.beeImageName}`);
@@ -61,24 +61,24 @@ export default class BeeMovement {
 	getBoxAndRowID(mouseCoordinates) {
 		const coordinates = {
 			rowID: null,
-			boxID: null
+			columnID: null
 		};
 		if (mouseCoordinates.x >= 15) {
 			if (mouseCoordinates.x <= 133) {
-				coordinates.boxID = 1;
+				coordinates.columnID = 1;
 			} else if (mouseCoordinates.x <= 257) {
-				coordinates.boxID = 2;
+				coordinates.columnID = 2;
 			} else if (mouseCoordinates.x <= 381) {
-				coordinates.boxID = 3;
+				coordinates.columnID = 3;
 			} else if (mouseCoordinates.x <= 505) {
-				coordinates.boxID = 4;
+				coordinates.columnID = 4;
 			} else if (mouseCoordinates.x <= 629) {
-				coordinates.boxID = 5;
+				coordinates.columnID = 5;
 			} else {
-				coordinates.boxID = 6;
+				coordinates.columnID = 6;
 			}
 		} else {
-			coordinates.boxID = 0;
+			coordinates.columnID = 0;
 		}
 		if (mouseCoordinates.y >= 15) {
 			if (mouseCoordinates.y <= 133) {
@@ -102,7 +102,12 @@ export default class BeeMovement {
 	}
 
 	checkIfTheMovementIsPossible(position) {
-		if (position.boxID > 0 && position.boxID < 6 && position.rowID > 0 && position.rowID < 6) {
+		if (
+			position.columnID > 0 &&
+			position.columnID < 6 &&
+			position.rowID > 0 &&
+			position.rowID < 6
+		) {
 			return true;
 		}
 		return false;
@@ -135,9 +140,9 @@ export default class BeeMovement {
 				return positionCopy;
 			case 2: // Right
 				if (direction === 1) {
-					positionCopy.boxID += 1;
+					positionCopy.columnID += 1;
 				} else {
-					positionCopy.boxID -= 1;
+					positionCopy.columnID -= 1;
 				}
 				return positionCopy;
 			case 3: // Down
@@ -149,9 +154,9 @@ export default class BeeMovement {
 				return positionCopy;
 			case 4: // Right
 				if (direction === 1) {
-					positionCopy.boxID -= 1;
+					positionCopy.columnID -= 1;
 				} else {
-					positionCopy.boxID += 1;
+					positionCopy.columnID += 1;
 				}
 				return positionCopy;
 			default:
