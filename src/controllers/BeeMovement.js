@@ -102,7 +102,6 @@ export default class BeeMovement {
 	}
 
 	checkIfTheMovementIsPossible(position) {
-		console.log(position);
 		if (
 			position.columnID > 0 &&
 			position.columnID < 6 &&
@@ -153,7 +152,7 @@ export default class BeeMovement {
 					positionCopy.rowID -= 1;
 				}
 				return positionCopy;
-			case 4: // Right
+			case 4: // Left
 				if (direction === 1) {
 					positionCopy.columnID -= 1;
 				} else {
@@ -215,6 +214,10 @@ export default class BeeMovement {
 					break;
 				case 4: // Rotate left
 					this.beeRotation = (-90 + this.beeRotation) % 360;
+					if (this.beeRotation === -90) {
+						this.beeRotation = 270;
+					}
+
 					// eslint-disable-next-line no-await-in-loop
 					await this.moveTheBee(this.beeRotation);
 					break;
