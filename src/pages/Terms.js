@@ -1,14 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Container from '../components/Container';
 import '../sass/info.scss';
 
-export default function Terms(props) {
+const Terms = props => {
 	return (
 		<Container
 			class={'terms'}
 			history={props.history}
 			content={
 				<div className={'white-box big terms'}>
+					<div
+						className={'homeButton pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => props.history.push('/Home')}
+					>
+						<i className={'material-icons'}>home</i>
+					</div>
 					<h1 className={'mb'}>ЛИЦЕНЗЕН ДОГОВОР МЕЖДУ ПОТРЕБИТЕЛЯ И ИНОВАЦИИ И КОНСУЛТИРАНЕ ООД</h1>
 					<p>
 						ВНИМАНИЕ! МОЛЯ ПРОЧЕТЕТЕ СЛЕДНИЯ ДОГОВОР. СЪС СЪГЛАСИЕТО СИ С ТОЗИ ДОГОВОР, СЕ СЧИТА, ЧЕ
@@ -39,4 +48,28 @@ export default function Terms(props) {
 			}
 		/>
 	);
-}
+};
+
+Terms.propTypes = {
+	history: PropTypes.shape({
+		action: PropTypes.string,
+		block: PropTypes.func,
+		createHref: PropTypes.func,
+		go: PropTypes.func,
+		goBack: PropTypes.func,
+		goForward: PropTypes.func,
+		length: PropTypes.number,
+		listen: PropTypes.func,
+		location: PropTypes.shape({
+			pathname: PropTypes.string,
+			search: PropTypes.string,
+			hash: PropTypes.string,
+			state: PropTypes.string,
+			key: PropTypes.string
+		}),
+		push: PropTypes.func,
+		replace: PropTypes.func
+	}).isRequired
+};
+
+export default Terms;

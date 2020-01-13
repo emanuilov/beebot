@@ -1,14 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Container from '../components/Container';
 import '../sass/info.scss';
 
-export default function Privacy(props) {
+const Privacy = props => {
 	return (
 		<Container
 			class={'terms'}
 			history={props.history}
 			content={
 				<div className={'white-box big'}>
+					<div
+						className={'homeButton pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => props.history.push('/Home')}
+					>
+						<i className={'material-icons'}>home</i>
+					</div>
 					<h1 className={'mb'}>Общи условия</h1>
 					<ul>
 						<li>
@@ -41,4 +50,28 @@ export default function Privacy(props) {
 			}
 		/>
 	);
-}
+};
+
+Privacy.propTypes = {
+	history: PropTypes.shape({
+		action: PropTypes.string,
+		block: PropTypes.func,
+		createHref: PropTypes.func,
+		go: PropTypes.func,
+		goBack: PropTypes.func,
+		goForward: PropTypes.func,
+		length: PropTypes.number,
+		listen: PropTypes.func,
+		location: PropTypes.shape({
+			pathname: PropTypes.string,
+			search: PropTypes.string,
+			hash: PropTypes.string,
+			state: PropTypes.string,
+			key: PropTypes.string
+		}),
+		push: PropTypes.func,
+		replace: PropTypes.func
+	}).isRequired
+};
+
+export default Privacy;

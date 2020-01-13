@@ -1,15 +1,24 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Container from '../components/Container';
 import '../sass/info.scss';
 
-export default function Contacts(props) {
+const Contacts = props => {
 	return (
 		<Container
 			class={'contacts'}
 			history={props.history}
 			content={
 				<div className={'white-box big contacts'}>
+					<div
+						className={'homeButton pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => props.history.push('/Home')}
+					>
+						<i className={'material-icons'}>home</i>
+					</div>
 					<div role={'button'} tabIndex={'0'} className={'activate'}>
 						<div className={'pr business'}>
 							<h1>Търговски данни:</h1>
@@ -89,4 +98,28 @@ export default function Contacts(props) {
 			}
 		/>
 	);
-}
+};
+
+Contacts.propTypes = {
+	history: PropTypes.shape({
+		action: PropTypes.string,
+		block: PropTypes.func,
+		createHref: PropTypes.func,
+		go: PropTypes.func,
+		goBack: PropTypes.func,
+		goForward: PropTypes.func,
+		length: PropTypes.number,
+		listen: PropTypes.func,
+		location: PropTypes.shape({
+			pathname: PropTypes.string,
+			search: PropTypes.string,
+			hash: PropTypes.string,
+			state: PropTypes.string,
+			key: PropTypes.string
+		}),
+		push: PropTypes.func,
+		replace: PropTypes.func
+	}).isRequired
+};
+
+export default Contacts;

@@ -102,6 +102,7 @@ export default class BeeMovement {
 	}
 
 	checkIfTheMovementIsPossible(position) {
+		console.log(position);
 		if (
 			position.columnID > 0 &&
 			position.columnID < 6 &&

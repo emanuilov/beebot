@@ -28,7 +28,19 @@ export default class Contents extends React.Component {
 			<Container
 				class={'contents'}
 				history={this.props.history}
-				content={<div className={'white-box big'}>{this.getContents()}</div>}
+				content={
+					<div className={'white-box big'}>
+						<div
+							className={'homeButton pointer'}
+							role={'button'}
+							tabIndex={'0'}
+							onClick={() => this.props.history.push('/Home')}
+						>
+							<i className={'material-icons'}>home</i>
+						</div>
+						{this.getContents()}
+					</div>
+				}
 			/>
 		);
 	}
