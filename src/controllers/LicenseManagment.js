@@ -3,7 +3,7 @@ import config from '../config';
 
 export default class ManageLicense {
 	constructor(licenseKey) {
-		this.licenseKey = licenseKey;
+		this.licenseKey = licenseKey.trim();
 		return this.startValidation();
 	}
 
@@ -18,7 +18,6 @@ export default class ManageLicense {
 	activate(request) {
 		localStorage.setItem('expiration', request.expiration);
 		localStorage.setItem('mac', request.mac);
-		window.location.href = '/Home';
 	}
 
 	async validateKey() {

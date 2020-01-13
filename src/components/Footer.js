@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../sass/footer.scss';
 
-export default function Footer() {
+const Footer = props => {
 	return (
 		<footer>
 			<div className={'left'}>Безопасност на движението по пътищата © Иновации и консултиране</div>
@@ -14,20 +15,44 @@ export default function Footer() {
 					За играта
 				</div>{' '}
 				•{' '}
-				<div role={'button'} tabIndex={'0'} onClick={() => window.goTo('/Contacts')}>
+				<div role={'button'} tabIndex={'0'} onClick={() => props.history.push('/Contacts')}>
 					Контакти
 				</div>{' '}
 				•{' '}
 				<div className={'terms'}>
-					<span role={'button'} tabIndex={'0'} onClick={() => window.goTo('/Privacy')}>
+					<span role={'button'} tabIndex={'0'} onClick={() => props.history.push('/Privacy')}>
 						Поверителност
 					</span>{' '}
 					и{' '}
-					<span role={'button'} tabIndex={'0'} onClick={() => window.goTo('/Terms')}>
+					<span role={'button'} tabIndex={'0'} onClick={() => props.history.push('/Terms')}>
 						условия
 					</span>
 				</div>
 			</div>
 		</footer>
 	);
-}
+};
+
+Footer.propTypes = {
+	history: PropTypes.shape({
+		action: PropTypes.string,
+		block: PropTypes.func,
+		createHref: PropTypes.func,
+		go: PropTypes.func,
+		goBack: PropTypes.func,
+		goForward: PropTypes.func,
+		length: PropTypes.number,
+		listen: PropTypes.func,
+		location: PropTypes.shape({
+			pathname: PropTypes.string,
+			search: PropTypes.string,
+			hash: PropTypes.string,
+			state: PropTypes.string,
+			key: PropTypes.string
+		}),
+		push: PropTypes.func,
+		replace: PropTypes.func
+	}).isRequired
+};
+
+export default Footer;

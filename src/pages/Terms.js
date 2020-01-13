@@ -2,10 +2,11 @@ import React from 'react';
 import Container from '../components/Container';
 import '../sass/info.scss';
 
-export default function Terms() {
+export default function Terms(props) {
 	return (
 		<Container
 			class={'terms'}
+			history={props.history}
 			content={
 				<div className={'white-box big terms'}>
 					<h1 className={'mb'}>ЛИЦЕНЗЕН ДОГОВОР МЕЖДУ ПОТРЕБИТЕЛЯ И ИНОВАЦИИ И КОНСУЛТИРАНЕ ООД</h1>

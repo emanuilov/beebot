@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Sketchpad from '../controllers/Sketchpad';
 import BeeMovement from '../controllers/BeeMovement';
 import text from '../controllers/TextContent';
@@ -21,7 +22,7 @@ import bigSize from '../img/game/drawing/tools/big-size.png';
 import '../sass/main.scss';
 import '../sass/game.scss';
 
-export default class Game extends React.Component {
+const Game = class Game extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -35,7 +36,8 @@ export default class Game extends React.Component {
 		this.isTheBeeOnTheCanvas = false;
 		this.beeImageName = localStorage.getItem('character') === 'blue' ? 'blueBot.png' : 'beeBot.png';
 		const urlLessonId = new URL(window.location.href).searchParams.get('id');
-		this.lessonId = urlLessonId || '0';
+		this.lessonId = urlLessonId !== 'null' ? urlLessonId : '0';
+		window.localStorage.setItem('nextPage', '');
 	}
 
 	componentDidMount() {
@@ -72,8 +74,6 @@ export default class Game extends React.Component {
 
 	onDrop = e => {
 		e.stopPropagation();
-		// this.isTheBeeOnTheCanvas = false;
-		// return false;
 		if (this.isTheBeeOnTheCanvas) {
 			this.setState({ beeOpacity: '1' });
 			this.controller.insertImage(
@@ -137,7 +137,7 @@ export default class Game extends React.Component {
 							className={'item'}
 							role={'button'}
 							tabIndex={'0'}
-							onClick={() => window.goTo('/Home')}
+							onClick={() => this.props.history.push('/Home')}
 						>
 							<i className={'material-icons'}>home</i>
 							<span>Начало</span>
@@ -146,7 +146,7 @@ export default class Game extends React.Component {
 							className={'item'}
 							role={'button'}
 							tabIndex={'0'}
-							onClick={() => window.goTo('/Contents')}
+							onClick={() => this.props.history.push('/Contents')}
 						>
 							<i className={'material-icons'}>flag</i>
 							<span>Съдържание</span>
@@ -164,7 +164,7 @@ export default class Game extends React.Component {
 							className={'item'}
 							role={'button'}
 							tabIndex={'0'}
-							onClick={() => window.goTo('/Contacts')}
+							onClick={() => this.props.history.push('/Contacts')}
 						>
 							<i className={'material-icons'}>phone</i>
 							<span>Контакти</span>
@@ -182,7 +182,7 @@ export default class Game extends React.Component {
 
 				<div className={'container'}>
 					<div className={'left'}>
-						<Lesson id={this.lessonId} />
+						<Lesson history={this.props.history} id={this.lessonId} />
 						<div className={'game-managment'}>
 							<div className={'white-box bee-controls'}>
 								<div>
@@ -404,4 +404,28 @@ export default class Game extends React.Component {
 			</div>
 		);
 	}
-}
+};
+
+Game.propTypes = {
+	history: PropTypes.shape({
+		action: PropTypes.string,
+		block: PropTypes.func,
+		createHref: PropTypes.func,
+		go: PropTypes.func,
+		goBack: PropTypes.func,
+		goForward: PropTypes.func,
+		length: PropTypes.number,
+		listen: PropTypes.func,
+		location: PropTypes.shape({
+			pathname: PropTypes.string,
+			search: PropTypes.string,
+			hash: PropTypes.string,
+			state: PropTypes.string,
+			key: PropTypes.string
+		}),
+		push: PropTypes.func,
+		replace: PropTypes.func
+	}).isRequired
+};
+
+export default Game;

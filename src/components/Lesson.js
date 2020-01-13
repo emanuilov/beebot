@@ -20,7 +20,7 @@ export default class Lesson extends React.Component {
 					<img src={ribbon} alt={'Ribbon'} />
 					<h1 className={'title'}>{text.lessons[this.subjectProgress.lessonID].title}</h1>
 				</div>
-				<Trophies status={this.subjectProgress.trophies} />
+				<Trophies history={this.props.history} status={this.subjectProgress.trophies} />
 				<Task lessonID={this.subjectProgress.lessonID} taskID={this.subjectProgress.taskID} />
 			</div>
 		);

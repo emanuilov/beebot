@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Container from '../components/Container';
 import langBG from '../img/home/bg.png';
 import langEN from '../img/home/us.png';
@@ -9,7 +10,7 @@ import contacts from '../img/home/contacts.png';
 import text from '../controllers/TextContent';
 import '../sass/home.scss';
 
-export default class Home extends React.Component {
+const Home = class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -22,6 +23,7 @@ export default class Home extends React.Component {
 
 		this.switchBot = this.switchBot.bind(this);
 		this.switchLang = this.switchLang.bind(this);
+		window.localStorage.setItem('nextPage', '');
 	}
 
 	getCharacterPicture() {
@@ -44,13 +46,15 @@ export default class Home extends React.Component {
 			this.setState({ langPicture: langEN });
 			window.localStorage.setItem('lang', 'en');
 			this.setState({ langOpt: true });
-			window.location.reload();
+			window.localStorage.setItem('nextPage', '/Home');
+			this.forceUpdate();
 		} else {
 			localStorage.setItem('lang', 'bg');
 			this.setState({ langPicture: langBG });
 			window.localStorage.setItem('lang', 'bg');
 			this.setState({ langOpt: false });
-			window.location.reload();
+			window.localStorage.setItem('nextPage', '/Home');
+			this.forceUpdate();
 		}
 	}
 
@@ -72,6 +76,7 @@ export default class Home extends React.Component {
 		return (
 			<Container
 				class={'home'}
+				history={this.props.history}
 				content={
 					<div className={'white-box big'}>
 						<div className={'topRow'}>
@@ -79,7 +84,9 @@ export default class Home extends React.Component {
 								className={'play'}
 								role={'button'}
 								tabIndex={'0'}
-								onClick={() => window.goTo(`/Game?id=${window.localStorage.getItem('lessonId')}`)}
+								onClick={() =>
+									this.props.history.push(`/Game?id=${window.localStorage.getItem('lessonId')}`)
+								}
 							>
 								<i className={'material-icons'} data-action={'1'}>
 									play_arrow
@@ -90,7 +97,7 @@ export default class Home extends React.Component {
 								className={'contents'}
 								role={'button'}
 								tabIndex={'0'}
-								onClick={() => window.goTo('/Contents')}
+								onClick={() => this.props.history.push('/Contents')}
 							>
 								<img src={contents} alt={'Contents'} />
 							</div>
@@ -135,7 +142,7 @@ export default class Home extends React.Component {
 								className={'box'}
 								role={'button'}
 								tabIndex={'0'}
-								onClick={() => window.goTo('/Contacts')}
+								onClick={() => this.props.history.push('/Contacts')}
 							>
 								<img src={contacts} alt={'Контакти'} />
 								<span>{text.ui.home[3]}</span>
@@ -146,4 +153,28 @@ export default class Home extends React.Component {
 			/>
 		);
 	}
-}
+};
+
+Home.propTypes = {
+	history: PropTypes.shape({
+		action: PropTypes.string,
+		block: PropTypes.func,
+		createHref: PropTypes.func,
+		go: PropTypes.func,
+		goBack: PropTypes.func,
+		goForward: PropTypes.func,
+		length: PropTypes.number,
+		listen: PropTypes.func,
+		location: PropTypes.shape({
+			pathname: PropTypes.string,
+			search: PropTypes.string,
+			hash: PropTypes.string,
+			state: PropTypes.string,
+			key: PropTypes.string
+		}),
+		push: PropTypes.func,
+		replace: PropTypes.func
+	}).isRequired
+};
+
+export default Home;

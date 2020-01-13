@@ -2,10 +2,11 @@ import React from 'react';
 import Container from '../components/Container';
 import '../sass/info.scss';
 
-export default function Privacy() {
+export default function Privacy(props) {
 	return (
 		<Container
 			class={'terms'}
+			history={props.history}
 			content={
 				<div className={'white-box big'}>
 					<h1 className={'mb'}>Общи условия</h1>

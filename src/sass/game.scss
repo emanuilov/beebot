@@ -91,15 +91,12 @@ header {
                 margin-bottom: 3%;
             }
 
-            >div>a {
+            >div>img {
                 margin-right: 5%;
-
-                >img {
-                    width: 10%;
-                }
+                width: 10%;
             }
 
-            >div>a:last-of-type {
+            >div>img:last-of-type {
                 margin-right: 0;
             }
         }

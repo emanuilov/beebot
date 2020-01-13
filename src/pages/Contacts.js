@@ -3,10 +3,11 @@ import React from 'react';
 import Container from '../components/Container';
 import '../sass/info.scss';
 
-export default function Contacts() {
+export default function Contacts(props) {
 	return (
 		<Container
 			class={'contacts'}
+			history={props.history}
 			content={
 				<div className={'white-box big contacts'}>
 					<div role={'button'} tabIndex={'0'} className={'activate'}>

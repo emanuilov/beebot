@@ -1,18 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { useRoutes } from 'hookrouter';
-import routes from './routes';
 import * as serviceWorker from './serviceWorker';
-import './sass/main.scss';
+
+import App from './App';
 
 document.title = 'Безопастност на движението по пътищата';
 window.music = new Audio('/sounds/background.mp3');
 window.music.loop = true;
 // window.music.play();
-
-function App() {
-	return useRoutes(routes);
-}
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

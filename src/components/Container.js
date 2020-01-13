@@ -13,7 +13,7 @@ const Container = props => {
 				className={'title pointer'}
 				role={'button'}
 				tabIndex={'0'}
-				onClick={() => window.goTo('/Home')}
+				onClick={() => props.history.push('/index.html')}
 			>
 				<img src={title} alt={'Заглавие'} />
 			</div>
@@ -23,13 +23,32 @@ const Container = props => {
 				<img src={cityRight} alt={'Град'} />
 			</div>
 
-			<Footer />
+			<Footer history={props.history} />
 		</div>
 	);
 };
 Container.propTypes = {
 	class: PropTypes.node.isRequired,
-	content: PropTypes.node.isRequired
+	content: PropTypes.node.isRequired,
+	history: PropTypes.shape({
+		action: PropTypes.string,
+		block: PropTypes.func,
+		createHref: PropTypes.func,
+		go: PropTypes.func,
+		goBack: PropTypes.func,
+		goForward: PropTypes.func,
+		length: PropTypes.number,
+		listen: PropTypes.func,
+		location: PropTypes.shape({
+			pathname: PropTypes.string,
+			search: PropTypes.string,
+			hash: PropTypes.string,
+			state: PropTypes.string,
+			key: PropTypes.string
+		}),
+		push: PropTypes.func,
+		replace: PropTypes.func
+	}).isRequired
 };
 
 export default Container;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import LicenseManagment from '../controllers/LicenseManagment';
 import Container from '../components/Container';
 import '../sass/activation.scss';
@@ -26,15 +27,18 @@ export default class Activation extends React.Component {
 
 	async submit() {
 		const result = await new LicenseManagment(this.state.key);
-		if (result !== 200) {
-			switch (result) {
-				case 406:
-					this.setState({ wrongKey: true });
-					break;
-				default:
-					this.setState({ technicalError: true });
-			}
+		if (result === 200) {
+			return <Redirect to={'/Home'} />;
 		}
+
+		switch (result) {
+			case 406:
+				this.setState({ wrongKey: true });
+				break;
+			default:
+				this.setState({ technicalError: true });
+		}
+		return false;
 	}
 
 	render() {

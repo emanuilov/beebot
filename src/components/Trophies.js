@@ -9,6 +9,11 @@ export default class Trophies extends React.Component {
 		this.state = { status: this.props.status };
 	}
 
+	changePageLink(link) {
+		window.localStorage.setItem('nextPage', link);
+		this.props.history.push('/SecondaryLocation');
+	}
+
 	updatePicture(trophyID, value) {
 		this.setState(state => {
 			const { trophies } = state.status;
@@ -24,52 +29,137 @@ export default class Trophies extends React.Component {
 		return (
 			<div className={'white-box trophies'}>
 				<div>
-					<a href={'/Game?id=0'}>
-						<img src={this.state.status[0] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
-					<a href={'/Game?id=1'}>
-						<img src={this.state.status[1] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
-					<a href={'/Game?id=2'}>
-						<img src={this.state.status[2] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
-					<a href={'/Game?id=3'}>
-						<img src={this.state.status[3] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
-					<a href={'/Game?id=4'}>
-						<img src={this.state.status[4] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
-					<a href={'/Game?id=5'}>
-						<img src={this.state.status[5] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
-					<a href={'/Game?id=6'}>
-						<img src={this.state.status[6] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=0')}
+						src={this.state.status[0] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=1')}
+						src={this.state.status[1] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
+
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=2')}
+						src={this.state.status[2] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=3')}
+						src={this.state.status[3] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=4')}
+						src={this.state.status[4] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=5')}
+						src={this.state.status[5] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=6')}
+						src={this.state.status[6] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
 				</div>
 				<div>
-					<a href={'/Game?id=7'}>
-						<img src={this.state.status[7] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
-					<a href={'/Game?id=8'}>
-						<img src={this.state.status[8] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
-					<a href={'/Game?id=9'}>
-						<img src={this.state.status[9] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
-					<a href={'/Game?id=10'}>
-						<img src={this.state.status[10] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
-					<a href={'/Game?id=11'}>
-						<img src={this.state.status[11] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
-					<a href={'/Game?id=12'}>
-						<img src={this.state.status[12] ? trophyActive : trophyInactive} alt={'Трофей'} />
-					</a>
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=7')}
+						src={this.state.status[7] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=8')}
+						src={this.state.status[8] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=9')}
+						src={this.state.status[9] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=10')}
+						src={this.state.status[10] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=11')}
+						src={this.state.status[11] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
+					<img
+						className={'pointer'}
+						role={'button'}
+						tabIndex={'0'}
+						onClick={() => this.changePageLink('/Game?id=12')}
+						src={this.state.status[12] ? trophyActive : trophyInactive}
+						alt={'Трофей'}
+					/>
 				</div>
 			</div>
 		);
 	}
 }
 Trophies.propTypes = {
-	status: PropTypes.arrayOf(PropTypes.bool).isRequired
+	status: PropTypes.arrayOf(PropTypes.bool).isRequired,
+	history: PropTypes.shape({
+		action: PropTypes.string,
+		block: PropTypes.func,
+		createHref: PropTypes.func,
+		go: PropTypes.func,
+		goBack: PropTypes.func,
+		goForward: PropTypes.func,
+		length: PropTypes.number,
+		listen: PropTypes.func,
+		location: PropTypes.shape({
+			pathname: PropTypes.string,
+			search: PropTypes.string,
+			hash: PropTypes.string,
+			state: PropTypes.string,
+			key: PropTypes.string
+		}),
+		push: PropTypes.func,
+		replace: PropTypes.func
+	}).isRequired
 };
