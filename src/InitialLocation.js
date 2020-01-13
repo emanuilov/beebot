@@ -9,7 +9,7 @@ const InitialLocation = () => {
 	) {
 		return <Redirect to={'/Home'} />;
 	}
-	return <Redirect to={'/Game?id=1'} />;
+	return <Redirect to={'/Activation'} />;
 };
 
 export default InitialLocation;
