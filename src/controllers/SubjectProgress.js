@@ -33,7 +33,7 @@ export default class SubjectProgress {
 			false,
 			false
 		];
-		trophies.fill(true, 0, parseInt(this.lessonID, 10));
+		trophies.fill(true, 0, this.lessonID);
 		return trophies;
 	}
 }
