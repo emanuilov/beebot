@@ -112,6 +112,10 @@ header {
                 color: map-get($colors, red);
             }
 
+            h3.answer {
+                color: map-get($colors, blue);
+            }
+
             .content {
                 padding: 1vw;
                 height: 19vh;

@@ -9,38 +9,40 @@ export default class Lesson extends React.Component {
 			currentPage: 1,
 			totalPages: 1,
 			taskID: props.taskID,
-			title: ''
+			title: '',
+			showTask: true
 		};
 		this.subtasksPerPage = [[]];
+		this.answersPerPage = [[]];
 		this.pageCharacterLimits = { start: this.state.title.length, max: 230 };
-		this.setTaskTitle = this.setTaskTitle.bind(this);
-		this.generateNavigation = this.generateNavigation.bind(this);
-		this.showPrevTask = this.showPrevTask.bind(this);
-		this.showNextTask = this.showNextTask.bind(this);
-		this.showPrevSubTasksPage = this.showPrevSubTasksPage.bind(this);
-		this.showNextSubTasksPage = this.showNextSubTasksPage.bind(this);
-		this.playSound = this.playSound.bind(this);
-		this.subTask = this.subTask.bind(this);
-		this.updateTaskContent = this.updateTaskContent.bind(this);
 	}
 
 	componentDidMount() {
 		this.updateTaskContent();
 	}
 
-	setTaskTitle() {
+	setTitle = () => {
+		const answerTitle = text.lessons[this.props.lessonID].tasks[this.state.taskID].answers.title;
 		this.setState(prevState => ({
 			title: `${prevState.taskID + 1}. ${
-				text.lessons[this.props.lessonID].tasks[prevState.taskID].title
+				// eslint-disable-next-line no-nested-ternary
+				prevState.showTask
+					? text.lessons[this.props.lessonID].tasks[prevState.taskID].title
+					: answerTitle !== undefined
+					? answerTitle
+					: 'Решение'
 			}`
 		}));
+	};
+
+	getCurrentContent(pageId, showTask) {
+		if (showTask) {
+			return this.subtasksPerPage[pageId].map(subtask => subtask);
+		}
+		return this.answersPerPage[pageId].map(subtask => subtask);
 	}
 
-	getCurrentSubtasks(pageId) {
-		return this.subtasksPerPage[pageId].map(subtask => subtask);
-	}
-
-	getWholeNavigation() {
+	getNavigation() {
 		return (
 			<div>
 				<i role={'button'} tabIndex={'0'} className={'material-icons'} onClick={this.showPrevTask}>
@@ -54,19 +56,19 @@ export default class Lesson extends React.Component {
 				>
 					skip_next
 				</i>
-				{this.getSubtasksNavigation()}
+				{this.getSubNavigation()}
 			</div>
 		);
 	}
 
-	getSubtasksNavigation() {
+	getSubNavigation() {
 		return (
 			<div>
 				<i
 					role={'button'}
 					tabIndex={'0'}
 					className={'material-icons'}
-					onClick={this.showPrevSubTasksPage}
+					onClick={this.showPrevSubPage}
 				>
 					navigate_before
 				</i>
@@ -79,7 +81,7 @@ export default class Lesson extends React.Component {
 					role={'button'}
 					tabIndex={'0'}
 					className={'material-icons'}
-					onClick={this.showNextSubTasksPage}
+					onClick={this.showNextSubPage}
 				>
 					navigate_next
 				</i>
@@ -87,113 +89,165 @@ export default class Lesson extends React.Component {
 		);
 	}
 
-	updateTaskContent() {
-		this.setTaskTitle();
-		this.generateSubtaskPages();
-	}
-
-	generateNavigation() {
-		if (text.lessons[this.props.lessonID].tasks.length > 1) {
-			return <div className={'left'}>{this.getWholeNavigation()}</div>;
+	switchToAnswers = () => {
+		if (!this.state.showTask) {
+			this.setState(prevState => ({
+				showTask: !prevState.showTask,
+				totalPages: this.subtasksPerPage.length,
+				currentPage: 1
+			}));
+		} else {
+			this.setState(prevState => ({
+				showTask: !prevState.showTask,
+				totalPages: this.answersPerPage.length,
+				currentPage: 1
+			}));
 		}
-		return <div className={'left'}>{this.getSubtasksNavigation()}</div>;
-	}
+		this.setTitle();
+	};
 
-	showPrevTask() {
+	updateTaskContent = () => {
+		this.setTitle();
+		this.generateSubPages();
+	};
+
+	generateNavigation = () => {
+		if (text.lessons[this.props.lessonID].tasks.length > 1) {
+			return <div className={'left'}>{this.getNavigation()}</div>;
+		}
+		return <div className={'left'}>{this.getSubNavigation()}</div>;
+	};
+
+	showPrevTask = () => {
 		if (this.state.taskID - 1 >= 0) {
 			this.setState(
-				prevState => ({ taskID: prevState.taskID - 1 }),
+				prevState => ({ taskID: prevState.taskID - 1, showTask: true }),
 				() => this.updateTaskContent()
 			);
 		}
-	}
+	};
 
-	showNextTask() {
+	showNextTask = () => {
 		if (this.state.taskID + 1 < text.lessons[this.props.lessonID].tasks.length) {
 			this.setState(
-				prevState => ({ taskID: prevState.taskID + 1 }),
+				prevState => ({ taskID: prevState.taskID + 1, showTask: true }),
 				() => this.updateTaskContent()
 			);
 		}
-	}
+	};
 
-	showPrevSubTasksPage() {
+	showPrevSubPage = () => {
 		if (this.state.currentPage - 1 >= 1) {
 			this.setState(prevState => ({ currentPage: prevState.currentPage - 1 }));
 		}
-	}
+	};
 
-	showNextSubTasksPage() {
+	showNextSubPage = () => {
 		if (
 			this.state.currentPage < this.state.totalPages &&
 			this.state.currentPage + 1 <= this.state.totalPages
 		) {
 			this.setState(prevState => ({ currentPage: prevState.currentPage + 1 }));
 		}
-	}
+	};
 
-	generateSubtaskPages() {
-		let pageId = 0;
-		let pageLength = this.pageCharacterLimits.start;
-		if (text.lessons[this.props.lessonID].tasks[this.state.taskID].text !== undefined) {
-			text.lessons[this.props.lessonID].tasks[this.state.taskID].text.forEach((taskText, index) => {
-				if (this.subtasksPerPage[pageId].length === 2) {
-					pageId += 1;
-					pageLength = this.pageCharacterLimits.start + taskText.length;
-				} else if (pageLength + taskText.length > this.pageCharacterLimits.max) {
-					pageId += 1;
-					pageLength = this.pageCharacterLimits.start + taskText.length;
-				} else {
-					pageLength += taskText.length;
-				}
-				if (this.subtasksPerPage[pageId] === undefined) {
-					this.subtasksPerPage[pageId] = [];
-				}
-				this.subtasksPerPage[pageId].push(
-					this.subTask(
-						`${this.props.lessonID + 1}.${this.state.taskID + 1}.${index + 1}.ogg`,
-						taskText
-					)
-				);
-			});
-			this.setState({ currentPage: 1 });
-			this.setState({ totalPages: this.subtasksPerPage.length });
-			this.forceUpdate();
-		}
-	}
-
-	subTask(soundFile, spanText) {
+	subTask = (soundFile, spanText) => {
 		return (
 			<li>
-				<i
-					className={'material-icons'}
-					role={'button'}
-					tabIndex={'0'}
-					file={soundFile}
-					onClick={this.playSound}
-				>
-					record_voice_over
-				</i>
+				{soundFile !== false && (
+					<i
+						className={'material-icons'}
+						role={'button'}
+						tabIndex={'0'}
+						file={soundFile}
+						onClick={this.playSound}
+					>
+						record_voice_over
+					</i>
+				)}
+
 				<span className={'bullet'}>&#8226;</span>
 				<span>{spanText}</span>
 			</li>
 		);
-	}
+	};
 
-	playSound(e) {
+	playSound = e => {
 		if (this.taskAudio !== undefined) {
 			this.taskAudio.pause();
 		}
 		this.taskAudio = new Audio(`/sounds/lessons/${text.lang}/${e.target.getAttribute('file')}`);
 		this.taskAudio.play();
+	};
+
+	// eslint-disable-next-line no-shadow
+	addSubPage = (page, text, index, isTask) => {
+		const property = isTask ? 'subtasksPerPage' : 'answersPerPage';
+
+		if (this[property][page.id].length === 2) {
+			// eslint-disable-next-line no-param-reassign
+			page.id += 1;
+			// eslint-disable-next-line no-param-reassign
+			page.length = this.pageCharacterLimits.start + text.length;
+		} else if (page.length + text.length > this.pageCharacterLimits.max) {
+			if (page.hasBeenChanged) {
+				// eslint-disable-next-line no-param-reassign
+				page.id += 1;
+			}
+			// eslint-disable-next-line no-param-reassign
+			page.length = this.pageCharacterLimits.start + text.length;
+			// eslint-disable-next-line no-param-reassign
+			page.hasBeenChanged = true;
+		} else {
+			// eslint-disable-next-line no-param-reassign
+			page.length += text.length;
+		}
+		if (this[property][page.id] === undefined) {
+			this[property][page.id] = [];
+		}
+		this[property][page.id].push(
+			this.subTask(
+				isTask ? `${this.props.lessonID + 1}.${this.state.taskID + 1}.${index + 1}.ogg` : false,
+				text
+			)
+		);
+		return page;
+	};
+
+	generateSubPages() {
+		if (text.lessons[this.props.lessonID].tasks[this.state.taskID].text !== undefined) {
+			let subTaskPage = {
+				id: 0,
+				length: this.pageCharacterLimits.start,
+				hasBeenChanged: false
+			};
+			text.lessons[this.props.lessonID].tasks[this.state.taskID].text.forEach((taskText, index) => {
+				subTaskPage = this.addSubPage(subTaskPage, taskText, index, true);
+			});
+		}
+		if (text.lessons[this.props.lessonID].tasks[this.state.taskID].answers.content !== undefined) {
+			let answersPage = {
+				id: 0,
+				length: this.pageCharacterLimits.start,
+				hasBeenChanged: false
+			};
+			text.lessons[this.props.lessonID].tasks[this.state.taskID].answers.content.forEach(
+				(answerText, index) => {
+					answersPage = this.addSubPage(answersPage, answerText, index, false);
+				}
+			);
+		}
+		this.setState({ currentPage: 1 });
+		this.setState({ totalPages: this.subtasksPerPage.length });
+		this.forceUpdate();
 	}
 
 	render() {
 		return (
 			<div className={'white-box lesson'}>
 				<div className={'content'}>
-					<h3>{this.state.title}</h3>
-					<ul>{this.getCurrentSubtasks(this.state.currentPage - 1)}</ul>
+					<h3 className={this.state.showTask ? '' : 'answer'}>{this.state.title}</h3>
+					<ul>{this.getCurrentContent(this.state.currentPage - 1, this.state.showTask)}</ul>
 				</div>
 				<nav>
 					{this.generateNavigation()}
@@ -202,7 +256,7 @@ export default class Lesson extends React.Component {
 							className={'material-icons'}
 							role={'button'}
 							tabIndex={'0'}
-							onClick={this.showAnswers}
+							onClick={this.switchToAnswers}
 						>
 							check
 						</i>

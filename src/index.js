@@ -7,7 +7,7 @@ import App from './App';
 document.title = 'Безопастност на движението по пътищата';
 window.music = new Audio('/sounds/background.mp3');
 window.music.loop = true;
-// window.music.play();
+window.music.play();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
