@@ -28,7 +28,8 @@ const Game = class Game extends React.Component {
 		this.state = {
 			backgrMusicIcon: 'volume_up',
 			beeOpacity: '1',
-			beeInvisibility: ''
+			beeInvisibility: '',
+			pressedButtons: []
 		};
 		this.appendLessonPictures = this.appendLessonPictures.bind(this);
 		this.embed = React.createRef();
@@ -46,15 +47,20 @@ const Game = class Game extends React.Component {
 	}
 
 	onControlClick = e => {
+		e.persist();
 		const actionID = parseInt(e.target.getAttribute('data-action'), 10);
 		if (actionID !== 7 && actionID !== 6) {
+			this.setState(prevState => {
+				prevState.pressedButtons.push(actionID);
+				return { pressedButtons: prevState.pressedButtons };
+			});
 			this.controller.pushSteps(actionID);
 		} else if (actionID === 6) {
 			this.controller.runTheSteps();
 		} else {
 			this.sketchpad.clear();
 			this.controller.reset();
-			this.setState({ beeInvisibility: '' });
+			this.setState({ beeInvisibility: '', pressedButtons: [] });
 		}
 		e.target.setAttribute('style', 'transform: translate(0px, 5px);');
 		setTimeout(target => target.setAttribute('style', ''), 100, e.target);
@@ -99,6 +105,21 @@ const Game = class Game extends React.Component {
 		}
 	};
 
+	getArrowLabel(button) {
+		switch (button) {
+			case 1:
+				return 'arrow_upward';
+			case 2:
+				return 'arrow_forward';
+			case 3:
+				return 'arrow_downward';
+			case 4:
+				return 'arrow_back';
+			default:
+				return '';
+		}
+	}
+
 	toggleBackgroundMusic = () => {
 		if (!window.music.paused) {
 			this.setState({ backgrMusicIcon: 'volume_off' });
@@ -127,6 +148,15 @@ const Game = class Game extends React.Component {
 		text.lessons[this.lessonId].images.forEach(image =>
 			this.controller.insertImage(image.position, image.name)
 		);
+	}
+
+	renderPressedButtons(buttons) {
+		if (this.state.beeInvisibility) {
+			return buttons.map(button => (
+				<i className={'material-icons'}>{this.getArrowLabel(button)}</i>
+			));
+		}
+		return null;
 	}
 
 	render() {
@@ -376,7 +406,11 @@ const Game = class Game extends React.Component {
 								</div>
 							</div>
 
-							<div className={'white-box bee-container'}>
+							<div
+								className={`white-box bee-container ${
+									this.state.beeInvisibility ? 'flexStart' : ''
+								}`}
+							>
 								<img
 									ref={this.bee}
 									className={this.state.beeInvisibility}
@@ -386,6 +420,7 @@ const Game = class Game extends React.Component {
 									src={`${process.env.PUBLIC_URL}/img/bees/regular/${this.beeImageName}`}
 									alt={'Bot'}
 								/>
+								<div>{this.renderPressedButtons(this.state.pressedButtons)}</div>
 							</div>
 						</div>
 					</div>

@@ -211,7 +211,7 @@ header {
             .bee-container,
             .bee-controls {
                 width: 24%;
-                padding: 1.5%;
+                padding: 1.4%;
             }
 
             // Movement
@@ -320,6 +320,19 @@ header {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+                &.flexStart {
+                    align-items: flex-start;
+                    justify-content: flex-start;
+
+                    > div {
+                        height: 18.8vh;
+                        overflow: auto;
+                        i {
+                            font-size: 23px;
+                        }
+                    }
+                }
 
                 img {
                     cursor: move;
