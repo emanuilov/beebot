@@ -56,6 +56,8 @@ const Game = class Game extends React.Component {
 			this.controller.reset();
 			this.setState({ beeInvisibility: '' });
 		}
+		e.target.setAttribute('style', 'transform: translate(0px, 5px);');
+		setTimeout(target => target.setAttribute('style', ''), 100, e.target);
 	};
 
 	// Cnvas

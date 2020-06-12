@@ -46,6 +46,7 @@ export default class BeeMovement {
 		const image = document.createElementNS('http://www.w3.org/2000/svg', 'image');
 		image.setAttribute('x', imageCoordinates.x);
 		image.setAttribute('y', imageCoordinates.y);
+		image.setAttribute('style', 'transition: all ease 0.6s;');
 		image.setAttribute('width', 125);
 		image.setAttribute('height', 125);
 		if (imageName) {
