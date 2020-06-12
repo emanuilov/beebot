@@ -5,10 +5,27 @@
 }
 
 .white-box.big.contacts {
-	.authors > div {
+	.details > div {
 		margin-bottom: 1vw;		
 		.email {
 			margin-left: 2vw;
+		}
+	}
+
+	.business {
+		width: 60%;
+	}
+
+	.authors {
+		.left, .right {
+			width: 50%;
+		}
+		.left {
+			float: left;
+		}
+
+		.right {
+			float: left;
 		}
 	}
 }

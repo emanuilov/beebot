@@ -26,6 +26,26 @@ const Contacts = props => {
 							<div>гр. Шумен, ул. Братя Миладинови“ 12, ап. 4</div>
 							<div>Булстат: BG202410459</div>
 							<div>МОЛ: Ангел Ангелов</div>
+
+							<div className={'authors mt'}>
+								<h1 className={'pt'}>Автори:</h1>
+								<div className={'left'}>
+									<div>д-р Галина Хайдар</div>
+									<div>д-р Ангел Ангелов</div>
+									<div>Николай Бебенов</div>
+									<div>Габриел Атанасов</div>
+									<div>Радостин Емануилов</div>
+								</div>
+								<div className={'right'}>
+									<div>автор-методист</div>
+									<div>ръководител</div>
+									<div>художник</div>
+									<div>дизайнер</div>
+									<div>софтуерен инженер</div>
+								</div>
+							</div>
+						</div>
+						<div className={'pl details'}>
 							<h1 className={'mt'}>Връзка с нас:</h1>
 							<div
 								className={'pointer'}
@@ -43,54 +63,6 @@ const Contacts = props => {
 								onClick={() => window.openLink('https://bdp.innovateconsult.net')}
 							>
 								W: bdp.innovateconsult.net
-							</div>
-						</div>
-
-						<div className={'pl authors'}>
-							<h1>Автори:</h1>
-							<div>
-								д-р Галина Хайдар
-								<p
-									className={'email pointer'}
-									role={'button'}
-									tabIndex={'0'}
-									onClick={() => window.openMail('galinahaidar@abv.bg')}
-								>
-									• galinahaidar@abv.bg
-								</p>
-							</div>
-							<div>
-								д-р Ангел Ангелов
-								<p
-									className={'email pointer'}
-									role={'button'}
-									tabIndex={'0'}
-									onClick={() => window.openMail('angelov@innovateconsult.net')}
-								>
-									• angelov@innovateconsult.net
-								</p>
-							</div>
-							<div>
-								Николай Бебенов
-								<p
-									className={'email pointer'}
-									role={'button'}
-									tabIndex={'0'}
-									onClick={() => window.openMail('bebenovnikolai@abv.bg')}
-								>
-									• bebenovnikolai@abv.bg
-								</p>
-							</div>
-							<div>
-								Габриел Атанасов
-								<p
-									className={'email pointer'}
-									role={'button'}
-									tabIndex={'0'}
-									onClick={() => window.openMail('me@gabo.space')}
-								>
-									• me@gabo.space
-								</p>
 							</div>
 						</div>
 					</div>

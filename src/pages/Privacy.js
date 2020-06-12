@@ -41,7 +41,7 @@ const Privacy = props => {
 						tabIndex={'0'}
 						className={'more mt'}
 						onClick={() => {
-							window.openLink('https://innovateconsult.net');
+							window.openLink('https://bdp.innovateconsult.net/terms-of-use');
 						}}
 					>
 						Още

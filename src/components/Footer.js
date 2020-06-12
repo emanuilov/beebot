@@ -10,7 +10,7 @@ const Footer = props => {
 				<div
 					role={'button'}
 					tabIndex={'0'}
-					onClick={() => window.openLink('https://innovateconsult.net')}
+					onClick={() => window.openLink('https://bdp.innovateconsult.net')}
 				>
 					За играта
 				</div>{' '}
@@ -19,14 +19,12 @@ const Footer = props => {
 					Контакти
 				</div>{' '}
 				•{' '}
-				<div className={'terms'}>
-					<span role={'button'} tabIndex={'0'} onClick={() => props.history.push('/Privacy')}>
-						Поверителност
-					</span>{' '}
-					и{' '}
-					<span role={'button'} tabIndex={'0'} onClick={() => props.history.push('/Terms')}>
-						условия
-					</span>
+				<div
+					role={'button'}
+					tabIndex={'0'}
+					onClick={() => window.openLink('https://bdp.innovateconsult.net/terms-of-use')}
+				>
+					Поверителност и условия
 				</div>
 			</div>
 		</footer>

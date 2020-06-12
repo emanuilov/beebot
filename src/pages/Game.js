@@ -155,7 +155,7 @@ const Game = class Game extends React.Component {
 							className={'item'}
 							role={'button'}
 							tabIndex={'0'}
-							onClick={() => window.openLink('https://innovateconsult.net')}
+							onClick={() => window.openLink('https://bdp.innovateconsult.net')}
 						>
 							<i className={'material-icons'}>settings</i>
 							<span>За играта</span>
